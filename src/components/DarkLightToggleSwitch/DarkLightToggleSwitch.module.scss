@@ -1,4 +1,6 @@
 $panel-height: 40px;
+$switch-size: $panel-height - 6px;
+$switch-margin: 4px;
 
 .panel {
   position: relative;
@@ -18,11 +20,18 @@ $panel-height: 40px;
 .switch {
   position: absolute;
   top: 50%;
-  right: 0;
+  left: $switch-margin;
   transform: translateY(-50%);
-  margin: 0 4px;
-  height: $panel-height - 6px;
-  width: $panel-height - 6px;
+  height: $switch-size;
+  width: $switch-size;
   border-radius: 50%;
   background-color: red;
+
+  transition: left 0.5s ease;
+}
+
+.dark-mode {
+  .switch {
+    left: calc(100% - $switch-size - $switch-margin);
+  }
 }
