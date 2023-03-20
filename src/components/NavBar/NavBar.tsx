@@ -2,7 +2,7 @@
 import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
-  return <div className={styles["nav-bar"]}>NavBar</div>;
+  return <nav className={styles["nav-bar"]}></nav>;
 };
 
 export default NavBar;

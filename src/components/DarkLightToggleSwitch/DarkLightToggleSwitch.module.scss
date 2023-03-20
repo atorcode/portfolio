@@ -1,0 +1,28 @@
+$panel-height: 40px;
+
+.panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  width: 80px;
+  height: $panel-height;
+  background-color: navy;
+  color: white;
+  border: none;
+  border-radius: ceil($panel-height / 2);
+  font-size: 2rem;
+}
+
+.switch {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  margin: 0 4px;
+  height: $panel-height - 6px;
+  width: $panel-height - 6px;
+  border-radius: 50%;
+  background-color: red;
+}
