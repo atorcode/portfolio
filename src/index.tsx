@@ -5,6 +5,9 @@ import "./index.scss";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+// contexts
+import { ThemeProvider } from "./contexts/ThemeProvider";
+
 // components
 import App from "./App";
 
@@ -16,6 +19,8 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );

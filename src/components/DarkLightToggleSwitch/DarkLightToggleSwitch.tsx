@@ -6,17 +6,20 @@ import { RiSunFill } from "react-icons/ri";
 import { RiMoonFill } from "react-icons/ri";
 
 // hooks
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useThemeContext } from "../../contexts/ThemeProvider";
 
 const DarkLightToggleSwitch = () => {
-  const [isDark, setIsDark] = useState(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const { mode, setMode } = useThemeContext();
 
   const handleClick = (): void => {
-    isDark
+    mode === "dark"
       ? buttonRef.current?.classList.remove(styles["dark-mode"])
       : buttonRef.current?.classList.add(styles["dark-mode"]);
-    setIsDark((prev) => !prev);
+    setMode((prev) => {
+      return prev === "dark" ? "light" : "dark";
+    });
   };
 
   return (
