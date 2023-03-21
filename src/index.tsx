@@ -6,7 +6,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 // contexts
-import { ThemeProvider } from "./contexts/ThemeProvider";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 // components
 import App from "./App";

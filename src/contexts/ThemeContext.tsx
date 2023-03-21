@@ -3,8 +3,8 @@ import React, { useContext, useState } from "react";
 
 type ThemeType = "light" | "dark";
 type ThemeContextType = {
-  mode: ThemeType;
-  setMode: React.Dispatch<React.SetStateAction<ThemeType>>;
+  theme: ThemeType;
+  toggleTheme: () => void;
 };
 type ChildrenType = {
   children: React.ReactNode;
@@ -15,9 +15,16 @@ const ThemeContext = React.createContext<ThemeContextType | undefined>(
 );
 
 const ThemeProvider = ({ children }: ChildrenType) => {
-  const [mode, setMode] = useState<ThemeType>("light");
+  const [theme, setTheme] = useState<ThemeType>("light");
+
+  const toggleTheme = (): void => {
+    setTheme((prev: ThemeType): ThemeType => {
+      return prev === "dark" ? "light" : "dark";
+    });
+  };
+
   return (
-    <ThemeContext.Provider value={{ mode, setMode }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
