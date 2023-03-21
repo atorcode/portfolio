@@ -1,5 +1,5 @@
 // styles
-import "./index.css";
+import "./index.scss";
 
 // dependencies
 import React from "react";
