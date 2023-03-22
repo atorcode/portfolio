@@ -1,12 +1,12 @@
-@use "../../variables" as v;
+@use "../../partials/variables" as v;
+@use "../../partials/mixins" as m;
 
 .hero {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 95vh;
+  @include m.section-dimensions;
   font-family: "Gochi Hand", "cursive";
 
   transition: background-color 0.55s ease, color 0.55s ease;

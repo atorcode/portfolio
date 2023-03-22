@@ -1,0 +1,5 @@
+@use "../../partials/mixins" as m;
+
+.skills {
+  @include m.section-dimensions;
+}

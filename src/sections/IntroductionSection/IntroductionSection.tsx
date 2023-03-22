@@ -1,10 +1,10 @@
 // styles
-import styles from "./MainHero.module.scss";
+import styles from "./IntroductionSection.module.scss";
 
 // hooks
 import { useThemeContext } from "../../contexts/ThemeContext";
 
-const MainHero = (): JSX.Element => {
+const IntroductionSection = (): JSX.Element => {
   const { theme } = useThemeContext();
   return (
     <main className={`${styles["hero"]} ${styles[`hero-${theme}`]}`}>
@@ -19,4 +19,4 @@ const MainHero = (): JSX.Element => {
   );
 };
 
-export default MainHero;
+export default IntroductionSection;

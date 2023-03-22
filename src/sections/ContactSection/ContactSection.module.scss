@@ -1,0 +1,5 @@
+@use "../../partials/mixins" as m;
+
+.contact {
+  @include m.section-dimensions;
+}

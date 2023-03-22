@@ -1,4 +1,4 @@
-@use "./variables.scss" as v;
+@use "./partials/variables" as v;
 
 body {
   background-color: v.$primary-color-light;

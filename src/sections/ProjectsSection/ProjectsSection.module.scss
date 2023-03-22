@@ -1,0 +1,5 @@
+@use "../../partials/mixins" as m;
+
+.projects {
+  @include m.section-dimensions;
+}
