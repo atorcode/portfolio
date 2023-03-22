@@ -9,5 +9,13 @@
 .bullets {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
+}
+
+.bullet-container {
+  width: 24px;
+  height: 24px;
+  text-align: center;
 }

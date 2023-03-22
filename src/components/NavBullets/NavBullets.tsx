@@ -18,7 +18,7 @@ const NavBullets = (): JSX.Element => {
       <ul className={styles["bullets"]}>
         {uuids.map((uuid: string): JSX.Element => {
           return (
-            <li key={uuid}>
+            <li key={uuid} className={styles["bullet-container"]}>
               <NavBullet />
             </li>
           );
