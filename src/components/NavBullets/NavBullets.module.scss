@@ -1,0 +1,13 @@
+.nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-52.5%);
+  right: 4%;
+  z-index: 100;
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

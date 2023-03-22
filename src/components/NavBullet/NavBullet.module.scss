@@ -1,0 +1,17 @@
+@use "../../variables" as v;
+
+.bullet {
+  width: 20px;
+  height: 20px;
+  border: 2px solid v.$secondary-color;
+
+  background-color: yellow;
+}
+
+.bullet-expanded {
+  width: 20px;
+  height: 20px;
+  border: 2px solid v.$secondary-color;
+
+  background-color: transparent;
+}
