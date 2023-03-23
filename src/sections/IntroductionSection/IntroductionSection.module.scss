@@ -17,8 +17,7 @@
 }
 
 .hero-dark {
-  background-color: v.$primary-color-dark;
-  color: v.$secondary-color-two;
+  @include m.dark-theme-template;
 }
 
 .greeting {

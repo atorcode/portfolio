@@ -7,7 +7,7 @@ import { useThemeContext } from "../../contexts/ThemeContext";
 const IntroductionSection = (): JSX.Element => {
   const { theme } = useThemeContext();
   return (
-    <main className={`${styles["hero"]} ${styles[`hero-${theme}`]}`}>
+    <section className={`${styles["hero"]} ${styles[`hero-${theme}`]}`}>
       <h1 className={styles["greeting"]}>Hey, I'm Albo!</h1>
       <h2 className={styles["description"]}>
         My full name is Alberto Torrigiotti. I'm a software engineer, front-end
@@ -15,7 +15,7 @@ const IntroductionSection = (): JSX.Element => {
         game-related services. I am extremely eager to collaborate with people
         and build projects together, so don't hesitate to reach out!
       </h2>
-    </main>
+    </section>
   );
 };
 

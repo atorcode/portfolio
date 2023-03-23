@@ -2,4 +2,12 @@
 
 .skills {
   @include m.section-dimensions;
+  scroll-snap-align: start;
+}
+
+// .skills-light {
+// }
+
+.skills-dark {
+  @include m.dark-theme-template;
 }

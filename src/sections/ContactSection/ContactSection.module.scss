@@ -2,4 +2,12 @@
 
 .contact {
   @include m.section-dimensions;
+  scroll-snap-align: start;
+}
+
+// .contact-light {
+// }
+
+.contact-dark {
+  @include m.dark-theme-template;
 }

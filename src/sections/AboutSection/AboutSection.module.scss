@@ -2,4 +2,12 @@
 
 .about {
   @include m.section-dimensions;
+  scroll-snap-align: start;
+}
+
+// .about-light {
+// }
+
+.about-dark {
+  @include m.dark-theme-template;
 }
