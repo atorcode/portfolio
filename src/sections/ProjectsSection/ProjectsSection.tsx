@@ -21,4 +21,5 @@ const ProjectsSection = forwardRef<HTMLElement, PropsWithoutRef<{}>>(
     );
   }
 );
+
 export default ProjectsSection;

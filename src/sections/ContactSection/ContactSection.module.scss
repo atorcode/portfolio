@@ -1,8 +1,11 @@
 @use "../../partials/mixins" as m;
 
 .contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include m.section-dimensions;
-  scroll-snap-align: start;
+  background-color: red;
 }
 
 // .contact-light {

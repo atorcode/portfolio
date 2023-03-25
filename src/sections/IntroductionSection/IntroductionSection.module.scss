@@ -1,22 +1,21 @@
 @use "../../partials/variables" as v;
 @use "../../partials/mixins" as m;
 
-.hero {
+.introduction {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @include m.section-dimensions;
-  font-family: "Gochi Hand", "cursive";
 
   transition: background-color 0.55s ease, color 0.55s ease;
 }
 
-.hero-light {
+.introduction-light {
   background-color: v.$primary-color-light;
 }
 
-.hero-dark {
+.introduction-dark {
   @include m.dark-theme-template;
 }
 

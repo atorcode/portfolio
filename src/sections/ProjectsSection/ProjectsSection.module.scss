@@ -1,8 +1,11 @@
 @use "../../partials/mixins" as m;
 
 .projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include m.section-dimensions;
-  scroll-snap-align: start;
+  background-color: yellow;
 }
 
 // .projects-light {

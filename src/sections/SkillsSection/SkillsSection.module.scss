@@ -1,8 +1,11 @@
 @use "../../partials/mixins" as m;
 
 .skills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @include m.section-dimensions;
-  scroll-snap-align: start;
+  background-color: green;
 }
 
 // .skills-light {
