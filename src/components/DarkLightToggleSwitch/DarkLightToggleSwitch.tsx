@@ -14,14 +14,15 @@ const DarkLightToggleSwitch = (): JSX.Element => {
   const { theme, toggleTheme } = useThemeContext();
 
   const handleClick = (): void => {
-    theme === "dark"
-      ? buttonRef.current?.classList.remove(styles["dark-mode"])
-      : buttonRef.current?.classList.add(styles["dark-mode"]);
     toggleTheme();
   };
 
   return (
-    <button className={styles["panel"]} ref={buttonRef} onClick={handleClick}>
+    <button
+      className={`${styles["panel"]} ${styles[`panel-${theme}`]}`}
+      ref={buttonRef}
+      onClick={handleClick}
+    >
       <RiMoonFill />
       <RiSunFill />
       <div className={styles["switch"]}></div>

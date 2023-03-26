@@ -13,8 +13,8 @@ import ProjectsSection from "./sections/ProjectsSection";
 import ContactSection from "./sections/ContactSection";
 
 // components
+import HeaderMenu from "./components/HeaderMenu";
 import NavBullets from "./components/NavBullets";
-import DarkLightToggleSwitch from "./components/DarkLightToggleSwitch";
 
 const App = (): JSX.Element => {
   const [sectionElements, setSectionElements] = useState<
@@ -42,8 +42,6 @@ const App = (): JSX.Element => {
     },
     () => console.log("scroll")
   );
-
-  // _unbind();
 
   useEffect(() => {
     const createNonNullRefArray = (
@@ -92,12 +90,12 @@ const App = (): JSX.Element => {
 
   return (
     <main className={styles["app"]} ref={scrollContainerRef}>
+      <HeaderMenu />
       <IntroductionSection ref={introductionSectionRef} />
       <AboutSection ref={aboutSectionRef} />
       <SkillsSection ref={skillsSectionRef} />
       <ProjectsSection ref={projectsSectionRef} />
       <ContactSection ref={contactSectionRef} />
-      <DarkLightToggleSwitch />
       <NavBullets />
     </main>
   );
