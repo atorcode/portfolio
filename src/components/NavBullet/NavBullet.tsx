@@ -2,44 +2,42 @@
 import styles from "./NavBullet.module.scss";
 
 // hooks
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type NavBulletProps = {
-  sectionElements: Array<HTMLElement> | [];
-  currentSection: HTMLElement | undefined;
   index: number;
+  sectionElements: Array<HTMLElement>;
+  currentSection: HTMLElement | undefined;
+  expandedBulletIndex: number | undefined;
+  setExpandedBulletIndex: React.Dispatch<
+    React.SetStateAction<number | undefined>
+  >;
 };
 
 const NavBullet = ({
+  index,
   sectionElements,
   currentSection,
-  index,
+  expandedBulletIndex,
+  setExpandedBulletIndex,
 }: NavBulletProps) => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const indexOfBulletToExpand = sectionElements.findIndex(
-      (section) => section === currentSection
+    // expand the bullet whose index in the bullet array matches the index of currentSection in sectionElements
+    setExpandedBulletIndex(
+      sectionElements.findIndex((section) => section === currentSection)
     );
-    if (index === indexOfBulletToExpand) {
-      setIsExpanded(true);
-    } else {
-      setIsExpanded(false);
-    }
   }, [currentSection]);
 
   const handleClick = (): void => {
-    isExpanded
-      ? buttonRef.current?.classList.remove(styles["bullet-expanded"])
-      : buttonRef.current?.classList.add(styles["bullet-expanded"]);
-    setIsExpanded((prev: boolean): boolean => !prev);
+    setExpandedBulletIndex(index);
   };
 
   return (
     <button
       className={
-        isExpanded
+        index === expandedBulletIndex
           ? `${styles["bullet-expanded"]} ${styles["bullet"]}`
           : styles["bullet"]
       }

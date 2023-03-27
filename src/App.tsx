@@ -20,9 +20,9 @@ import HeaderMenu from "./components/HeaderMenu";
 import NavBullets from "./components/NavBullets";
 
 const App = (): JSX.Element => {
-  const [sectionElements, setSectionElements] = useState<
-    Array<HTMLElement> | []
-  >([]);
+  const [sectionElements, setSectionElements] = useState<Array<HTMLElement>>(
+    []
+  );
   const [currentSection, setCurrentSection] = useState<
     HTMLElement | undefined
   >();
@@ -98,7 +98,6 @@ const App = (): JSX.Element => {
         shortestDistanceToSection
       );
       let nearestSection = sectionElements[nearestSectionIndex];
-
       setCurrentSection(nearestSection);
     };
 
