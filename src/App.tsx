@@ -5,6 +5,9 @@ import styles from "./App.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { useScrollSnap } from "./hooks/useScrollSnap";
 
+// utils
+import { SCROLL_DURATION } from "./utils/constants";
+
 // sections
 import IntroductionSection from "./sections/IntroductionSection";
 import AboutSection from "./sections/AboutSection";
@@ -20,28 +23,29 @@ const App = (): JSX.Element => {
   const [sectionElements, setSectionElements] = useState<
     Array<HTMLElement> | []
   >([]);
+  const [currentSection, setCurrentSection] = useState<
+    HTMLElement | undefined
+  >();
   const scrollContainerRef = useRef<HTMLElement | null>(null);
+  const currentSectionRef = useRef<HTMLElement | null>(null);
+
+  // sections
   const introductionSectionRef = useRef<HTMLElement | null>(null);
   const aboutSectionRef = useRef<HTMLElement | null>(null);
   const skillsSectionRef = useRef<HTMLElement | null>(null);
   const projectsSectionRef = useRef<HTMLElement | null>(null);
   const contactSectionRef = useRef<HTMLElement | null>(null);
 
-  const linear = (t: number) => 1 - --t * t * t * t;
+  const easeOutQuart = (t: number) => 1 - --t * t * t * t;
 
-  const [_bind, _unbind] = useScrollSnap(
-    scrollContainerRef,
-    {
-      // snapDestinationY should match the height of each section as specified by @mixin section-dimensions in _mixins.scss
-      snapDestinationY: "100vh",
-      timeout: 1,
-      duration: 200,
-      threshold: 0.01,
-      snapStop: true,
-      easing: linear,
-    },
-    () => console.log("scroll")
-  );
+  const [_scrollBind, _scrollUnbind] = useScrollSnap(scrollContainerRef, {
+    // snapDestinationY should match the height of each section as specified by @mixin section-dimensions in _mixins.scss
+    snapDestinationY: "100vh",
+    timeout: 1,
+    duration: SCROLL_DURATION,
+    threshold: 0.01,
+    easing: easeOutQuart,
+  });
 
   useEffect(() => {
     const createNonNullRefArray = (
@@ -63,13 +67,29 @@ const App = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    // Snap the scroll position to the start of the nearest section when resizing window
+    if (!currentSection) {
+      setCurrentSection(sectionElements[0]);
+    }
+    // Set currentSection to the first section (introduction) if it hasn't been set yet
+    if (!currentSectionRef.current) {
+      currentSectionRef.current = sectionElements[0];
+    }
+    // Snap the scroll position to the start of the current section when resizing window
     const handleResize = (): void => {
-      if (!scrollContainerRef.current || sectionElements.length === 0) {
+      if (
+        !scrollContainerRef.current ||
+        sectionElements.length === 0 ||
+        !currentSectionRef.current
+      ) {
+        return;
+      }
+    };
+
+    const updateCurrentSection = (): void => {
+      if (!scrollContainerRef.current) {
         return;
       }
       const scrollPosition = scrollContainerRef.current.scrollTop;
-
       const distancesToSections = sectionElements.map((element) =>
         Math.abs(scrollPosition - element.offsetTop)
       );
@@ -79,12 +99,20 @@ const App = (): JSX.Element => {
       );
       let nearestSection = sectionElements[nearestSectionIndex];
 
-      nearestSection.scrollIntoView({ behavior: "auto" });
+      setCurrentSection(nearestSection);
     };
 
     window.addEventListener("resize", handleResize);
+    scrollContainerRef.current?.addEventListener(
+      "scroll",
+      updateCurrentSection
+    );
     return () => {
       window.removeEventListener("resize", handleResize);
+      scrollContainerRef.current?.removeEventListener(
+        "scroll",
+        updateCurrentSection
+      );
     };
   }, [sectionElements]);
 
@@ -96,7 +124,10 @@ const App = (): JSX.Element => {
       <SkillsSection ref={skillsSectionRef} />
       <ProjectsSection ref={projectsSectionRef} />
       <ContactSection ref={contactSectionRef} />
-      <NavBullets />
+      <NavBullets
+        sectionElements={sectionElements}
+        currentSection={currentSection}
+      />
     </main>
   );
 };

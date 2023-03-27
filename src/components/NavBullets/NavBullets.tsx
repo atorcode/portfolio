@@ -7,7 +7,15 @@ import { v4 as uuidv4 } from "uuid";
 // components
 import NavBullet from "../NavBullet/NavBullet";
 
-const NavBullets = (): JSX.Element => {
+type NavBulletsProps = {
+  sectionElements: Array<HTMLElement> | [];
+  currentSection: HTMLElement | undefined;
+};
+
+const NavBullets = ({
+  sectionElements,
+  currentSection,
+}: NavBulletsProps): JSX.Element => {
   const uuids: string[] = [];
   for (let i = 0; i < 5; i++) {
     uuids.push(uuidv4());
@@ -16,10 +24,14 @@ const NavBullets = (): JSX.Element => {
   return (
     <nav className={styles["nav"]}>
       <ul className={styles["bullets"]}>
-        {uuids.map((uuid: string): JSX.Element => {
+        {uuids.map((uuid: string, index): JSX.Element => {
           return (
             <li key={uuid} className={styles["bullet-container"]}>
-              <NavBullet />
+              <NavBullet
+                sectionElements={sectionElements}
+                currentSection={currentSection}
+                index={index}
+              />
             </li>
           );
         })}
