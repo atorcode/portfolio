@@ -23,6 +23,7 @@ const NavBullets = ({
     number | undefined
   >();
   const uuids = useRef<string[]>([]);
+
   useEffect(() => {
     // This length check is to prevent React.StrictMode from populating the uuids array twice
     if (uuids.current.length === 0) {
