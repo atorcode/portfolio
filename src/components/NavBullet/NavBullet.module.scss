@@ -4,13 +4,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 12px;
-  height: 12px;
-  transform: translate(-50%, -50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%) rotate(-45deg);
   border: none;
   background-color: v.$secondary-color;
 
-  transition: transform 300ms ease, padding 300ms ease;
+  transition: transform 300ms ease, width 300ms ease, height 300ms ease;
 
   &:hover {
     cursor: pointer;

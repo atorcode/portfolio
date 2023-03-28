@@ -13,15 +13,19 @@ import NavBullet from "../NavBullet/NavBullet";
 type NavBulletsProps = {
   sectionElements: Array<HTMLElement>;
   currentSection: HTMLElement | undefined;
+  setCurrentSection: React.Dispatch<
+    React.SetStateAction<HTMLElement | undefined>
+  >;
+  scrollContainerRef: React.MutableRefObject<HTMLElement | null>;
 };
 
 const NavBullets = ({
   sectionElements,
   currentSection,
+  setCurrentSection,
+  scrollContainerRef,
 }: NavBulletsProps): JSX.Element => {
-  const [expandedBulletIndex, setExpandedBulletIndex] = useState<
-    number | undefined
-  >();
+  const [expandedBulletIndex, setExpandedBulletIndex] = useState<number>(0);
   const uuids = useRef<string[]>([]);
 
   useEffect(() => {
@@ -43,8 +47,10 @@ const NavBullets = ({
                 index={index}
                 sectionElements={sectionElements}
                 currentSection={currentSection}
+                setCurrentSection={setCurrentSection}
                 expandedBulletIndex={expandedBulletIndex}
                 setExpandedBulletIndex={setExpandedBulletIndex}
+                scrollContainerRef={scrollContainerRef}
               />
             </li>
           );

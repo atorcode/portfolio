@@ -27,7 +27,6 @@ const App = (): JSX.Element => {
     HTMLElement | undefined
   >();
   const scrollContainerRef = useRef<HTMLElement | null>(null);
-  const currentSectionRef = useRef<HTMLElement | null>(null);
 
   // sections
   const introductionSectionRef = useRef<HTMLElement | null>(null);
@@ -67,23 +66,23 @@ const App = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
+    // Set currentSection to the first section (introduction) if it hasn't been set yet
     if (!currentSection) {
       setCurrentSection(sectionElements[0]);
     }
-    // Set currentSection to the first section (introduction) if it hasn't been set yet
-    if (!currentSectionRef.current) {
-      currentSectionRef.current = sectionElements[0];
-    }
+    // if (!currentSectionRef.current) {
+    //   currentSectionRef.current = sectionElements[0];
+    // }
     // Snap the scroll position to the start of the current section when resizing window
-    const handleResize = (): void => {
-      if (
-        !scrollContainerRef.current ||
-        sectionElements.length === 0 ||
-        !currentSectionRef.current
-      ) {
-        return;
-      }
-    };
+    // const handleResize = (): void => {
+    //   if (
+    //     !scrollContainerRef.current ||
+    //     sectionElements.length === 0 ||
+    //     !currentSectionRef.current
+    //   ) {
+    //     return;
+    //   }
+    // };
 
     const updateCurrentSection = (): void => {
       if (!scrollContainerRef.current) {
@@ -101,13 +100,13 @@ const App = (): JSX.Element => {
       setCurrentSection(nearestSection);
     };
 
-    window.addEventListener("resize", handleResize);
+    // window.addEventListener("resize", handleResize);
     scrollContainerRef.current?.addEventListener(
       "scroll",
       updateCurrentSection
     );
     return () => {
-      window.removeEventListener("resize", handleResize);
+      // window.removeEventListener("resize", handleResize);
       scrollContainerRef.current?.removeEventListener(
         "scroll",
         updateCurrentSection
@@ -126,6 +125,8 @@ const App = (): JSX.Element => {
       <NavBullets
         sectionElements={sectionElements}
         currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        scrollContainerRef={scrollContainerRef}
       />
     </main>
   );

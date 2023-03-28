@@ -8,18 +8,22 @@ type NavBulletProps = {
   index: number;
   sectionElements: Array<HTMLElement>;
   currentSection: HTMLElement | undefined;
-  expandedBulletIndex: number | undefined;
-  setExpandedBulletIndex: React.Dispatch<
-    React.SetStateAction<number | undefined>
+  setCurrentSection: React.Dispatch<
+    React.SetStateAction<HTMLElement | undefined>
   >;
+  expandedBulletIndex: number;
+  setExpandedBulletIndex: React.Dispatch<React.SetStateAction<number>>;
+  scrollContainerRef: React.MutableRefObject<HTMLElement | null>;
 };
 
 const NavBullet = ({
   index,
   sectionElements,
   currentSection,
+  setCurrentSection,
   expandedBulletIndex,
   setExpandedBulletIndex,
+  scrollContainerRef,
 }: NavBulletProps) => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -31,8 +35,17 @@ const NavBullet = ({
   }, [currentSection]);
 
   const handleClick = (): void => {
+    if (!currentSection || !scrollContainerRef.current) {
+      return;
+    }
+    setCurrentSection(sectionElements[index]);
     setExpandedBulletIndex(index);
+    scrollContainerRef.current.scrollTo(0, sectionElements[index].offsetTop);
   };
+
+  useEffect(() => {
+    console.log(currentSection);
+  }, [currentSection]);
 
   return (
     <button
