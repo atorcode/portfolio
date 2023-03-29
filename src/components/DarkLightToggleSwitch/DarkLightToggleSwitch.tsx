@@ -2,8 +2,7 @@
 import styles from "./DarkLightToggleSwitch.module.scss";
 
 // icons
-import { RiSunFill } from "react-icons/ri";
-import { RiMoonFill } from "react-icons/ri";
+import { RiSunFill, RiMoonFill } from "react-icons/ri";
 
 // hooks
 import { useRef } from "react";

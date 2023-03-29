@@ -30,7 +30,9 @@ const NavBullet = ({
   useEffect(() => {
     // expand the bullet whose index in the bullet array matches the index of currentSection in sectionElements
     setExpandedBulletIndex(
-      sectionElements.findIndex((section) => section === currentSection)
+      sectionElements.findIndex(
+        (section: HTMLElement): boolean => section === currentSection
+      )
     );
   }, [currentSection]);
 

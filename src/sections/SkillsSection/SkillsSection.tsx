@@ -8,6 +8,9 @@ import { forwardRef } from "react";
 // utility types
 import { PropsWithoutRef } from "react";
 
+// components
+import SkillBoxes from "../../components/SkillBoxes";
+
 const SkillsSection = forwardRef<HTMLElement, PropsWithoutRef<{}>>(
   ({}, ref): JSX.Element => {
     const { theme } = useThemeContext();
@@ -16,7 +19,7 @@ const SkillsSection = forwardRef<HTMLElement, PropsWithoutRef<{}>>(
         className={`${styles["skills"]} ${styles[`skills-${theme}`]}`}
         ref={ref}
       >
-        SkillsSection
+        <SkillBoxes />
       </section>
     );
   }

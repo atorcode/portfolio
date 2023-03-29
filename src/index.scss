@@ -1,9 +1,5 @@
 @use "./partials/variables" as v;
 
-body {
-  background-color: v.$primary-color-light;
-}
-
 *,
 ::before,
 ::after {
@@ -12,13 +8,12 @@ body {
   box-sizing: border-box;
 }
 
-:link {
-  text-decoration: none;
-}
-
-ul,
-ol {
-  list-style: none;
+html {
+  overflow: hidden;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 body {
@@ -28,6 +23,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: v.$primary-color-dark-shade;
+}
+
+:link {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 code {

@@ -1,0 +1,21 @@
+@use "../../partials/variables" as v;
+
+.skill-box {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  height: 52px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background-color: v.$secondary-color;
+  color: v.$primary-color-dark-shade;
+  font-family: "Roboto";
+  font-size: 1.2rem;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
