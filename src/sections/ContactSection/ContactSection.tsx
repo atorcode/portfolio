@@ -8,6 +8,9 @@ import { forwardRef } from "react";
 // utility types
 import { PropsWithoutRef } from "react";
 
+// components
+import ContactForm from "../../components/ContactForm";
+
 const ContactSection = forwardRef<HTMLElement, PropsWithoutRef<{}>>(
   ({}, ref): JSX.Element => {
     const { theme } = useThemeContext();
@@ -16,7 +19,7 @@ const ContactSection = forwardRef<HTMLElement, PropsWithoutRef<{}>>(
         className={`${styles["contact"]} ${styles[`contact-${theme}`]}`}
         ref={ref}
       >
-        ContactSection
+        <ContactForm />
       </section>
     );
   }

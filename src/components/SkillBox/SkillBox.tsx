@@ -6,11 +6,12 @@ import {
   SiHtml5,
   SiCss3,
   SiJavascript,
-  SiTypescript,
   SiReact,
   SiSass,
   SiGit,
 } from "react-icons/si";
+
+import { ReactComponent as TypescriptLogo } from "../../assets/typescript-logo.svg";
 
 // utils
 import { SKILLS } from "../../utils/constants";
@@ -20,7 +21,7 @@ type SkillBoxProps = {
 };
 
 const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
-  let icon;
+  let icon: JSX.Element;
   switch (skill) {
     case "HTML":
       icon = <SiHtml5 />;
@@ -32,7 +33,7 @@ const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
       icon = <SiJavascript />;
       break;
     case "TypeScript":
-      icon = <SiTypescript />;
+      icon = <TypescriptLogo className={styles["svg"]} />;
       break;
     case "React":
       icon = <SiReact />;
