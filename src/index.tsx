@@ -7,6 +7,7 @@ import ReactDOM from "react-dom/client";
 
 // contexts
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { ScrollProvider } from "./contexts/ScrollContext";
 
 // components
 import App from "./App";
@@ -20,7 +21,9 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-      <App />
+      <ScrollProvider>
+        <App />
+      </ScrollProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

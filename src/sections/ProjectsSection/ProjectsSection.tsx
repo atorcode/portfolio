@@ -3,23 +3,19 @@ import styles from "./ProjectsSection.module.scss";
 
 // functions and hooks
 import { useThemeContext } from "../../contexts/ThemeContext";
-import { forwardRef } from "react";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
-// utility types
-import { PropsWithoutRef } from "react";
-
-const ProjectsSection = forwardRef<HTMLElement, PropsWithoutRef<{}>>(
-  ({}, ref): JSX.Element => {
-    const { theme } = useThemeContext();
-    return (
-      <section
-        className={`${styles["projects"]} ${styles[`projects-${theme}`]}`}
-        ref={ref}
-      >
-        ProjectsSection
-      </section>
-    );
-  }
-);
+const ProjectsSection = (): JSX.Element => {
+  const { theme } = useThemeContext();
+  const { projectsSectionRef } = useScrollContext();
+  return (
+    <section
+      className={`${styles["projects"]} ${styles[`projects-${theme}`]}`}
+      ref={projectsSectionRef}
+    >
+      ProjectsSection
+    </section>
+  );
+};
 
 export default ProjectsSection;

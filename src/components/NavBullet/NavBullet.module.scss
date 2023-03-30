@@ -8,6 +8,7 @@
   height: 10px;
   transform: translate(-50%, -50%) rotate(-45deg);
   border: none;
+  outline: none;
   background-color: v.$secondary-color;
 
   transition: transform 300ms ease, width 300ms ease, height 300ms ease;

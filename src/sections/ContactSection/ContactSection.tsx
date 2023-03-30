@@ -3,26 +3,22 @@ import styles from "./ContactSection.module.scss";
 
 // functions and hooks
 import { useThemeContext } from "../../contexts/ThemeContext";
-import { forwardRef } from "react";
-
-// utility types
-import { PropsWithoutRef } from "react";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import ContactForm from "../../components/ContactForm";
 
-const ContactSection = forwardRef<HTMLElement, PropsWithoutRef<{}>>(
-  ({}, ref): JSX.Element => {
-    const { theme } = useThemeContext();
-    return (
-      <section
-        className={`${styles["contact"]} ${styles[`contact-${theme}`]}`}
-        ref={ref}
-      >
-        <ContactForm />
-      </section>
-    );
-  }
-);
+const ContactSection = (): JSX.Element => {
+  const { theme } = useThemeContext();
+  const { contactSectionRef } = useScrollContext();
+  return (
+    <section
+      className={`${styles["contact"]} ${styles[`contact-${theme}`]}`}
+      ref={contactSectionRef}
+    >
+      <ContactForm />
+    </section>
+  );
+};
 
 export default ContactSection;

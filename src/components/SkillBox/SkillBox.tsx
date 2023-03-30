@@ -34,7 +34,6 @@ const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
       icon = <SiJavascript />;
       break;
     case "TypeScript":
-      // icon = <TypescriptLogo className={styles["svg"]} />;
       icon = <TypescriptLogo className="typescript-logo-svg" />;
       break;
     case "React":

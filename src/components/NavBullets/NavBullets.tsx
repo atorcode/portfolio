@@ -5,28 +5,13 @@ import styles from "./NavBullets.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
 // hooks
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 // components
 import NavBullet from "../NavBullet/NavBullet";
 
-type NavBulletsProps = {
-  sectionElements: Array<HTMLElement>;
-  currentSection: HTMLElement | undefined;
-  setCurrentSection: React.Dispatch<
-    React.SetStateAction<HTMLElement | undefined>
-  >;
-  scrollContainerRef: React.MutableRefObject<HTMLElement | null>;
-};
-
-const NavBullets = ({
-  sectionElements,
-  currentSection,
-  setCurrentSection,
-  scrollContainerRef,
-}: NavBulletsProps): JSX.Element => {
-  const [expandedBulletIndex, setExpandedBulletIndex] = useState<number>(0);
-  const uuids = useRef<string[]>([]);
+const NavBullets = (): JSX.Element => {
+  const uuids = useRef<Array<string>>([]);
 
   useEffect(() => {
     // This length check is to prevent React.StrictMode from populating the uuids array twice
@@ -43,15 +28,7 @@ const NavBullets = ({
         {uuids.current.map((uuid: string, index): JSX.Element => {
           return (
             <li key={uuid} className={styles["bullet-container"]}>
-              <NavBullet
-                index={index}
-                sectionElements={sectionElements}
-                currentSection={currentSection}
-                setCurrentSection={setCurrentSection}
-                expandedBulletIndex={expandedBulletIndex}
-                setExpandedBulletIndex={setExpandedBulletIndex}
-                scrollContainerRef={scrollContainerRef}
-              />
+              <NavBullet index={index} />
             </li>
           );
         })}

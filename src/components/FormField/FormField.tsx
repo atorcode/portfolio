@@ -7,6 +7,7 @@ type FormFieldProps = {
 
 const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
   return (
+    // {fieldType === "message" ? <textarea></textarea>}
     <input
       className={styles["field"]}
       type="text"

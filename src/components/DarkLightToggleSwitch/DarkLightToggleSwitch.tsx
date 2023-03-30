@@ -5,11 +5,9 @@ import styles from "./DarkLightToggleSwitch.module.scss";
 import { RiSunFill, RiMoonFill } from "react-icons/ri";
 
 // hooks
-import { useRef } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 
 const DarkLightToggleSwitch = (): JSX.Element => {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { theme, toggleTheme } = useThemeContext();
 
   const handleClick = (): void => {
@@ -19,7 +17,7 @@ const DarkLightToggleSwitch = (): JSX.Element => {
   return (
     <button
       className={`${styles["panel"]} ${styles[`panel-${theme}`]}`}
-      ref={buttonRef}
+      tabIndex={-1}
       onClick={handleClick}
     >
       <RiMoonFill />
