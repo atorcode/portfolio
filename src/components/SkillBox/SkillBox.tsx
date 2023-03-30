@@ -1,5 +1,6 @@
 // styles
 import styles from "./SkillBox.module.scss";
+import "./typescriptLogo.scss";
 
 // icons
 import {
@@ -33,7 +34,8 @@ const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
       icon = <SiJavascript />;
       break;
     case "TypeScript":
-      icon = <TypescriptLogo className={styles["svg"]} />;
+      // icon = <TypescriptLogo className={styles["svg"]} />;
+      icon = <TypescriptLogo className="typescript-logo-svg" />;
       break;
     case "React":
       icon = <SiReact />;
@@ -50,10 +52,10 @@ const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
   }
 
   return (
-    <section className={styles["skill-box"]}>
+    <div className={styles["skill-box"]}>
       <div className={styles["icon"]}>{icon}</div>
       {skill}
-    </section>
+    </div>
   );
 };
 

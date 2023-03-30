@@ -20,13 +20,3 @@
   align-items: center;
   font-size: 2rem;
 }
-
-// Can't directly access classes declared on svg paths
-.svg {
-  path:nth-child(1) {
-    fill: v.$primary-color-dark-shade;
-  }
-  path:nth-child(2) {
-    fill: v.$secondary-color;
-  }
-}

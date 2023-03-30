@@ -7,8 +7,10 @@ import FormField from "../FormField";
 const ContactForm = (): JSX.Element => {
   return (
     <form className={styles["form"]}>
-      <FormField fieldType="name" />
-      <FormField fieldType="email" />
+      <div className={styles["personal-info"]}>
+        <FormField fieldType="name" />
+        <FormField fieldType="email" />
+      </div>
       <FormField fieldType="subject" />
       <FormField fieldType="message" />
     </form>
