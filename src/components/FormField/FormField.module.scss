@@ -1,5 +1,33 @@
-.field {
-  height: 2rem;
+@use "../../partials/variables" as v;
+
+.label-field-container {
   width: 100%;
+}
+
+.label {
+  display: block;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.field {
+  height: 3rem;
+  width: 100%;
+  padding: 13px 20px;
+  border: none;
   outline: none;
+  background-color: v.$primary-color-dark-tint;
+  color: v.$secondary-color-two;
+  caret-color: v.$primary-color-light;
+  font-family: "Roboto";
+  font-size: 1rem;
+  resize: none;
+
+  &::placeholder {
+    color: v.$primary-color-light-shade;
+  }
+}
+
+.field-large {
+  height: 250px;
 }

@@ -8,11 +8,11 @@ const ContactForm = (): JSX.Element => {
   return (
     <form className={styles["form"]}>
       <div className={styles["personal-info"]}>
-        <FormField fieldType="name" />
-        <FormField fieldType="email" />
+        <FormField fieldType="Name" />
+        <FormField fieldType="Email" />
       </div>
-      <FormField fieldType="subject" />
-      <FormField fieldType="message" />
+      <FormField fieldType="Subject" />
+      <FormField fieldType="Message" />
     </form>
   );
 };

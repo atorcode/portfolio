@@ -1,14 +1,12 @@
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
+  gap: 0.5rem;
   width: 50%;
-  height: 500px;
-  background-color: blue;
 }
 
 .personal-info {
   display: flex;
+  gap: 3rem;
   width: 100%;
 }
