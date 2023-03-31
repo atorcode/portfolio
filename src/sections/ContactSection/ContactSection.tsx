@@ -7,6 +7,7 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import ContactForm from "../../components/ContactForm";
+import SectionHeading from "../../components/SectionHeading";
 
 const ContactSection = (): JSX.Element => {
   const { theme } = useThemeContext();
@@ -16,6 +17,7 @@ const ContactSection = (): JSX.Element => {
       className={`${styles["contact"]} ${styles[`contact-${theme}`]}`}
       ref={contactSectionRef}
     >
+      <SectionHeading text="Contact Me" />
       <ContactForm />
     </section>
   );

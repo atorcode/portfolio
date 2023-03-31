@@ -5,6 +5,9 @@ import styles from "./IntroductionSection.module.scss";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
+// components
+import SectionHeading from "../../components/SectionHeading";
+
 const IntroductionSection = (): JSX.Element => {
   const { theme } = useThemeContext();
   const { introductionSectionRef } = useScrollContext();
@@ -14,7 +17,7 @@ const IntroductionSection = (): JSX.Element => {
       className={`${styles["introduction"]} ${styles[`introduction-${theme}`]}`}
       ref={introductionSectionRef}
     >
-      <h1 className={styles["greeting"]}>Hey, I'm Albo!</h1>
+      <SectionHeading text="Hey, I'm Albo!" />
       <h2 className={styles["description"]}>
         My full name is Alberto Torrigiotti. I'm a software engineer, front-end
         web developer, and lifelong learner who excels at delivering

@@ -7,6 +7,7 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import SkillBoxes from "../../components/SkillBoxes";
+import SectionHeading from "../../components/SectionHeading";
 
 const SkillsSection = (): JSX.Element => {
   const { theme } = useThemeContext();
@@ -16,6 +17,7 @@ const SkillsSection = (): JSX.Element => {
       className={`${styles["skills"]} ${styles[`skills-${theme}`]}`}
       ref={skillsSectionRef}
     >
+      <SectionHeading text="My Bag of Tools" />
       <SkillBoxes />
     </section>
   );

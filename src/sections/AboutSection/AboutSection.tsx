@@ -5,6 +5,9 @@ import styles from "./AboutSection.module.scss";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
+// components
+import SectionHeading from "../../components/SectionHeading";
+
 const AboutSection = (): JSX.Element => {
   const { theme } = useThemeContext();
   const { aboutSectionRef } = useScrollContext();
@@ -13,7 +16,7 @@ const AboutSection = (): JSX.Element => {
       className={`${styles["about"]} ${styles[`about-${theme}`]}`}
       ref={aboutSectionRef}
     >
-      AboutSection
+      <SectionHeading text="About Me" />
     </section>
   );
 };

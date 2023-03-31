@@ -5,6 +5,9 @@ import styles from "./ProjectsSection.module.scss";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
+// components
+import SectionHeading from "../../components/SectionHeading";
+
 const ProjectsSection = (): JSX.Element => {
   const { theme } = useThemeContext();
   const { projectsSectionRef } = useScrollContext();
@@ -13,7 +16,7 @@ const ProjectsSection = (): JSX.Element => {
       className={`${styles["projects"]} ${styles[`projects-${theme}`]}`}
       ref={projectsSectionRef}
     >
-      ProjectsSection
+      <SectionHeading text="My Projects" />
     </section>
   );
 };
