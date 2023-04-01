@@ -1,11 +1,19 @@
 // styles
 import styles from "./FormField.module.scss";
 
+// hooks
+import { useState } from "react";
+
+// components
+import FormFieldUnderline from "../FormFieldUnderline";
+
 type FormFieldProps = {
   fieldType: "Name" | "Email" | "Subject" | "Message";
 };
 
 const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
   let placeholderText: string;
   switch (fieldType) {
     case "Name":
@@ -35,7 +43,10 @@ const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
           className={`${styles["field"]} ${styles["field-large"]}`}
           id={fieldType}
           placeholder={placeholderText}
+          autoComplete="off"
           required
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         ></textarea>
       ) : (
         <input
@@ -43,9 +54,13 @@ const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
           id={fieldType}
           type="text"
           placeholder={placeholderText}
+          autoComplete="off"
           required
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         ></input>
       )}
+      <FormFieldUnderline isFocused={isFocused} />
     </div>
   );
 };

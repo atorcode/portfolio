@@ -1,6 +1,9 @@
 @use "../../partials/variables" as v;
 
 .label-field-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 

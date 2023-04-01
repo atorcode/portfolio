@@ -1,0 +1,16 @@
+@use "../../partials/variables" as v;
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: v.$secondary-color-two;
+
+  transition: width 300ms ease;
+}
+
+.underline-visible {
+  width: 100%;
+}
