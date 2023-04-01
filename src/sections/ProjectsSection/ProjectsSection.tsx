@@ -14,6 +14,7 @@ const ProjectsSection = (): JSX.Element => {
   return (
     <section
       className={`${styles["projects"]} ${styles[`projects-${theme}`]}`}
+      data-section="main"
       ref={projectsSectionRef}
     >
       <SectionHeading text="My Projects" />

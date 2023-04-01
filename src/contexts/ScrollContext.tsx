@@ -100,14 +100,41 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       let nearestSection = sectionElements[nearestSectionIndex];
       setCurrentSection(nearestSection);
     };
+
+    const scrollSnapOnTabNavigation = (e: FocusEvent): void => {
+      if (!(e.target instanceof HTMLElement) || !scrollContainerRef.current) {
+        return;
+      }
+      const mainAncestorSection = e.target.closest(
+        'section[data-section="main"]'
+      ) as HTMLElement | null;
+      if (!mainAncestorSection) {
+        console.error(
+          `The mainAncestorSection of the focused element ${e.target.outerHTML} could not be found. In order for scrollOnTabNavigation to work, mainAncestorSection must be a valid HTMLElement.`
+        );
+        return;
+      }
+      scrollContainerRef.current.scrollTo(0, mainAncestorSection.offsetTop);
+    };
+
     scrollContainerRef.current?.addEventListener(
       "scroll",
       updateCurrentSection
+    );
+    scrollContainerRef.current?.addEventListener(
+      "focus",
+      scrollSnapOnTabNavigation,
+      true
     );
     return () => {
       scrollContainerRef.current?.removeEventListener(
         "scroll",
         updateCurrentSection
+      );
+      scrollContainerRef.current?.removeEventListener(
+        "focus",
+        scrollSnapOnTabNavigation,
+        true
       );
     };
   }, [sectionElements]);

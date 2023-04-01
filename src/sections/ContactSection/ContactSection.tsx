@@ -15,6 +15,7 @@ const ContactSection = (): JSX.Element => {
   return (
     <section
       className={`${styles["contact"]} ${styles[`contact-${theme}`]}`}
+      data-section="main"
       ref={contactSectionRef}
     >
       <SectionHeading text="Contact Me" />
