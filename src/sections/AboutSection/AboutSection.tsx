@@ -14,7 +14,7 @@ const AboutSection = (): JSX.Element => {
   return (
     <section
       className={`${styles["about"]} ${styles[`about-${theme}`]}`}
-      data-main-section="true"
+      data-scroll-snap-on-focus="true"
       ref={aboutSectionRef}
     >
       <SectionHeading text="About Me" />

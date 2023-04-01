@@ -6,7 +6,7 @@ import DarkLightToggleSwitch from "../DarkLightToggleSwitch";
 
 const HeaderMenu = () => {
   return (
-    <header className={styles["header"]}>
+    <header className={styles["header"]} data-scroll-snap-on-focus="true">
       <DarkLightToggleSwitch />
     </header>
   );

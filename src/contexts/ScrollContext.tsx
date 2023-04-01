@@ -101,20 +101,24 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       setCurrentSection(nearestSection);
     };
 
-    const scrollSnapOnTabNavigation = (e: FocusEvent): void => {
+    // If focusing an element causes scrolling, as in the case of tab navigation, ensure that one of the fixed scroll positions remains snapped to the scroll container. Without this function, it is possible for the container to display a position between two fixed positions.
+    const scrollSnapOnFocus = (e: FocusEvent): void => {
       if (!(e.target instanceof HTMLElement) || !scrollContainerRef.current) {
         return;
       }
-      const mainAncestorSection = e.target.closest(
-        'section[data-section="main"]'
+      // Valid snapTargets are HeaderMenu and the main section components: IntroductionSection, AboutSection, SkillsSection, ProjectsSection, and ContactSection
+      const snapTarget = e.target.closest(
+        '[data-scroll-snap-on-focus="true"]'
       ) as HTMLElement | null;
-      if (!mainAncestorSection) {
+      if (!snapTarget) {
         console.error(
-          `The mainAncestorSection of the focused element ${e.target.outerHTML} could not be found. In order for scrollOnTabNavigation to work, mainAncestorSection must be a valid HTMLElement.`
+          `The snapTarget of the focused element ${e.target.outerHTML} could not be found. In order for scrollOnTabNavigation to work, snapTarget must be a valid HTMLElement.`
         );
         return;
       }
-      scrollContainerRef.current.scrollTo(0, mainAncestorSection.offsetTop);
+      if (scrollContainerRef.current.scrollTop !== snapTarget.offsetTop) {
+        scrollContainerRef.current.scrollTo(0, snapTarget.offsetTop);
+      }
     };
 
     scrollContainerRef.current?.addEventListener(
@@ -123,7 +127,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     );
     scrollContainerRef.current?.addEventListener(
       "focus",
-      scrollSnapOnTabNavigation,
+      scrollSnapOnFocus,
       true
     );
     return () => {
@@ -133,7 +137,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       );
       scrollContainerRef.current?.removeEventListener(
         "focus",
-        scrollSnapOnTabNavigation,
+        scrollSnapOnFocus,
         true
       );
     };
