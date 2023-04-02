@@ -29,6 +29,10 @@
   &::placeholder {
     color: v.$primary-color-light-shade;
   }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
 }
 
 .field-large {

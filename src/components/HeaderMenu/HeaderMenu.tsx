@@ -4,9 +4,9 @@ import styles from "./HeaderMenu.module.scss";
 // components
 import DarkLightToggleSwitch from "../DarkLightToggleSwitch";
 
-const HeaderMenu = () => {
+const HeaderMenu = (): JSX.Element => {
   return (
-    <header className={styles["header"]} data-scroll-snap-on-focus="true">
+    <header className={styles["header"]}>
       <DarkLightToggleSwitch />
     </header>
   );

@@ -3,6 +3,7 @@ import styles from "./ContactForm.module.scss";
 
 // components
 import FormField from "../FormField";
+import SubmitFormButton from "../SubmitFormButton";
 
 const ContactForm = (): JSX.Element => {
   return (
@@ -13,6 +14,7 @@ const ContactForm = (): JSX.Element => {
       </div>
       <FormField fieldType="Subject" />
       <FormField fieldType="Message" />
+      <SubmitFormButton />
     </form>
   );
 };

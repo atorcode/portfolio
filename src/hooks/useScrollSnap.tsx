@@ -13,13 +13,13 @@ export const useScrollSnap: UseScrollSnapType = (ref, settings, callback) => {
   // React.StrictMode interferes with scrollUnbind functionality. If testing scrollUnbind is required, disable React.StrictMode in development and then enable it again afterwards.
   const [scrollUnbind, setScrollUnbind] = useState<() => void>(() => () => {});
 
-  useEffect(() => {
+  useEffect((): void => {
     const element = ref.current;
 
     if (element) {
       const { bind, unbind } = createScrollSnap(element, settings, callback);
-      setScrollBind(() => bind);
-      setScrollUnbind(() => unbind);
+      setScrollBind((): (() => void) => bind);
+      setScrollUnbind((): (() => void) => unbind);
     }
   }, []);
 

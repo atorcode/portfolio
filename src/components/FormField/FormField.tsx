@@ -7,12 +7,21 @@ import { useState } from "react";
 // components
 import FormFieldUnderline from "../FormFieldUnderline";
 
+// types
+import { FormFieldType } from "../../types/FormFieldType";
+
+// utils
+import { validateFormField } from "../../utils/utils";
+
 type FormFieldProps = {
-  fieldType: "Name" | "Email" | "Subject" | "Message";
+  fieldType: FormFieldType;
 };
+
+console.log(validateFormField("Name"));
 
 const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>("");
 
   let placeholderText: string;
   switch (fieldType) {
@@ -45,8 +54,12 @@ const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
           placeholder={placeholderText}
           autoComplete="off"
           required
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          value={inputValue}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void =>
+            setInputValue(e.target.value)
+          }
+          onFocus={(): void => setIsFocused(true)}
+          onBlur={(): void => setIsFocused(false)}
         ></textarea>
       ) : (
         <input
@@ -56,8 +69,12 @@ const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
           placeholder={placeholderText}
           autoComplete="off"
           required
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          value={inputValue}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+            setInputValue(e.target.value)
+          }
+          onFocus={(): void => setIsFocused(true)}
+          onBlur={(): void => setIsFocused(false)}
         ></input>
       )}
       <FormFieldUnderline isFocused={isFocused} />

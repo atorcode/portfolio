@@ -61,7 +61,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     scrollContainerRef.current.scrollTo(0, sectionElements[index].offsetTop);
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     const createNonNullRefArray = (
       ...args: Array<HTMLElement | null>
     ): Array<HTMLElement> => {
@@ -80,7 +80,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     );
   }, []);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     // Set currentSection to the first section (introduction) if it hasn't been set yet
     if (!currentSection) {
       setCurrentSection(sectionElements[0]);
@@ -100,27 +100,22 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       let nearestSection = sectionElements[nearestSectionIndex];
       setCurrentSection(nearestSection);
     };
-
     // If focusing an element causes scrolling, as in the case of tab navigation, ensure that one of the fixed scroll positions remains snapped to the scroll container. Without this function, it is possible for the container to display a position between two fixed positions.
     const scrollSnapOnFocus = (e: FocusEvent): void => {
       if (!(e.target instanceof HTMLElement) || !scrollContainerRef.current) {
         return;
       }
-      // Valid snapTargets are HeaderMenu and the main section components: IntroductionSection, AboutSection, SkillsSection, ProjectsSection, and ContactSection
+      // Valid snapTargets are the main section components: IntroductionSection, AboutSection, SkillsSection, ProjectsSection, and ContactSection
       const snapTarget = e.target.closest(
         '[data-scroll-snap-on-focus="true"]'
       ) as HTMLElement | null;
       if (!snapTarget) {
-        console.error(
-          `The snapTarget of the focused element ${e.target.outerHTML} could not be found. In order for scrollOnTabNavigation to work, snapTarget must be a valid HTMLElement.`
-        );
         return;
       }
       if (scrollContainerRef.current.scrollTop !== snapTarget.offsetTop) {
         scrollContainerRef.current.scrollTo(0, snapTarget.offsetTop);
       }
     };
-
     scrollContainerRef.current?.addEventListener(
       "scroll",
       updateCurrentSection
@@ -130,7 +125,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       scrollSnapOnFocus,
       true
     );
-    return () => {
+    return (): void => {
       scrollContainerRef.current?.removeEventListener(
         "scroll",
         updateCurrentSection
@@ -143,7 +138,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     };
   }, [sectionElements]);
 
-  useEffect(() => {
+  useEffect((): void => {
     // expand the bullet whose index in the bullet array matches the index of currentSection in sectionElements
     setExpandedBulletIndex(
       sectionElements.findIndex(

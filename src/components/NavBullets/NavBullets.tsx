@@ -13,7 +13,7 @@ import NavBullet from "../NavBullet/NavBullet";
 const NavBullets = (): JSX.Element => {
   const uuids = useRef<Array<string>>([]);
 
-  useEffect(() => {
+  useEffect((): void => {
     // This length check is to prevent React.StrictMode from populating the uuids array twice
     if (uuids.current.length === 0) {
       for (let i = 0; i < 5; i++) {
