@@ -4,10 +4,11 @@
   position: relative;
   width: 12rem;
   height: 3.5rem;
+  border: 2px solid v.$accent-color;
+
+  color: v.$accent-color;
   font-family: "Roboto";
   font-size: 1.2rem;
-  color: v.$accent-color;
-  border: 2px solid v.$accent-color;
 }
 
 .container-text {
@@ -31,8 +32,11 @@
   font-size: 1.2rem;
 
   animation: clear 0.6s steps(29) forwards;
+}
 
-  &:hover {
+.button-container-hovered {
+  cursor: pointer;
+  .button {
     cursor: pointer;
     animation: fillUp 0.6s steps(29) forwards;
   }
