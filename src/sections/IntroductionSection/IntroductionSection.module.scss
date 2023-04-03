@@ -18,9 +18,3 @@
 .introduction-dark {
   @include m.dark-theme-template;
 }
-
-.description {
-  width: 50%;
-  text-align: center;
-  font-size: 1.5rem;
-}

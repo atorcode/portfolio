@@ -7,6 +7,7 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import SectionHeading from "../../components/SectionHeading";
+import Paragraph from "../../components/Paragraph";
 
 const IntroductionSection = (): JSX.Element => {
   const { theme } = useThemeContext();
@@ -19,12 +20,12 @@ const IntroductionSection = (): JSX.Element => {
       ref={introductionSectionRef}
     >
       <SectionHeading text="Hey, I'm Albo!" />
-      <h2 className={styles["description"]}>
-        My full name is Alberto Torrigiotti. I'm a software engineer, front-end
+      <Paragraph
+        text="My full name is Alberto Torrigiotti. I'm a software engineer, front-end
         web developer, and lifelong learner who excels at delivering
         game-related services. I am extremely eager to collaborate with people
-        and build projects together, so don't hesitate to reach out!
-      </h2>
+        and build projects together, so don't hesitate to reach out!"
+      />
     </section>
   );
 };

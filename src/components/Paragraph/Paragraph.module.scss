@@ -1,0 +1,9 @@
+@use "../../partials/variables" as v;
+
+.paragraph {
+  width: 50%;
+  color: v.$secondary-color-two;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
