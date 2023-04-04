@@ -2,7 +2,6 @@
 import styles from "./Notification.module.scss";
 
 type NotificationProps = {
-  category: "missing-required-fields";
   text: string;
 };
 

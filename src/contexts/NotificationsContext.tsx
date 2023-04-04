@@ -2,15 +2,12 @@
 import React, { useContext, useState } from "react";
 
 type NotificationType = {
-  category: "missing-required-fields";
   text: string;
 };
 
 type NotificationsContextType = {
   notifications: Array<NotificationType>;
-  setNotifications: React.Dispatch<
-    React.SetStateAction<Array<NotificationType>>
-  >;
+  updateNotifications: (newNotification: NotificationType) => void;
 };
 
 type ChildrenType = {
@@ -25,8 +22,19 @@ const NotificationsProvider = ({ children }: ChildrenType) => {
   const [notifications, setNotifications] = useState<Array<NotificationType>>(
     []
   );
+
+  const updateNotifications = (newNotification: NotificationType): void => {
+    if (notifications.length >= 5) {
+      setNotifications((prev) => [...prev.slice(1), newNotification]);
+    } else {
+      setNotifications((prev) => [...prev, newNotification]);
+    }
+  };
+
   return (
-    <NotificationsContext.Provider value={{ notifications, setNotifications }}>
+    <NotificationsContext.Provider
+      value={{ notifications, updateNotifications }}
+    >
       {children}
     </NotificationsContext.Provider>
   );

@@ -15,13 +15,7 @@ const Notifications = () => {
   return (
     <div className={styles["notifications"]}>
       {notifications.map((notification) => {
-        return (
-          <Notification
-            key={uuidv4()}
-            category={notification.category}
-            text={notification.text}
-          />
-        );
+        return <Notification key={uuidv4()} text={notification.text} />;
       })}
     </div>
   );
