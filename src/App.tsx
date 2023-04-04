@@ -14,6 +14,7 @@ import ContactSection from "./sections/ContactSection";
 // components
 import HeaderMenu from "./components/HeaderMenu";
 import NavBullets from "./components/NavBullets";
+import Notifications from "./components/Notifications";
 
 const App = (): JSX.Element => {
   const { scrollContainerRef } = useScrollContext();
@@ -21,6 +22,7 @@ const App = (): JSX.Element => {
   return (
     <main className={styles["app"]} ref={scrollContainerRef}>
       <HeaderMenu />
+      <Notifications />
       <IntroductionSection />
       <AboutSection />
       <SkillsSection />

@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useEffect, useRef } from "react";
 
 // components
-import NavBullet from "../NavBullet/NavBullet";
+import NavBullet from "../NavBullet";
 
 const NavBullets = (): JSX.Element => {
   const uuids = useRef<Array<string>>([]);

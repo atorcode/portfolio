@@ -8,6 +8,7 @@ import ReactDOM from "react-dom/client";
 // contexts
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ScrollProvider } from "./contexts/ScrollContext";
+import { NotificationsProvider } from "./contexts/NotificationsContext";
 
 // components
 import App from "./App";
@@ -22,7 +23,9 @@ root.render(
   <React.StrictMode>
     <ThemeProvider>
       <ScrollProvider>
-        <App />
+        <NotificationsProvider>
+          <App />
+        </NotificationsProvider>
       </ScrollProvider>
     </ThemeProvider>
   </React.StrictMode>

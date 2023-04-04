@@ -1,0 +1,14 @@
+@use "../../partials/variables" as v;
+
+.notification {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 50px;
+  right: 10px;
+  bottom: 10px;
+  background-color: v.$accent-color;
+  z-index: 1000;
+}
