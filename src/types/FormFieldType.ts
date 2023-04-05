@@ -1,1 +1,1 @@
-export type FormFieldType = "Name" | "Email" | "Subject" | "Message";
+export type FormFieldType = "name" | "email" | "subject" | "message";

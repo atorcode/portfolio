@@ -9,21 +9,26 @@ import { useNotificationsContext } from "../../contexts/NotificationsContext";
 import FormField from "../FormField";
 import SubmitFormButton from "../SubmitFormButton";
 
+// types
+import { ValidityOfFields } from "../../types/ValidityOfFields";
+
 const ContactForm = (): JSX.Element => {
-  const [isNameValid, setIsNameValid] = useState<boolean>(false);
-  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
-  const [isSubjectValid, setIsSubjectValid] = useState<boolean>(false);
-  const [isMessageValid, setIsMessageValid] = useState<boolean>(false);
+  const [areFieldsValid, setAreFieldsValid] = useState<ValidityOfFields>({
+    name: false,
+    email: false,
+    subject: false,
+    message: false,
+  });
   const { updateNotifications } = useNotificationsContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isNameValid || !isEmailValid || !isSubjectValid || !isMessageValid) {
+    if (Object.values(areFieldsValid).every((value) => value === true)) {
+      console.log("Every field is validated!!!");
+    } else {
       updateNotifications({
         text: "Please fill out all required fields appropriately!",
       });
-    } else {
-      console.log("GOOD JOB!");
     }
   };
 
@@ -31,25 +36,25 @@ const ContactForm = (): JSX.Element => {
     <form className={styles["form"]} onSubmit={handleSubmit}>
       <div className={styles["personal-info"]}>
         <FormField
-          fieldType="Name"
-          isValid={isNameValid}
-          setIsValid={setIsNameValid}
+          fieldType="name"
+          isValid={areFieldsValid.name}
+          setIsValid={setAreFieldsValid}
         />
         <FormField
-          fieldType="Email"
-          isValid={isEmailValid}
-          setIsValid={setIsEmailValid}
+          fieldType="email"
+          isValid={areFieldsValid.email}
+          setIsValid={setAreFieldsValid}
         />
       </div>
       <FormField
-        fieldType="Subject"
-        isValid={isSubjectValid}
-        setIsValid={setIsSubjectValid}
+        fieldType="subject"
+        isValid={areFieldsValid.subject}
+        setIsValid={setAreFieldsValid}
       />
       <FormField
-        fieldType="Message"
-        isValid={isMessageValid}
-        setIsValid={setIsMessageValid}
+        fieldType="message"
+        isValid={areFieldsValid.message}
+        setIsValid={setAreFieldsValid}
       />
       <SubmitFormButton />
     </form>

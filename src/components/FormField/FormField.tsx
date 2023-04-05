@@ -9,15 +9,15 @@ import FormFieldUnderline from "../FormFieldUnderline";
 
 // types
 import { FormFieldType } from "../../types/FormFieldType";
+import { ValidityOfFields } from "../../types/ValidityOfFields";
 
 // utils
-import { validateFormField } from "../../utils/utils";
+import { capitalizeFirstLetter, validateFormField } from "../../utils/utils";
 
 type FormFieldProps = {
   fieldType: FormFieldType;
-  // isRequired?: boolean;
   isValid: boolean;
-  setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsValid: React.Dispatch<React.SetStateAction<ValidityOfFields>>;
 };
 
 const FormField = ({
@@ -29,21 +29,24 @@ const FormField = ({
   const [inputValue, setInputValue] = useState<string>("");
 
   useEffect(() => {
-    setIsValid(validateFormField(fieldType, inputValue));
+    setIsValid((prev) => ({
+      ...prev,
+      [fieldType]: validateFormField(fieldType, inputValue),
+    }));
   }, []);
 
   let placeholderText: string;
   switch (fieldType) {
-    case "Name":
+    case "name":
       placeholderText = "Enter your name";
       break;
-    case "Email":
+    case "email":
       placeholderText = "Enter your email address";
       break;
-    case "Subject":
+    case "subject":
       placeholderText = "Enter the subject of your message";
       break;
-    case "Message":
+    case "message":
       placeholderText = "Enter your message";
       break;
     default:
@@ -54,9 +57,9 @@ const FormField = ({
   return (
     <div className={styles["label-field-container"]}>
       <label className={styles["label"]} htmlFor={fieldType}>
-        {fieldType}
+        {capitalizeFirstLetter(fieldType)}
       </label>
-      {fieldType === "Message" ? (
+      {fieldType === "message" ? (
         <textarea
           className={`${styles["field"]} ${styles["field-large"]}`}
           id={fieldType}
@@ -65,7 +68,10 @@ const FormField = ({
           value={inputValue}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
             setInputValue(e.target.value);
-            setIsValid(validateFormField(fieldType, e.target.value));
+            setIsValid((prev) => ({
+              ...prev,
+              [fieldType]: validateFormField(fieldType, e.target.value),
+            }));
           }}
           onFocus={(): void => setIsFocused(true)}
           onBlur={(): void => setIsFocused(false)}
@@ -80,7 +86,10 @@ const FormField = ({
           value={inputValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setInputValue(e.target.value);
-            setIsValid(validateFormField(fieldType, e.target.value));
+            setIsValid((prev) => ({
+              ...prev,
+              [fieldType]: validateFormField(fieldType, e.target.value),
+            }));
           }}
           onFocus={(): void => setIsFocused(true)}
           onBlur={(): void => setIsFocused(false)}
