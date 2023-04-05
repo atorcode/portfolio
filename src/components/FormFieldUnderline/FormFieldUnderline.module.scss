@@ -6,11 +6,17 @@
   left: 0;
   height: 2px;
   width: 0;
-  background-color: v.$secondary-color-two;
 
   transition: width 300ms ease;
 }
 
-.underline-visible {
+.underline-valid {
   width: 100%;
+  background-color: v.$secondary-color-two;
+}
+
+.underline-invalid {
+  width: 100%;
+  // pick a color for warnings or errors and turn it into a variable
+  background-color: red;
 }

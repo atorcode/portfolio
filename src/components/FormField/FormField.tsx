@@ -15,13 +15,18 @@ import { validateFormField } from "../../utils/utils";
 
 type FormFieldProps = {
   fieldType: FormFieldType;
+  isRequired?: boolean;
 };
 
-console.log(validateFormField("Name"));
-
-const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
+const FormField = ({
+  fieldType,
+  isRequired = false,
+}: FormFieldProps): JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(
+    validateFormField(fieldType, inputValue)
+  );
 
   let placeholderText: string;
   switch (fieldType) {
@@ -53,11 +58,12 @@ const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
           id={fieldType}
           placeholder={placeholderText}
           autoComplete="off"
-          required
+          required={isRequired}
           value={inputValue}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void =>
-            setInputValue(e.target.value)
-          }
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+            setInputValue(e.target.value);
+            setIsValid(validateFormField(fieldType, e.target.value));
+          }}
           onFocus={(): void => setIsFocused(true)}
           onBlur={(): void => setIsFocused(false)}
         ></textarea>
@@ -68,16 +74,17 @@ const FormField = ({ fieldType }: FormFieldProps): JSX.Element => {
           type="text"
           placeholder={placeholderText}
           autoComplete="off"
-          required
+          required={isRequired}
           value={inputValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
-            setInputValue(e.target.value)
-          }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+            setInputValue(e.target.value);
+            setIsValid(validateFormField(fieldType, e.target.value));
+          }}
           onFocus={(): void => setIsFocused(true)}
           onBlur={(): void => setIsFocused(false)}
         ></input>
       )}
-      <FormFieldUnderline isFocused={isFocused} />
+      <FormFieldUnderline isFocused={isFocused} isValid={isValid} />
     </div>
   );
 };

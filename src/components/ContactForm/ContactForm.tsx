@@ -10,10 +10,10 @@ const ContactForm = (): JSX.Element => {
     <form className={styles["form"]}>
       <div className={styles["personal-info"]}>
         <FormField fieldType="Name" />
-        <FormField fieldType="Email" />
+        <FormField fieldType="Email" isRequired={true} />
       </div>
       <FormField fieldType="Subject" />
-      <FormField fieldType="Message" />
+      <FormField fieldType="Message" isRequired={true} />
       <SubmitFormButton />
     </form>
   );
