@@ -3,11 +3,9 @@ import styles from "./SubmitFormButton.module.scss";
 
 // hooks
 import { useEffect, useRef } from "react";
-import { useNotificationsContext } from "../../contexts/NotificationsContext";
 
 const SubmitFormButton = (): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
-  const { updateNotifications } = useNotificationsContext();
 
   useEffect((): (() => void) => {
     let animationDonePromise: Promise<void>;
@@ -51,15 +49,7 @@ const SubmitFormButton = (): JSX.Element => {
   }, []);
 
   return (
-    <div
-      className={styles["button-container"]}
-      ref={buttonContainerRef}
-      onClick={() =>
-        updateNotifications({
-          text: "Please fill out all required fields!",
-        })
-      }
-    >
+    <div className={styles["button-container"]} ref={buttonContainerRef}>
       <span className={styles["container-text"]}>Submit</span>
       <button className={styles["button"]}>Submit</button>
     </div>

@@ -2,7 +2,7 @@
 import styles from "./FormField.module.scss";
 
 // hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // components
 import FormFieldUnderline from "../FormFieldUnderline";
@@ -15,18 +15,22 @@ import { validateFormField } from "../../utils/utils";
 
 type FormFieldProps = {
   fieldType: FormFieldType;
-  isRequired?: boolean;
+  // isRequired?: boolean;
+  isValid: boolean;
+  setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const FormField = ({
   fieldType,
-  isRequired = false,
+  isValid,
+  setIsValid,
 }: FormFieldProps): JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(
-    validateFormField(fieldType, inputValue)
-  );
+
+  useEffect(() => {
+    setIsValid(validateFormField(fieldType, inputValue));
+  }, []);
 
   let placeholderText: string;
   switch (fieldType) {
@@ -58,7 +62,6 @@ const FormField = ({
           id={fieldType}
           placeholder={placeholderText}
           autoComplete="off"
-          required={isRequired}
           value={inputValue}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
             setInputValue(e.target.value);
@@ -74,7 +77,6 @@ const FormField = ({
           type="text"
           placeholder={placeholderText}
           autoComplete="off"
-          required={isRequired}
           value={inputValue}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setInputValue(e.target.value);
