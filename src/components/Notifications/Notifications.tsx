@@ -1,9 +1,6 @@
 // styles
 import styles from "./Notifications.module.scss";
 
-// dependencies
-import { v4 as uuidv4 } from "uuid";
-
 // hooks
 import { useNotificationsContext } from "../../contexts/NotificationsContext";
 
@@ -15,7 +12,7 @@ const Notifications = () => {
   return (
     <div className={styles["notifications"]}>
       {notifications.map((notification) => {
-        return <Notification key={uuidv4()} text={notification.text} />;
+        return <Notification key={notification.id} text={notification.text} />;
       })}
     </div>
   );

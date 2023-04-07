@@ -1,6 +1,9 @@
 // styles
 import styles from "./ContactForm.module.scss";
 
+// dependencies
+import { v4 as uuidv4 } from "uuid";
+
 // hooks
 import { useState } from "react";
 import { useNotificationsContext } from "../../contexts/NotificationsContext";
@@ -27,6 +30,7 @@ const ContactForm = (): JSX.Element => {
       console.log("Every field is validated!!!");
     } else {
       updateNotifications({
+        id: uuidv4(),
         text: "Please fill out all required fields appropriately!",
       });
     }
