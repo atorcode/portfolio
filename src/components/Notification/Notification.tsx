@@ -20,7 +20,8 @@ const Notification = ({ text }: NotificationProps) => {
   useEffect(() => {
     setIsVisible(true);
 
-    triggerExitTransition(setIsVisible);
+    let exitTransitionTimeoutId: ReturnType<typeof setTimeout> | undefined;
+    triggerExitTransition(exitTransitionTimeoutId, setIsVisible);
   }, []);
 
   return (

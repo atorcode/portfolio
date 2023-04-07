@@ -13,6 +13,7 @@ type NotificationsContextType = {
   notifications: Array<NotificationType>;
   updateNotifications: (newNotification: NotificationType) => void;
   triggerExitTransition: (
+    timeoutId: ReturnType<typeof setTimeout> | undefined,
     setVisibility: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
 };
@@ -30,13 +31,12 @@ const NotificationsProvider = ({ children }: ChildrenType) => {
     []
   );
 
-  // parameterize this Id
-  let exitTransitionTimeoutId: ReturnType<typeof setTimeout>;
   const triggerExitTransition = (
+    timeoutId: ReturnType<typeof setTimeout> | undefined,
     setVisibility: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
-    clearTimeout(exitTransitionTimeoutId);
-    exitTransitionTimeoutId = setTimeout(() => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
       setVisibility(false);
       // The second argument in this setTimeout should be equal to NOTIFICATION_DURATION minus the duration of the slide-out transition.
     }, NOTIFICATION_DURATION - 500);
