@@ -12,11 +12,11 @@ import { SKILLS } from "../../utils/constants";
 
 const SkillBoxes = (): JSX.Element => {
   return (
-    <div className={styles["skill-boxes"]}>
+    <section className={styles["skill-boxes"]}>
       {SKILLS.map((skill) => {
         return <SkillBox key={uuidv4()} skill={skill} />;
       })}
-    </div>
+    </section>
   );
 };
 

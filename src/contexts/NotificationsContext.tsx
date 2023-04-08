@@ -11,11 +11,13 @@ type NotificationType = {
 
 type NotificationsContextType = {
   notifications: Array<NotificationType>;
-  updateNotifications: (newNotification: NotificationType) => void;
   triggerExitTransition: (
     timeoutId: ReturnType<typeof setTimeout> | undefined,
-    setVisibility: React.Dispatch<React.SetStateAction<boolean>>
-  ) => void;
+    setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
+    transitionDuration: number
+  ) => Promise<void>;
+  removeNotification: () => void;
+  updateNotifications: (newNotification: NotificationType) => void;
 };
 
 type ChildrenType = {
@@ -31,23 +33,37 @@ const NotificationsProvider = ({ children }: ChildrenType) => {
     []
   );
 
-  const triggerExitTransition = (
+  const triggerExitTransition = async (
     timeoutId: ReturnType<typeof setTimeout> | undefined,
-    setVisibility: React.Dispatch<React.SetStateAction<boolean>>
-  ) => {
+    setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
+    transitionDuration: number
+  ): Promise<void> => {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      setVisibility(false);
-      // The second argument in this setTimeout should be equal to NOTIFICATION_DURATION minus the duration of the slide-out transition.
-    }, NOTIFICATION_DURATION - 500);
+
+    await new Promise<void>((resolve) => {
+      timeoutId = setTimeout((): void => {
+        setVisibility(false);
+        resolve();
+      }, NOTIFICATION_DURATION - transitionDuration);
+    });
+
+    await new Promise<void>((resolve) => {
+      setTimeout((): void => {
+        resolve();
+      }, transitionDuration);
+    });
   };
 
-  let removeNotificationTimeoutId: ReturnType<typeof setTimeout>;
-  const removeNotificationAfterDelay = (milliseconds: number) => {
-    clearTimeout(removeNotificationTimeoutId);
-    removeNotificationTimeoutId = setTimeout(() => {
-      setNotifications((prev) => prev.slice(1));
-    }, milliseconds);
+  // let removeNotificationTimeoutId: ReturnType<typeof setTimeout>;
+  // const removeNotificationAfterDelay = (milliseconds: number) => {
+  //   clearTimeout(removeNotificationTimeoutId);
+  //   removeNotificationTimeoutId = setTimeout(() => {
+  //     setNotifications((prev) => prev.slice(1));
+  //   }, milliseconds);
+  // };
+
+  const removeNotification = () => {
+    setNotifications((prev) => prev.slice(1));
   };
 
   const updateNotifications = (newNotification: NotificationType): void => {
@@ -55,13 +71,18 @@ const NotificationsProvider = ({ children }: ChildrenType) => {
       setNotifications((prev) => [...prev.slice(1), newNotification]);
     } else {
       setNotifications((prev) => [...prev, newNotification]);
-      removeNotificationAfterDelay(NOTIFICATION_DURATION);
+      // removeNotificationAfterDelay(NOTIFICATION_DURATION);
     }
   };
 
   return (
     <NotificationsContext.Provider
-      value={{ notifications, updateNotifications, triggerExitTransition }}
+      value={{
+        notifications,
+        triggerExitTransition,
+        removeNotification,
+        updateNotifications,
+      }}
     >
       {children}
     </NotificationsContext.Provider>

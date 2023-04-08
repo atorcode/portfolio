@@ -15,13 +15,32 @@ type NotificationProps = {
 const Notification = ({ text }: NotificationProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const notificationRef = useRef<HTMLDivElement | null>(null);
-  const { triggerExitTransition } = useNotificationsContext();
+  //@ts-ignore
+  const { triggerExitTransition, removeNotification } =
+    useNotificationsContext();
 
   useEffect(() => {
     setIsVisible(true);
 
     let exitTransitionTimeoutId: ReturnType<typeof setTimeout> | undefined;
-    triggerExitTransition(exitTransitionTimeoutId, setIsVisible);
+
+    // const unmountNotification = async () => {
+    //   triggerExitTransition(exitTransitionTimeoutId, setIsVisible);
+    //   await new Promise((resolve) => setTimeout(resolve, 500));
+    //   removeNotification();
+    // };
+
+    triggerExitTransition(exitTransitionTimeoutId, setIsVisible, 500).then(
+      () => {
+        removeNotification();
+      }
+    );
+
+    // unmountNotification();
+
+    return () => {
+      clearTimeout(exitTransitionTimeoutId);
+    };
   }, []);
 
   return (
