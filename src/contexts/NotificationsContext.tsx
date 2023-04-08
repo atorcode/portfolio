@@ -1,23 +1,19 @@
 // dependencies and hooks
 import React, { useContext, useState } from "react";
 
-// utils
-import { NOTIFICATION_DURATION } from "../utils/constants";
-
-type NotificationType = {
-  id: string;
-  text: string;
-};
+// types
+import { NotificationType } from "../types/NotificationType";
 
 type NotificationsContextType = {
   notifications: Array<NotificationType>;
-  triggerExitTransition: (
+  addNotification: (newNotification: NotificationType) => void;
+  removeNotificationAfterDelay: (
+    notificationId: string,
     timeoutId: ReturnType<typeof setTimeout> | undefined,
     setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
+    delayDuration: number,
     transitionDuration: number
   ) => Promise<void>;
-  removeNotification: () => void;
-  updateNotifications: (newNotification: NotificationType) => void;
 };
 
 type ChildrenType = {
@@ -33,9 +29,14 @@ const NotificationsProvider = ({ children }: ChildrenType) => {
     []
   );
 
-  const triggerExitTransition = async (
+  const addNotification = (newNotification: NotificationType): void => {
+    setNotifications((prev) => [...prev, newNotification]);
+  };
+
+  const triggerExitTransitionAfterDelay = async (
     timeoutId: ReturnType<typeof setTimeout> | undefined,
     setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
+    delayDuration: number,
     transitionDuration: number
   ): Promise<void> => {
     clearTimeout(timeoutId);
@@ -44,7 +45,7 @@ const NotificationsProvider = ({ children }: ChildrenType) => {
       timeoutId = setTimeout((): void => {
         setVisibility(false);
         resolve();
-      }, NOTIFICATION_DURATION - transitionDuration);
+      }, delayDuration);
     });
 
     await new Promise<void>((resolve) => {
@@ -54,34 +55,33 @@ const NotificationsProvider = ({ children }: ChildrenType) => {
     });
   };
 
-  // let removeNotificationTimeoutId: ReturnType<typeof setTimeout>;
-  // const removeNotificationAfterDelay = (milliseconds: number) => {
-  //   clearTimeout(removeNotificationTimeoutId);
-  //   removeNotificationTimeoutId = setTimeout(() => {
-  //     setNotifications((prev) => prev.slice(1));
-  //   }, milliseconds);
-  // };
-
-  const removeNotification = () => {
-    setNotifications((prev) => prev.slice(1));
-  };
-
-  const updateNotifications = (newNotification: NotificationType): void => {
-    if (notifications.length >= 5) {
-      setNotifications((prev) => [...prev.slice(1), newNotification]);
-    } else {
-      setNotifications((prev) => [...prev, newNotification]);
-      // removeNotificationAfterDelay(NOTIFICATION_DURATION);
-    }
+  const removeNotificationAfterDelay = async (
+    notificationId: string,
+    timeoutId: ReturnType<typeof setTimeout> | undefined,
+    setVisibility: React.Dispatch<React.SetStateAction<boolean>>,
+    delayDuration: number,
+    transitionDuration: number
+  ): Promise<void> => {
+    await triggerExitTransitionAfterDelay(
+      timeoutId,
+      setVisibility,
+      delayDuration,
+      transitionDuration
+    );
+    setNotifications(
+      (prev): Array<NotificationType> =>
+        prev.filter(
+          (notification): boolean => notification.id !== notificationId
+        )
+    );
   };
 
   return (
     <NotificationsContext.Provider
       value={{
         notifications,
-        triggerExitTransition,
-        removeNotification,
-        updateNotifications,
+        addNotification,
+        removeNotificationAfterDelay,
       }}
     >
       {children}

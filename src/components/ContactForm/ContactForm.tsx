@@ -22,14 +22,14 @@ const ContactForm = (): JSX.Element => {
     subject: false,
     message: false,
   });
-  const { updateNotifications } = useNotificationsContext();
+  const { addNotification } = useNotificationsContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (Object.values(areFieldsValid).every((value) => value === true)) {
       console.log("Every field is validated!!!");
     } else {
-      updateNotifications({
+      addNotification({
         id: uuidv4(),
         text: "Please fill out all required fields appropriately!",
       });

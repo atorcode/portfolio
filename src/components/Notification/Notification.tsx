@@ -8,36 +8,26 @@ import { CSSTransition } from "react-transition-group";
 import { useEffect, useRef, useState } from "react";
 import { useNotificationsContext } from "../../contexts/NotificationsContext";
 
-type NotificationProps = {
-  text: string;
-};
+// types
+import { NotificationType as NotificationProps } from "../../types/NotificationType";
 
-const Notification = ({ text }: NotificationProps) => {
+const Notification = ({ id, text }: NotificationProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const notificationRef = useRef<HTMLDivElement | null>(null);
-  //@ts-ignore
-  const { triggerExitTransition, removeNotification } =
-    useNotificationsContext();
+  const { removeNotificationAfterDelay } = useNotificationsContext();
 
   useEffect(() => {
     setIsVisible(true);
 
     let exitTransitionTimeoutId: ReturnType<typeof setTimeout> | undefined;
 
-    // const unmountNotification = async () => {
-    //   triggerExitTransition(exitTransitionTimeoutId, setIsVisible);
-    //   await new Promise((resolve) => setTimeout(resolve, 500));
-    //   removeNotification();
-    // };
-
-    triggerExitTransition(exitTransitionTimeoutId, setIsVisible, 500).then(
-      () => {
-        removeNotification();
-      }
+    removeNotificationAfterDelay(
+      id,
+      exitTransitionTimeoutId,
+      setIsVisible,
+      500,
+      500
     );
-
-    // unmountNotification();
-
     return () => {
       clearTimeout(exitTransitionTimeoutId);
     };

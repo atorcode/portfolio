@@ -9,10 +9,11 @@ import Notification from "../Notification";
 
 const Notifications = () => {
   const { notifications } = useNotificationsContext();
+
   return (
     <div className={styles["notifications"]}>
       {notifications.map((notification) => {
-        return <Notification key={notification.id} text={notification.text} />;
+        return <Notification key={notification.id} {...notification} />;
       })}
     </div>
   );
