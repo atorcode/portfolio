@@ -90,8 +90,9 @@ const ScrollProvider = ({ children }: ChildrenType) => {
         return;
       }
       const scrollPosition = scrollContainerRef.current.scrollTop;
-      const distancesToSections = sectionElements.map((element) =>
-        Math.abs(scrollPosition - element.offsetTop)
+      const distancesToSections = sectionElements.map(
+        (element: HTMLElement): number =>
+          Math.abs(scrollPosition - element.offsetTop)
       );
       let shortestDistanceToSection = Math.min(...distancesToSections);
       let nearestSectionIndex = distancesToSections.indexOf(

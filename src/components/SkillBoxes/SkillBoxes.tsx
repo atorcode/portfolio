@@ -10,10 +10,12 @@ import SkillBox from "../../components/SkillBox";
 // utils
 import { SKILLS } from "../../utils/constants";
 
+type SkillType = typeof SKILLS[number];
+
 const SkillBoxes = (): JSX.Element => {
   return (
     <section className={styles["skill-boxes"]}>
-      {SKILLS.map((skill) => {
+      {SKILLS.map((skill: SkillType): JSX.Element => {
         return <SkillBox key={uuidv4()} skill={skill} />;
       })}
     </section>

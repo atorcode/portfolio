@@ -7,12 +7,15 @@ import { useNotificationsContext } from "../../contexts/NotificationsContext";
 // components
 import Notification from "../Notification";
 
+// types
+import { NotificationType } from "../../types/NotificationType";
+
 const Notifications = () => {
   const { notifications } = useNotificationsContext();
 
   return (
     <div className={styles["notifications"]}>
-      {notifications.map((notification) => {
+      {notifications.map((notification: NotificationType): JSX.Element => {
         return <Notification key={notification.id} {...notification} />;
       })}
     </div>

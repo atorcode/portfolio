@@ -25,7 +25,7 @@ const NavBullets = (): JSX.Element => {
   return (
     <nav className={styles["nav"]}>
       <ul className={styles["bullets"]}>
-        {uuids.current.map((uuid: string, index): JSX.Element => {
+        {uuids.current.map((uuid: string, index: number): JSX.Element => {
           return (
             <li key={uuid} className={styles["bullet-container"]}>
               <NavBullet index={index} />

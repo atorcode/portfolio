@@ -4,11 +4,16 @@ import styles from "./Project.module.scss";
 // components
 import Button from "../Button";
 
-const Project = (): JSX.Element => {
+type ProjectProps = {
+  name: string;
+};
+
+const Project = ({ name }: ProjectProps): JSX.Element => {
   return (
     <article className={styles["project"]}>
-      <h2>Article</h2>
-      <Button text="Learn More" />
+      <h2>{name}</h2>
+      <img src="" />
+      <Button text="View Project" />
     </article>
   );
 };
