@@ -7,16 +7,14 @@ import projectsData from "../../data/projects.json";
 // components
 import Project from "../Project/Project";
 
-type ProjectType = {
-  id: number;
-  name: string;
-};
+// types
+import { ProjectType } from "../../types/ProjectType";
 
 const Projects = (): JSX.Element => {
   return (
     <section className={styles["projects"]}>
       {projectsData.map((project: ProjectType): JSX.Element => {
-        return <Project key={project.id} name={project.name} />;
+        return <Project key={project.id} {...project} />;
       })}
     </section>
   );

@@ -6,9 +6,10 @@ import { useEffect, useRef } from "react";
 
 type ButtonProps = {
   text: string;
+  url?: string;
 };
 
-const Button = ({ text }: ButtonProps): JSX.Element => {
+const Button = ({ text, url }: ButtonProps): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect((): (() => void) => {
@@ -52,7 +53,14 @@ const Button = ({ text }: ButtonProps): JSX.Element => {
     };
   }, []);
 
-  return (
+  return url ? (
+    <a href={url} target="_blank">
+      <div className={styles["button-container"]} ref={buttonContainerRef}>
+        <span className={styles["container-text"]}>{text}</span>
+        <button className={styles["button"]}>{text}</button>
+      </div>
+    </a>
+  ) : (
     <div className={styles["button-container"]} ref={buttonContainerRef}>
       <span className={styles["container-text"]}>{text}</span>
       <button className={styles["button"]}>{text}</button>
