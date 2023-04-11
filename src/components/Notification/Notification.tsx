@@ -8,6 +8,9 @@ import { CSSTransition } from "react-transition-group";
 import { useEffect, useRef, useState } from "react";
 import { useNotificationsContext } from "../../contexts/NotificationsContext";
 
+// utils
+import { NOTIFICATION_DURATION } from "../../utils/constants";
+
 // types
 import { NotificationType as NotificationProps } from "../../types/NotificationType";
 
@@ -25,9 +28,10 @@ const Notification = ({ id, text }: NotificationProps) => {
       id,
       exitTransitionTimeoutId,
       setIsVisible,
-      500,
+      NOTIFICATION_DURATION,
       500
     );
+
     return () => {
       clearTimeout(exitTransitionTimeoutId);
     };

@@ -7,6 +7,7 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import SectionHeading from "../../components/SectionHeading";
+import Projects from "../../components/Projects";
 
 const ProjectsSection = (): JSX.Element => {
   const { theme } = useThemeContext();
@@ -18,6 +19,7 @@ const ProjectsSection = (): JSX.Element => {
       ref={projectsSectionRef}
     >
       <SectionHeading text="My Projects" />
+      <Projects />
     </section>
   );
 };

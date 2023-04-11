@@ -1,10 +1,14 @@
 // styles
-import styles from "./SubmitFormButton.module.scss";
+import styles from "./Button.module.scss";
 
 // hooks
 import { useEffect, useRef } from "react";
 
-const SubmitFormButton = (): JSX.Element => {
+type ButtonProps = {
+  text: string;
+};
+
+const Button = ({ text }: ButtonProps): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect((): (() => void) => {
@@ -50,10 +54,10 @@ const SubmitFormButton = (): JSX.Element => {
 
   return (
     <div className={styles["button-container"]} ref={buttonContainerRef}>
-      <span className={styles["container-text"]}>Submit</span>
-      <button className={styles["button"]}>Submit</button>
+      <span className={styles["container-text"]}>{text}</span>
+      <button className={styles["button"]}>{text}</button>
     </div>
   );
 };
 
-export default SubmitFormButton;
+export default Button;

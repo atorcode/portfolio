@@ -10,7 +10,7 @@ import { useNotificationsContext } from "../../contexts/NotificationsContext";
 
 // components
 import FormField from "../FormField";
-import SubmitFormButton from "../SubmitFormButton";
+import Button from "../Button";
 
 // types
 import { ValidityOfFields } from "../../types/ValidityOfFields";
@@ -60,7 +60,7 @@ const ContactForm = (): JSX.Element => {
         isValid={areFieldsValid.message}
         setIsValid={setAreFieldsValid}
       />
-      <SubmitFormButton />
+      <Button text="Submit" />
     </form>
   );
 };
