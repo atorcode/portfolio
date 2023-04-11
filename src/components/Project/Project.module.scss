@@ -3,7 +3,15 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 20rem;
-  width: 20rem;
+  height: 100%;
+  width: 50%;
   border: 2px solid red;
+  font-family: "Roboto";
+}
+
+.project-image {
+  // height: 100%;
+  width: 90%;
+  height: 200px;
+  object-fit: contain;
 }

@@ -2,11 +2,13 @@
   {
     "id": 0,
     "name": "Sorting Algorithm Visualizer",
+    "imagePath": "sav-project-image.png",
     "url": "https://sortingvisualizer.com"
   },
   {
     "id": 1,
     "name": "Movie Database Viewer",
+    "imagePath": "mdbv-project-image.png",
     "url": "https://mdbv.net"
   }
 ]
