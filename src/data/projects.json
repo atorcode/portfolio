@@ -3,12 +3,14 @@
     "id": 0,
     "name": "Sorting Algorithm Visualizer",
     "imagePath": "sav-project-image.png",
+    "imageAltText": "Sorting Algorithm Visualizer: An educational tool for visualizing common sorting algorithms. This app includes descriptions of each algorithm's advantages and disadvantages, complexity tables, and code implementations.",
     "url": "https://sortingvisualizer.com"
   },
   {
     "id": 1,
     "name": "Movie Database Viewer",
     "imagePath": "mdbv-project-image.png",
+    "imageAltText": "Movie Database Viewer: An app for browsing movies and movie details. See what's trending, find a trailer, curate a favorites list, and more!",
     "url": "https://mdbv.net"
   }
 ]

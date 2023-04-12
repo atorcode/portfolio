@@ -18,7 +18,9 @@ const ProjectsSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={projectsSectionRef}
     >
-      <SectionHeading text="My Projects" />
+      <header className={styles["header"]}>
+        <SectionHeading text="My Projects" />
+      </header>
       <Projects />
     </section>
   );

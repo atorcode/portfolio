@@ -5,10 +5,10 @@
   width: 12rem;
   height: 3.5rem;
   border: 2px solid v.$accent-color;
-
   color: v.$accent-color;
   font-family: "Roboto";
   font-size: 1.2rem;
+  // overflow: hidden;
 }
 
 .container-text {
@@ -22,8 +22,9 @@
 
 .button {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  // The width and height are set to values slightly above 100% so that the button overlaps with the border of the button-container. This is necessary to prevent a strange visual behavior that sometimes shows a separation between them. Using overflow: hidden on the container and making the width and height of the button larger does not solve the issue.
+  width: 102%;
+  height: 102%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

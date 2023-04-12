@@ -1,17 +1,62 @@
+@use "../../partials/variables" as v;
+
 .project {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 100%;
-  width: 50%;
-  border: 2px solid red;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
   font-family: "Roboto";
+  user-select: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    background-color: v.$secondary-color-two;
+
+    transition: opacity 500ms ease;
+  }
+
+  &:hover {
+    .inner-content {
+      opacity: 1;
+    }
+
+    &::before {
+      opacity: 0.9;
+    }
+  }
+}
+
+.inner-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  gap: 1rem;
+  opacity: 0;
+  color: v.$primary-color-dark-shade;
+
+  transition: opacity 400ms ease;
 }
 
 .project-image {
-  // height: 100%;
-  width: 90%;
-  height: 200px;
-  object-fit: contain;
+  width: 100%;
+  height: 300px;
+}
+
+.icon {
+  font-size: 2.5rem;
 }

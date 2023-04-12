@@ -1,13 +1,16 @@
 @use "../../partials/mixins" as m;
 
 .projects {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4rem;
+  position: relative;
   @include m.section-dimensions;
   background-color: yellow;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(6rem);
 }
 
 // .projects-light {
