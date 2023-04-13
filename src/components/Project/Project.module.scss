@@ -39,6 +39,9 @@
 
   > * {
     opacity: 0;
+    // This will-change property prevents some strange visual effects in Chrome and Firefox after the opacity transition is completed.
+    will-change: opacity;
+
     transition: opacity 500ms ease;
   }
 }
