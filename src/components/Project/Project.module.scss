@@ -10,46 +10,37 @@
   font-family: "Roboto";
   user-select: none;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0;
-    background-color: v.$secondary-color-two;
-
-    transition: opacity 500ms ease;
-  }
-
   &:hover {
     .inner-content {
-      opacity: 1;
-    }
+      background-color: rgba(v.$primary-color-dark-shade, 0.95);
 
-    &::before {
-      opacity: 0.9;
+      > * {
+        opacity: 1;
+      }
     }
   }
 }
 
 .inner-content {
   position: absolute;
+  top: -1px;
+  left: -1px;
+  bottom: -1px;
+  right: -1px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100%;
-  width: 100%;
   gap: 1rem;
-  opacity: 0;
-  color: v.$primary-color-dark-shade;
+  background-color: rgba(v.$primary-color-dark-shade, 0);
+  color: v.$secondary-color-two;
 
-  transition: opacity 400ms ease;
+  transition: background-color 500ms ease;
+
+  > * {
+    opacity: 0;
+    transition: opacity 500ms ease;
+  }
 }
 
 .project-image {

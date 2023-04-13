@@ -19,7 +19,7 @@ const ProjectsSection = (): JSX.Element => {
       ref={projectsSectionRef}
     >
       <header className={styles["header"]}>
-        <SectionHeading text="My Projects" />
+        <SectionHeading text="My Recent Projects" />
       </header>
       <Projects />
     </section>
