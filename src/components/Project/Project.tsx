@@ -1,8 +1,9 @@
 // styles
 import styles from "./Project.module.scss";
+import "./githubLogo.scss";
 
 // icons
-import { FiGithub } from "react-icons/fi";
+import { ReactComponent as GithubLogo } from "../../assets/github-logo.svg";
 
 // hooks
 import { useEffect, useState } from "react";
@@ -17,7 +18,8 @@ const Project = ({
   name,
   imagePath,
   imageAltText,
-  url,
+  projectUrl,
+  githubUrl,
 }: ProjectProps): JSX.Element => {
   const [projectImage, setProjectImage] = useState<string | undefined>();
 
@@ -32,9 +34,12 @@ const Project = ({
   return (
     <article className={styles["project"]}>
       <div className={styles["inner-content"]}>
-        <h2>{name}</h2>
-        <FiGithub className={styles["icon"]} />
-        <Button text="View Project" url={url} />
+        <h2 className={styles["title"]}>{name}</h2>
+
+        <a className={styles["github-link"]} href={githubUrl} target="_blank">
+          <GithubLogo className="github-logo-svg" />
+        </a>
+        <Button text="View Project" url={projectUrl} />
       </div>
       <img
         src={projectImage}

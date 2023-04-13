@@ -46,11 +46,23 @@
   }
 }
 
-.project-image {
-  width: 100%;
-  height: 300px;
+.github-link {
+  width: 3rem;
+  height: 3rem;
+}
+
+.title {
+  font-size: 2.25rem;
 }
 
 .icon {
   font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-image {
+  width: 100%;
+  height: 300px;
 }

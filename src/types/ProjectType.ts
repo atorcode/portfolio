@@ -3,5 +3,6 @@ export type ProjectType = {
   name: string;
   imagePath: string;
   imageAltText: string;
-  url: string;
+  projectUrl: string;
+  githubUrl: string;
 };

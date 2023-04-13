@@ -1,0 +1,24 @@
+@use "../../partials/variables" as v;
+
+.github-logo-svg {
+  width: 100%;
+  height: 100%;
+
+  .path1 {
+    stroke: v.$accent-color;
+  }
+
+  .path2 {
+    stroke: v.$secondary-color-two;
+    stroke-dasharray: 135;
+    stroke-dashoffset: 0;
+
+    transition: stroke-dashoffset 500ms linear;
+  }
+
+  &:hover {
+    .path2 {
+      stroke-dashoffset: 135;
+    }
+  }
+}

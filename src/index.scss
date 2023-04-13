@@ -28,8 +28,9 @@ body {
   background-color: v.$primary-color-dark-shade;
 }
 
-:link {
+a {
   text-decoration: none;
+  color: inherit;
 }
 
 ul,
