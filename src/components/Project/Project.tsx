@@ -35,7 +35,6 @@ const Project = ({
     <article className={styles["project"]}>
       <div className={styles["inner-content"]}>
         <h2 className={styles["title"]}>{name}</h2>
-
         <a className={styles["github-link"]} href={githubUrl} target="_blank">
           <GithubLogo className="github-logo-svg" />
         </a>

@@ -6,10 +6,12 @@
 
   .path1 {
     stroke: v.$accent-color;
+    stroke-width: 1.1px;
   }
 
   .path2 {
     stroke: v.$secondary-color-two;
+    stroke-width: 1.2px;
     stroke-dasharray: 135;
     stroke-dashoffset: 0;
 
