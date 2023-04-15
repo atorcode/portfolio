@@ -1,7 +1,5 @@
 @use "../../partials/variables" as v;
 
-// This file exists because selecting an svg's paths by class name is difficult inside of module files which compile their selectors into globally unique names.
-
 .typescript-logo-svg {
   .background {
     fill: v.$primary-color-dark-shade;

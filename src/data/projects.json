@@ -1,18 +1,34 @@
 [
   {
     "id": 0,
+    "name": "Portfolio",
+    "imagePath": "coming-soon.jpg",
+    "imageAltText": "Alberto Torrigiotti's Front-end Web Developer Portfolio",
+    "projectUrl": "#",
+    "githubUrl": "https://github.com/atorcode/portfolio"
+  },
+  {
+    "id": 1,
     "name": "Sorting Algorithm Visualizer",
     "imagePath": "sav-project-image.png",
-    "imageAltText": "Sorting Algorithm Visualizer: An educational tool for visualizing common sorting algorithms. This app includes descriptions of each algorithm's advantages and disadvantages, complexity tables, and code implementations.",
+    "imageAltText": "Sorting Algorithm Visualizer: An educational tool for visualizing common sorting algorithms",
     "projectUrl": "https://sortingvisualizer.com",
     "githubUrl": "https://github.com/atorcode/sorting-algorithm-visualizer"
   },
   {
-    "id": 1,
+    "id": 2,
     "name": "Movie Database Viewer",
     "imagePath": "mdbv-project-image.png",
-    "imageAltText": "Movie Database Viewer: An app for browsing movies and movie details. See what's trending, find a trailer, curate a favorites list, and more!",
+    "imageAltText": "Movie Database Viewer: An app for browsing movies and movie details",
     "projectUrl": "https://mdbv.net",
     "githubUrl": "https://github.com/atorcode/movie-database-viewer"
+  },
+  {
+    "id": 3,
+    "name": "Snake",
+    "imagePath": "snake-project-image.png",
+    "imageAltText": "Snake: A JavaScript implementation of the popular 2D arcade game",
+    "projectUrl": "https://universe-one.github.io/Snake/",
+    "githubUrl": "https://github.com/atorcode/JS-snake"
   }
 ]
