@@ -44,7 +44,7 @@ const Button = ({ text, url }: ButtonProps): JSX.Element => {
     };
     buttonContainerRef.current?.addEventListener("mouseover", handleHover);
     buttonContainerRef.current?.addEventListener("mouseleave", handleUnhover);
-    return () => {
+    return (): void => {
       buttonContainerRef.current?.removeEventListener("mouseover", handleHover);
       buttonContainerRef.current?.removeEventListener(
         "mouseleave",

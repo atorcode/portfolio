@@ -32,7 +32,7 @@ const Notification = ({ id, text }: NotificationProps) => {
       500
     );
 
-    return () => {
+    return (): void => {
       clearTimeout(exitTransitionTimeoutId);
     };
   }, []);

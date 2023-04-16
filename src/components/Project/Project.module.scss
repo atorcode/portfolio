@@ -10,6 +10,11 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
   font-family: "Roboto";
   user-select: none;
+  opacity: 0;
+  // margin-top: 10rem;
+  transform: translateY(10);
+
+  transition: opacity 800ms ease, transform 800ms ease;
 
   &:hover {
     .inner-content {
@@ -20,6 +25,12 @@
       }
     }
   }
+}
+
+.project-visible {
+  opacity: 1;
+  // margin-top: 0;
+  transform: translateY(0);
 }
 
 .inner-content {
