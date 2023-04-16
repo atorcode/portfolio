@@ -13,9 +13,14 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 import Button from "../Button";
 
 // types
-import { ProjectType as ProjectProps } from "../../types/ProjectType";
+import { ProjectType } from "../../types/ProjectType";
+
+type ProjectProps = ProjectType & {
+  isVisible: boolean;
+};
 
 const Project = ({
+  isVisible,
   name,
   imagePath,
   imageAltText,
@@ -23,7 +28,6 @@ const Project = ({
   githubUrl,
 }: ProjectProps): JSX.Element => {
   const [projectImage, setProjectImage] = useState<string | undefined>();
-  const [isVisible, setIsVisible] = useState<boolean>(false);
   const projectRef = useRef<HTMLElement | null>(null);
   const { isScrolling } = useScrollContext();
 
@@ -36,36 +40,10 @@ const Project = ({
   }, [imagePath]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries: Array<IntersectionObserverEntry>): void => {
-        entries.forEach((entry: IntersectionObserverEntry): void => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-    if (projectRef.current) {
-      observer.observe(projectRef.current);
-    }
-
-    return (): void => {
-      if (projectRef.current) {
-        observer.unobserve(projectRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     if (!isScrolling && isVisible) {
       projectRef.current?.classList.add(styles["project-visible"]);
     }
   }, [isScrolling, isVisible]);
-
-  useEffect(() => {
-    console.log(isScrolling);
-  }, [isScrolling]);
 
   return (
     <article className={styles["project"]} ref={projectRef}>
