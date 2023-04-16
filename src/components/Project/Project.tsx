@@ -7,6 +7,7 @@ import { ReactComponent as GithubLogo } from "../../assets/github-logo.svg";
 
 // hooks
 import { useEffect, useRef, useState } from "react";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import Button from "../Button";
@@ -24,6 +25,7 @@ const Project = ({
   const [projectImage, setProjectImage] = useState<string | undefined>();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const projectRef = useRef<HTMLElement | null>(null);
+  const { isScrolling } = useScrollContext();
 
   useEffect(() => {
     const loadImage = async (): Promise<void> => {
@@ -55,15 +57,18 @@ const Project = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (!isScrolling && isVisible) {
+      projectRef.current?.classList.add(styles["project-visible"]);
+    }
+  }, [isScrolling, isVisible]);
+
+  useEffect(() => {
+    console.log(isScrolling);
+  }, [isScrolling]);
+
   return (
-    <article
-      className={
-        isVisible
-          ? `${styles["project"]} ${styles["project-visible"]}`
-          : styles["project"]
-      }
-      ref={projectRef}
-    >
+    <article className={styles["project"]} ref={projectRef}>
       <div className={styles["inner-content"]}>
         <h2 className={styles["title"]}>{name}</h2>
         <a className={styles["github-link"]} href={githubUrl} target="_blank">

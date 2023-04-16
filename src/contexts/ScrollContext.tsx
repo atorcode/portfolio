@@ -6,6 +6,7 @@ import { useScrollSnap } from "../hooks/useScrollSnap";
 import { SCROLL_DURATION } from "../utils/constants";
 
 type ScrollContextType = {
+  isScrolling: boolean;
   scrollContainerRef: React.MutableRefObject<HTMLElement | null>;
   expandedBulletIndex: number;
   introductionSectionRef: React.MutableRefObject<HTMLElement | null>;
@@ -25,7 +26,7 @@ const ScrollContext = React.createContext<ScrollContextType | undefined>(
 );
 
 const ScrollProvider = ({ children }: ChildrenType) => {
-  const scrollContainerRef = useRef<HTMLElement | null>(null);
+  const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<
     HTMLElement | undefined
   >();
@@ -33,6 +34,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     []
   );
   const [expandedBulletIndex, setExpandedBulletIndex] = useState<number>(0);
+  const scrollContainerRef = useRef<HTMLElement | null>(null);
 
   // sections
   const introductionSectionRef = useRef<HTMLElement | null>(null);
@@ -85,6 +87,22 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     if (!currentSection) {
       setCurrentSection(sectionElements[0]);
     }
+
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const updateIsScrolling = async (): Promise<void> => {
+      clearTimeout(timeoutId);
+
+      setIsScrolling(true);
+
+      await new Promise<void>(
+        (resolve) =>
+          (timeoutId = setTimeout((): void => {
+            setIsScrolling(false);
+            resolve();
+          }, 10))
+      );
+    };
+
     const updateCurrentSection = (): void => {
       if (!scrollContainerRef.current) {
         return;
@@ -117,6 +135,9 @@ const ScrollProvider = ({ children }: ChildrenType) => {
         scrollContainerRef.current.scrollTo(0, snapTarget.offsetTop);
       }
     };
+
+    // attach event listeners
+    scrollContainerRef.current?.addEventListener("scroll", updateIsScrolling);
     scrollContainerRef.current?.addEventListener(
       "scroll",
       updateCurrentSection
@@ -126,7 +147,13 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       scrollSnapOnFocus,
       true
     );
+
+    // remove event listeners when unmounting
     return (): void => {
+      scrollContainerRef.current?.removeEventListener(
+        "scroll",
+        updateIsScrolling
+      );
       scrollContainerRef.current?.removeEventListener(
         "scroll",
         updateCurrentSection
@@ -151,6 +178,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
   return (
     <ScrollContext.Provider
       value={{
+        isScrolling,
         scrollContainerRef,
         expandedBulletIndex,
         introductionSectionRef,
