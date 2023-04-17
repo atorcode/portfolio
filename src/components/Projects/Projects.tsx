@@ -24,21 +24,22 @@ const Projects = (): JSX.Element => {
       (entries: Array<IntersectionObserverEntry>): void => {
         entries.forEach((entry: IntersectionObserverEntry): void => {
           if (entry.isIntersecting) {
-            visibilityOfProjects.forEach((isVisible, index) => {
-              if (!isVisible) {
-                setTimeout(() => {
-                  setVisibilityOfProjects((prev) => {
-                    const result = [...prev];
-                    result[index] = true;
-                    return result;
-                  });
-                }, 200 * index);
+            visibilityOfProjects.forEach(
+              (isVisible: boolean, index: number): void => {
+                if (!isVisible) {
+                  setTimeout((): void => {
+                    setVisibilityOfProjects((prev): Array<boolean> => {
+                      const result = [...prev];
+                      result[index] = true;
+                      return result;
+                    });
+                  }, 300 * index);
+                }
               }
-            });
+            );
           }
         });
-      },
-      { threshold: 0 }
+      }
     );
     if (projectsRef.current) {
       observer.observe(projectsRef.current);
