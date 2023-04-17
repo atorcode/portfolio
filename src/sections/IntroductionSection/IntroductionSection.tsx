@@ -8,6 +8,7 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 // components
 import SectionHeading from "../../components/SectionHeading";
 import Paragraph from "../../components/Paragraph";
+import Button from "../../components/Button";
 
 const IntroductionSection = (): JSX.Element => {
   const { theme } = useThemeContext();
@@ -16,6 +17,7 @@ const IntroductionSection = (): JSX.Element => {
   return (
     <section
       className={`${styles["introduction"]} ${styles[`introduction-${theme}`]}`}
+      id="introduction"
       data-scroll-snap-on-focus="true"
       ref={introductionSectionRef}
     >
@@ -26,6 +28,7 @@ const IntroductionSection = (): JSX.Element => {
         game-related services. I am extremely eager to collaborate with people
         and build projects together, so don't hesitate to reach out!"
       />
+      <Button text="Explore My Work" url="#projects" />
     </section>
   );
 };

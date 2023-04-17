@@ -54,7 +54,7 @@ const Button = ({ text, url }: ButtonProps): JSX.Element => {
   }, []);
 
   return url ? (
-    <a href={url} target="_blank">
+    <a href={url} target={url[0] === "#" ? undefined : "_blank"}>
       <div className={styles["button-container"]} ref={buttonContainerRef}>
         <span className={styles["container-text"]}>{text}</span>
         <button className={styles["button"]}>{text}</button>

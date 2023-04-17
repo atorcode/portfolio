@@ -15,6 +15,7 @@ const SkillsSection = (): JSX.Element => {
   return (
     <section
       className={`${styles["skills"]} ${styles[`skills-${theme}`]}`}
+      id="skills"
       data-scroll-snap-on-focus="true"
       ref={skillsSectionRef}
     >

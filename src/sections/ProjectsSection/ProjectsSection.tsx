@@ -15,6 +15,7 @@ const ProjectsSection = (): JSX.Element => {
   return (
     <section
       className={`${styles["projects"]} ${styles[`projects-${theme}`]}`}
+      id={"projects"}
       data-scroll-snap-on-focus="true"
       ref={projectsSectionRef}
     >
