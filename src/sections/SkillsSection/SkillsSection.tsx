@@ -23,8 +23,8 @@ const SkillsSection = (): JSX.Element => {
       ref={skillsSectionRef}
     >
       <SectionHeading text="My Bag of Tools" />
-      <SkillBoxes skills={[...TOOLS]} />
-      <SkillBoxes skills={[...SKILLS]} />
+      <SkillBoxes skills={TOOLS} />
+      <SkillBoxes skills={SKILLS} />
     </section>
   );
 };

@@ -11,7 +11,7 @@ import SkillBox from "../../components/SkillBox";
 import { SkillsType } from "../../types/SkillsType";
 
 type SkillBoxesProps = {
-  skills: Array<SkillsType>;
+  readonly skills: ReadonlyArray<SkillsType>;
 };
 
 const SkillBoxes = ({ skills }: SkillBoxesProps): JSX.Element => {
