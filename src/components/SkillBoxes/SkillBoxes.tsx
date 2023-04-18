@@ -7,15 +7,17 @@ import { v4 as uuidv4 } from "uuid";
 // components
 import SkillBox from "../../components/SkillBox";
 
-// utils
-import { SKILLS } from "../../utils/constants";
+// types
+import { SkillsType } from "../../types/SkillsType";
 
-type SkillType = typeof SKILLS[number];
+type SkillBoxesProps = {
+  skills: Array<SkillsType>;
+};
 
-const SkillBoxes = (): JSX.Element => {
+const SkillBoxes = ({ skills }: SkillBoxesProps): JSX.Element => {
   return (
     <section className={styles["skill-boxes"]}>
-      {SKILLS.map((skill: SkillType): JSX.Element => {
+      {skills.map((skill: SkillsType): JSX.Element => {
         return <SkillBox key={uuidv4()} skill={skill} />;
       })}
     </section>

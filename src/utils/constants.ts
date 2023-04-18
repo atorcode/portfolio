@@ -1,6 +1,6 @@
 export const NOTIFICATION_DURATION = 6000;
 export const SCROLL_DURATION = 200;
-export const SKILLS = [
+export const TOOLS = [
   "HTML",
   "CSS",
   "JavaScript",
@@ -8,4 +8,12 @@ export const SKILLS = [
   "React",
   "SASS",
   "Git",
+] as const;
+export const SKILLS = [
+  "Responsive Web Design",
+  "Accessibility",
+  "UI/UX Design",
+  "Algorithms",
+  "Single Page Applications",
+  "Game Development",
 ] as const;

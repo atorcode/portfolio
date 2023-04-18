@@ -14,15 +14,15 @@ import {
 
 import { ReactComponent as TypescriptLogo } from "../../assets/typescript-logo.svg";
 
-// utils
-import { SKILLS } from "../../utils/constants";
+// types
+import { SkillsType } from "../../types/SkillsType";
 
 type SkillBoxProps = {
-  skill: typeof SKILLS[number];
+  skill: SkillsType;
 };
 
 const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
-  let icon: JSX.Element;
+  let icon: JSX.Element | undefined;
   switch (skill) {
     case "HTML":
       icon = <SiHtml5 />;
@@ -45,6 +45,14 @@ const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
     case "Git":
       icon = <SiGit />;
       break;
+    case "Responsive Web Design":
+    case "Accessibility":
+    case "UI/UX Design":
+    case "Algorithms":
+    case "Single Page Applications":
+    case "Game Development":
+      icon = undefined;
+      break;
     default:
       const _exhaustiveCheck: never = skill;
       return _exhaustiveCheck;
@@ -52,7 +60,7 @@ const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
 
   return (
     <div className={styles["skill-box"]}>
-      <div className={styles["icon"]}>{icon}</div>
+      {icon && <div className={styles["icon"]}>{icon}</div>}
       {skill}
     </div>
   );

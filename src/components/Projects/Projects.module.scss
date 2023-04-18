@@ -6,12 +6,17 @@
   gap: 4.2vw;
   width: 80%;
 
-  margin: 5.4rem auto;
+  margin: 4.2rem auto;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1200px) {
   .projects {
-    // width: 50%;
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
     grid-template-columns: minmax(auto, 250px);
   }
 }

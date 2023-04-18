@@ -1,13 +1,16 @@
 // styles
 import styles from "./SkillsSection.module.scss";
 
-// functions and hooks
+// hooks
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import SkillBoxes from "../../components/SkillBoxes";
 import SectionHeading from "../../components/SectionHeading";
+
+// utils
+import { TOOLS, SKILLS } from "../../utils/constants";
 
 const SkillsSection = (): JSX.Element => {
   const { theme } = useThemeContext();
@@ -20,7 +23,8 @@ const SkillsSection = (): JSX.Element => {
       ref={skillsSectionRef}
     >
       <SectionHeading text="My Bag of Tools" />
-      <SkillBoxes />
+      <SkillBoxes skills={[...TOOLS]} />
+      <SkillBoxes skills={[...SKILLS]} />
     </section>
   );
 };
