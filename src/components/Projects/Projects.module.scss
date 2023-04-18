@@ -1,10 +1,17 @@
 .projects {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: repeat(2, minmax(auto, 576px));
   align-items: center;
-  gap: 5rem;
+  gap: 4.2vw;
   width: 80%;
 
   margin: 5.4rem auto;
+}
+
+@media (max-width: 700px) {
+  .projects {
+    // width: 50%;
+    grid-template-columns: minmax(auto, 250px);
+  }
 }

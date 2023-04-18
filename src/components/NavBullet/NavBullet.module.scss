@@ -1,11 +1,16 @@
 @use "../../partials/variables" as v;
 
+$bullet-size: 10px;
+$bullet-size-expanded: calc(#{$bullet-size} * 2);
+$bullet-size-small: 6px;
+$bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
+
 .bullet {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 10px;
-  height: 10px;
+  width: $bullet-size;
+  height: $bullet-size;
   transform: translate(-50%, -50%) rotate(-45deg);
   border: none;
   outline: none;
@@ -19,10 +24,23 @@
 }
 
 .bullet-expanded {
-  width: 20px;
-  height: 20px;
+  width: $bullet-size-expanded;
+  height: $bullet-size-expanded;
   rotate: 0deg;
   transform: translate(-50%, -50%) rotate(0);
   border: 2px solid v.$accent-color;
   background-color: transparent;
+}
+
+@media (max-width: 1200px) {
+  .bullet {
+    width: $bullet-size-small;
+    height: $bullet-size-small;
+  }
+
+  .bullet-expanded {
+    width: $bullet-size-small-expanded;
+    height: $bullet-size-small-expanded;
+    border: 1px solid v.$accent-color;
+  }
 }

@@ -17,3 +17,22 @@
   width: 24px;
   height: 24px;
 }
+
+@media (max-width: 1200px) {
+  .nav {
+    right: 2%;
+  }
+  .bullets {
+    gap: 0.5rem;
+  }
+  .bullet-container {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}
