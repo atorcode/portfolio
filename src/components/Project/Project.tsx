@@ -52,6 +52,7 @@ const Project = ({
         <a className={styles["github-link"]} href={githubUrl} target="_blank">
           <GithubLogo className="github-logo-svg" />
         </a>
+
         <Button text="View Project" url={projectUrl} />
       </div>
       <img

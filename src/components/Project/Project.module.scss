@@ -57,25 +57,18 @@
   }
 }
 
-.github-link {
-  width: 3rem;
-  height: 3rem;
+.title {
+  font-size: max(1rem, min(2.25vw, 2.25rem));
+  // font-size: 2.25rem;
+  text-align: center;
 }
 
-.title {
-  font-size: 2.25rem;
+.github-link {
+  width: 17.5%;
+  height: 17.5%;
 }
 
 .project-image {
   width: 100%;
   height: 100%;
 }
-
-// @media (max-width: 1500px) {
-//   .project {
-//     height: 200px;
-//   }
-//   .title {
-//     font-size: 2rem;
-//   }
-// }
