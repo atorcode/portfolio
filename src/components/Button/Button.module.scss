@@ -1,13 +1,33 @@
 @use "../../partials/variables" as v;
 
+.button-link-resizeable {
+  width: 100%;
+  height: 100%;
+  max-width: 12rem;
+  max-height: 3.5rem;
+}
+
 .button-container {
   position: relative;
-  width: 12rem;
-  height: 3.5rem;
+  max-width: 12rem;
+  max-height: 3.5rem;
   border: 2px solid v.$accent-color;
   color: v.$accent-color;
   font-family: "Roboto";
   font-size: 1.2rem;
+  overflow: hidden;
+  box-sizing: content-box;
+}
+
+.button-container-resizeable {
+  width: 100%;
+  height: 100%;
+  font-size: max(0.9rem, min(2vw, 1.2rem));
+}
+
+.button-container-fixed {
+  width: 12rem;
+  height: 3.5rem;
 }
 
 .container-text {
@@ -21,9 +41,8 @@
 
 .button {
   position: absolute;
-  // The width and height are set to values slightly above 100% so that the button overlaps with the border of the button-container. This is necessary to prevent a strange visual behavior that sometimes shows a separation between them. Using overflow: hidden on the container and making the width and height of the button larger does not solve the issue.
-  width: 102%;
-  height: 102%;
+  width: 110%;
+  height: 150%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -35,9 +54,16 @@
   background-color: v.$accent-color;
   color: v.$primary-color-dark;
   font-family: inherit;
-  font-size: 1.2rem;
 
   animation: clear 0.6s steps(29) forwards;
+}
+
+.button-resizeable {
+  font-size: max(0.9rem, min(2vw, 1.2rem));
+}
+
+.button-fixed {
+  font-size: 1.2rem;
 }
 
 .button-container-hovered {

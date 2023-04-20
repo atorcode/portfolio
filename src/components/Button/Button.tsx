@@ -7,9 +7,14 @@ import { useEffect, useRef } from "react";
 type ButtonProps = {
   text: string;
   url?: string;
+  hasResizeableParent?: boolean;
 };
 
-const Button = ({ text, url }: ButtonProps): JSX.Element => {
+const Button = ({
+  text,
+  url,
+  hasResizeableParent,
+}: ButtonProps): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect((): (() => void) => {
@@ -54,16 +59,52 @@ const Button = ({ text, url }: ButtonProps): JSX.Element => {
   }, []);
 
   return url ? (
-    <a href={url} target={url[0] === "#" ? undefined : "_blank"}>
-      <div className={styles["button-container"]} ref={buttonContainerRef}>
+    <a
+      className={
+        hasResizeableParent ? styles["button-link-resizeable"] : undefined
+      }
+      href={url}
+      target={url[0] === "#" ? undefined : "_blank"}
+    >
+      <div
+        className={`${styles["button-container"]} ${
+          hasResizeableParent
+            ? styles["button-container-resizeable"]
+            : styles["button-container-fixed"]
+        }`}
+        ref={buttonContainerRef}
+      >
         <span className={styles["container-text"]}>{text}</span>
-        <button className={styles["button"]}>{text}</button>
+        <button
+          className={`${styles["button"]} ${
+            hasResizeableParent
+              ? styles["button-resizeable"]
+              : styles["button-fixed"]
+          }`}
+        >
+          {text}
+        </button>
       </div>
     </a>
   ) : (
-    <div className={styles["button-container"]} ref={buttonContainerRef}>
+    <div
+      className={`${styles["button-container"]} ${
+        hasResizeableParent
+          ? styles["button-container-resizeable"]
+          : styles["button-container-fixed"]
+      }`}
+      ref={buttonContainerRef}
+    >
       <span className={styles["container-text"]}>{text}</span>
-      <button className={styles["button"]}>{text}</button>
+      <button
+        className={`${styles["button"]} ${
+          hasResizeableParent
+            ? styles["button-resizeable"]
+            : styles["button-fixed"]
+        }`}
+      >
+        {text}
+      </button>
     </div>
   );
 };
