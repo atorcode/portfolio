@@ -6,3 +6,9 @@
   width: 35%;
   gap: 1rem;
 }
+
+@media (max-width: 768px) {
+  .skill-boxes {
+    width: 75%;
+  }
+}

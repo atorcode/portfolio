@@ -7,3 +7,10 @@
   text-align: center;
   font-size: 1.5rem;
 }
+
+@media (max-width: 768px) {
+  .paragraph {
+    width: 75%;
+    font-size: 1.25rem;
+  }
+}
