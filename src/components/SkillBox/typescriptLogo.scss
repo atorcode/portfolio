@@ -8,3 +8,9 @@
     fill: v.$secondary-color-two;
   }
 }
+
+@media (max-width: 768px) {
+  .typescript-logo-svg {
+    height: v.$skill-box-icon-size-small;
+  }
+}
