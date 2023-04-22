@@ -1,0 +1,16 @@
+.subheading {
+  font-size: 3rem;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .subheading {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .subheading {
+    font-size: 2rem;
+  }
+}

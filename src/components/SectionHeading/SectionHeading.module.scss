@@ -1,16 +1,16 @@
-h1 {
+.heading {
   font-size: 4rem;
   text-align: center;
 }
 
 @media (max-width: 1200px) {
-  h1 {
+  .heading {
     font-size: 3.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  h1 {
+  .heading {
     font-size: 3rem;
   }
 }

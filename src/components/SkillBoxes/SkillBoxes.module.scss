@@ -1,14 +1,22 @@
+.skill-box-grouping {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 600px;
+  gap: 1.5rem;
+}
+
 .skill-boxes {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  width: 35%;
   gap: 1rem;
 }
 
 @media (max-width: 768px) {
-  .skill-boxes {
+  .skill-box-grouping {
     width: 75%;
   }
 }

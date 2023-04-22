@@ -22,9 +22,9 @@ const SkillsSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={skillsSectionRef}
     >
-      <SectionHeading text="My Bag of Tools" />
-      <SkillBoxes skills={TOOLS} />
-      <SkillBoxes skills={SKILLS} />
+      <SectionHeading text="My Skills" />
+      <SkillBoxes heading="My Bag of Tools" skills={TOOLS} />
+      <SkillBoxes heading="Other Skills" skills={SKILLS} />
     </section>
   );
 };
