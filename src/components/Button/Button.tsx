@@ -49,6 +49,7 @@ const Button = ({
     };
     buttonContainerRef.current?.addEventListener("mouseover", handleHover);
     buttonContainerRef.current?.addEventListener("mouseleave", handleUnhover);
+
     return (): void => {
       buttonContainerRef.current?.removeEventListener("mouseover", handleHover);
       buttonContainerRef.current?.removeEventListener(

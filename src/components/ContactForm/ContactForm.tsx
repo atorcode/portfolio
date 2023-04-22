@@ -5,7 +5,7 @@ import styles from "./ContactForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
 // hooks
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNotificationsContext } from "../../contexts/NotificationsContext";
 
 // components
@@ -22,6 +22,8 @@ const ContactForm = (): JSX.Element => {
     subject: false,
     message: false,
   });
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
   const { addNotification } = useNotificationsContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,8 +38,37 @@ const ContactForm = (): JSX.Element => {
     }
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries: Array<IntersectionObserverEntry>): void => {
+        entries.forEach((entry: IntersectionObserverEntry): void => {
+          if (entry.isIntersecting) {
+            if (!isVisible) {
+              setTimeout((): void => {
+                setIsVisible(true);
+              }, 200);
+            }
+          }
+        });
+      }
+    );
+    if (formRef.current) {
+      observer.observe(formRef.current);
+    }
+    if (isVisible) {
+      formRef.current?.classList.add(styles["form-visible"]);
+    } else {
+      formRef.current?.classList.remove(styles["form-visible"]);
+    }
+    return (): void => {
+      if (formRef.current) {
+        observer.unobserve(formRef.current);
+      }
+    };
+  }, [isVisible]);
+
   return (
-    <form className={styles["form"]} onSubmit={handleSubmit}>
+    <form className={styles["form"]} ref={formRef} onSubmit={handleSubmit}>
       <div className={styles["personal-info"]}>
         <FormField
           fieldType="name"
