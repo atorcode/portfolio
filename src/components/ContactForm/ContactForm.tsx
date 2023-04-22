@@ -46,7 +46,7 @@ const ContactForm = (): JSX.Element => {
             if (!isVisible) {
               setTimeout((): void => {
                 setIsVisible(true);
-              }, 200);
+              }, 100);
             }
           }
         });

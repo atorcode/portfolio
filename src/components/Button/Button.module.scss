@@ -50,11 +50,15 @@
   -webkit-mask: url(https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png);
   mask-size: 2900% 100%;
   -webkit-mask-size: 3000% 100%;
+  mask-position: 100% 0;
+  -webkit-mask-position: 100% 0;
   border: none;
   background-color: v.$accent-color;
   color: v.$primary-color-dark;
   font-family: inherit;
+}
 
+.button-animated {
   animation: clear 0.6s steps(29) forwards;
 }
 

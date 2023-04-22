@@ -16,6 +16,7 @@ const Button = ({
   hasResizeableParent,
 }: ButtonProps): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect((): (() => void) => {
     let animationDonePromise: Promise<void>;
@@ -23,6 +24,7 @@ const Button = ({
     const handleHover = (e: MouseEvent): void => {
       if (
         !buttonContainerRef.current ||
+        !buttonRef.current ||
         // the following is to prevent extra triggers of the function when the cursor moves between the buttonContainer and its children. e.relatedTarget refers to the element that the cursor was hovering over before entering e.target.
         buttonContainerRef.current.contains(e.relatedTarget as Node)
       ) {
@@ -30,8 +32,9 @@ const Button = ({
       }
       clearTimeout(timeoutId);
 
+      buttonRef.current.classList.add(styles["button-animated"]);
       buttonContainerRef.current.classList.add(
-        `${styles["button-container-hovered"]}`
+        styles["button-container-hovered"]
       );
       animationDonePromise = new Promise((resolve) => {
         // This delay should match the duration for the clear and fillUp CSS animations
@@ -44,7 +47,7 @@ const Button = ({
       }
       await animationDonePromise;
       buttonContainerRef.current.classList.remove(
-        `${styles["button-container-hovered"]}`
+        styles["button-container-hovered"]
       );
     };
     buttonContainerRef.current?.addEventListener("mouseover", handleHover);
@@ -82,6 +85,7 @@ const Button = ({
               ? styles["button-resizeable"]
               : styles["button-fixed"]
           }`}
+          ref={buttonRef}
         >
           {text}
         </button>
@@ -103,6 +107,7 @@ const Button = ({
             ? styles["button-resizeable"]
             : styles["button-fixed"]
         }`}
+        ref={buttonRef}
       >
         {text}
       </button>
