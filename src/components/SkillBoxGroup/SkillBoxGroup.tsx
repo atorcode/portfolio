@@ -1,5 +1,5 @@
 // styles
-import styles from "./SkillBoxGrouping.module.scss";
+import styles from "./SkillBoxGroup.module.scss";
 
 // dependencies
 import { v4 as uuidv4 } from "uuid";
@@ -11,15 +11,15 @@ import SkillBox from "../SkillBox";
 // types
 import { SkillsType } from "../../types/SkillsType";
 
-type SkillBoxGroupingProps = {
+type SkillBoxGroupProps = {
   subheading: string;
   readonly skills: ReadonlyArray<SkillsType>;
 };
 
-const SkillBoxGrouping = ({
+const SkillBoxGroup = ({
   subheading,
   skills,
-}: SkillBoxGroupingProps): JSX.Element => {
+}: SkillBoxGroupProps): JSX.Element => {
   return (
     <section className={styles["skill-box-grouping"]}>
       <Subheading text={subheading} />
@@ -32,4 +32,4 @@ const SkillBoxGrouping = ({
   );
 };
 
-export default SkillBoxGrouping;
+export default SkillBoxGroup;
