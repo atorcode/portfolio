@@ -6,7 +6,7 @@ import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
-import SkillBoxes from "../../components/SkillBoxes";
+import SkillBoxGrouping from "../../components/SkillBoxGrouping";
 import SectionHeading from "../../components/SectionHeading";
 
 // utils
@@ -23,8 +23,8 @@ const SkillsSection = (): JSX.Element => {
       ref={skillsSectionRef}
     >
       <SectionHeading text="My Skills" />
-      <SkillBoxes heading="My Bag of Tools" skills={TOOLS} />
-      <SkillBoxes heading="Other Skills" skills={SKILLS} />
+      <SkillBoxGrouping subheading="My Bag of Tools" skills={TOOLS} />
+      <SkillBoxGrouping subheading="Other Skills" skills={SKILLS} />
     </section>
   );
 };
