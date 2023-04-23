@@ -12,6 +12,15 @@
   font-family: "Roboto";
   font-size: 1.2rem;
   user-select: none;
+  opacity: 0;
+  transform: translateY(5rem);
+
+  transition: opacity 800ms ease, transform 800ms ease;
+}
+
+.skill-box-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .icon {

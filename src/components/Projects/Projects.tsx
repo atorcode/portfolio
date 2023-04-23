@@ -19,7 +19,7 @@ const Projects = (): JSX.Element => {
   >([false, false, false, false]);
   const projectsRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     const observer = new IntersectionObserver(
       (entries: Array<IntersectionObserverEntry>): void => {
         entries.forEach((entry: IntersectionObserverEntry): void => {
@@ -28,11 +28,13 @@ const Projects = (): JSX.Element => {
               (isVisible: boolean, index: number): void => {
                 if (!isVisible) {
                   setTimeout((): void => {
-                    setVisibilityOfProjects((prev): Array<boolean> => {
-                      const result = [...prev];
-                      result[index] = true;
-                      return result;
-                    });
+                    setVisibilityOfProjects(
+                      (prev: Array<boolean>): Array<boolean> => {
+                        const result = [...prev];
+                        result[index] = true;
+                        return result;
+                      }
+                    );
                   }, 300 * index);
                 }
               }

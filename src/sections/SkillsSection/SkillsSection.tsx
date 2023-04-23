@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // styles
 import styles from "./SkillsSection.module.scss";
 

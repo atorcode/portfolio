@@ -32,10 +32,6 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   background-color: transparent;
 }
 
-.no-transition {
-  transition: none;
-}
-
 @media (max-width: 1200px) {
   .bullet {
     width: $bullet-size-small;

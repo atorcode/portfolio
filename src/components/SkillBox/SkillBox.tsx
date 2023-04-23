@@ -14,14 +14,28 @@ import {
 
 import { ReactComponent as TypescriptLogo } from "../../assets/typescript-logo.svg";
 
+// hooks
+import { useEffect, useRef } from "react";
+import { useScrollContext } from "../../contexts/ScrollContext";
+
 // types
 import { SkillsType } from "../../types/SkillsType";
 
 type SkillBoxProps = {
   skill: SkillsType;
+  isVisible: boolean;
 };
 
-const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
+const SkillBox = ({ skill, isVisible }: SkillBoxProps): JSX.Element => {
+  const skillBoxRef = useRef<HTMLDivElement | null>(null);
+  const { isScrolling } = useScrollContext();
+
+  useEffect((): void => {
+    if (!isScrolling && isVisible) {
+      skillBoxRef.current?.classList.add(styles["skill-box-visible"]);
+    }
+  }, [isScrolling, isVisible]);
+
   let icon: JSX.Element | undefined;
   switch (skill) {
     case "HTML":
@@ -59,7 +73,7 @@ const SkillBox = ({ skill }: SkillBoxProps): JSX.Element => {
   }
 
   return (
-    <div className={styles["skill-box"]}>
+    <div className={styles["skill-box"]} ref={skillBoxRef}>
       {icon && <div className={styles["icon"]}>{icon}</div>}
       {skill}
     </div>
