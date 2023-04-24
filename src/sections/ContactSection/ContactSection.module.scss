@@ -8,10 +8,13 @@
   gap: 4rem;
   @include m.section-dimensions;
   background-color: red;
+
+  @include m.color-transition;
 }
 
-// .contact-light {
-// }
+.contact-light {
+  @include m.light-theme-template;
+}
 
 .contact-dark {
   @include m.dark-theme-template;

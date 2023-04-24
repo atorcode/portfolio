@@ -8,11 +8,11 @@
   align-items: center;
   @include m.section-dimensions;
 
-  transition: background-color 0.55s ease, color 0.55s ease;
+  @include m.color-transition;
 }
 
 .introduction-light {
-  background-color: v.$primary-color-light;
+  @include m.light-theme-template;
 }
 
 .introduction-dark {

@@ -4,6 +4,8 @@
   position: relative;
   @include m.section-dimensions;
   background-color: yellow;
+
+  @include m.color-transition;
 }
 
 .header {
@@ -14,8 +16,9 @@
   padding-top: 4rem;
 }
 
-// .projects-light {
-// }
+.projects-light {
+  @include m.light-theme-template;
+}
 
 .projects-dark {
   @include m.dark-theme-template;

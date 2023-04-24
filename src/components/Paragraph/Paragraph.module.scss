@@ -1,11 +1,21 @@
 @use "../../partials/variables" as v;
+@use "../../partials/mixins" as m;
 
 .paragraph {
   width: 50%;
-  color: v.$secondary-color-two;
   margin-bottom: 1rem;
   text-align: center;
   font-size: 1.5rem;
+
+  @include m.color-transition;
+}
+
+.paragraph-dark {
+  color: v.$secondary-color-two;
+}
+
+.paragraph-light {
+  color: #662d91;
 }
 
 @media (max-width: 768px) {

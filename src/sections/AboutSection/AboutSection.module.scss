@@ -7,10 +7,13 @@
   align-items: center;
   @include m.section-dimensions;
   background-color: blue;
+
+  @include m.color-transition;
 }
 
-// .about-light {
-// }
+.about-light {
+  @include m.light-theme-template;
+}
 
 .about-dark {
   @include m.dark-theme-template;

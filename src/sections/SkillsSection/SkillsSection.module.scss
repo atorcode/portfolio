@@ -8,10 +8,13 @@
   gap: 4rem;
   @include m.section-dimensions;
   background-color: green;
+
+  @include m.color-transition;
 }
 
-// .skills-light {
-// }
+.skills-light {
+  @include m.light-theme-template;
+}
 
 .skills-dark {
   @include m.dark-theme-template;
