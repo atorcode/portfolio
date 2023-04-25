@@ -3,6 +3,7 @@ import styles from "./Button.module.scss";
 
 // hooks
 import { useEffect, useRef } from "react";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 type ButtonProps = {
   text: string;
@@ -17,6 +18,7 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const { theme } = useThemeContext();
 
   useEffect((): (() => void) => {
     let animationDonePromise: Promise<void>;
@@ -72,13 +74,15 @@ const Button = ({
     >
       <div
         className={`${styles["button-container"]} ${
+          styles[`button-container-${theme}`]
+        } ${
           hasResizeableParent
             ? styles["button-container-resizeable"]
             : styles["button-container-fixed"]
         }`}
         ref={buttonContainerRef}
       >
-        <span className={styles["container-text"]}>{text}</span>
+        <span className={styles["button-text"]}>{text}</span>
         <button
           className={`${styles["button"]} ${
             hasResizeableParent
@@ -87,20 +91,22 @@ const Button = ({
           }`}
           ref={buttonRef}
         >
-          {text}
+          <span className={styles["button-text"]}>{text}</span>
         </button>
       </div>
     </a>
   ) : (
     <div
       className={`${styles["button-container"]} ${
+        styles[`button-container-{theme}`]
+      }${
         hasResizeableParent
           ? styles["button-container-resizeable"]
           : styles["button-container-fixed"]
       }`}
       ref={buttonContainerRef}
     >
-      <span className={styles["container-text"]}>{text}</span>
+      <span className={styles["button-text"]}>{text}</span>
       <button
         className={`${styles["button"]} ${
           hasResizeableParent
@@ -109,7 +115,7 @@ const Button = ({
         }`}
         ref={buttonRef}
       >
-        {text}
+        <span className={styles["button-text"]}>{text}</span>
       </button>
     </div>
   );

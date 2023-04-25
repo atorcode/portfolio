@@ -11,12 +11,18 @@
   position: relative;
   max-width: 12rem;
   max-height: 3.5rem;
-  border: 2px solid v.$accent-color;
-  color: v.$accent-color;
   font-family: "Roboto";
   font-size: 1.2rem;
   overflow: hidden;
   box-sizing: content-box;
+  border: 2px solid v.$accent-color;
+}
+
+.button-container-dark {
+  color: v.$accent-color;
+}
+.button-container-light {
+  color: v.$primary-color-dark-shade;
 }
 
 .button-container-resizeable {
@@ -28,15 +34,6 @@
 .button-container-fixed {
   width: 12rem;
   height: 3.5rem;
-}
-
-.container-text {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
 }
 
 .button {
@@ -56,6 +53,15 @@
   background-color: v.$accent-color;
   color: v.$primary-color-dark;
   font-family: inherit;
+}
+
+.button-text {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .button-animated {
