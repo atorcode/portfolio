@@ -5,12 +5,12 @@
   height: 100%;
 
   .path1 {
-    stroke: v.$accent-color;
+    // stroke: v.$accent-color;
     stroke-width: 1.1px;
   }
 
   .path2 {
-    stroke: v.$secondary-color-two;
+    // stroke: v.$secondary-color-two;
     stroke-width: 1.2px;
     stroke-dasharray: 135;
     stroke-dashoffset: 0;
@@ -22,5 +22,23 @@
     .path2 {
       stroke-dashoffset: 135;
     }
+  }
+}
+
+.github-logo-svg-dark {
+  .path1 {
+    stroke: v.$accent-color;
+  }
+  .path2 {
+    stroke: v.$secondary-color-two;
+  }
+}
+
+.github-logo-svg-light {
+  .path1 {
+    stroke: v.$secondary-color-four;
+  }
+  .path2 {
+    stroke: v.$secondary-color-three;
   }
 }

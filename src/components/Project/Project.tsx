@@ -8,6 +8,7 @@ import { ReactComponent as GithubLogo } from "../../assets/github-logo.svg";
 // hooks
 import { useEffect, useRef, useState } from "react";
 import { useScrollContext } from "../../contexts/ScrollContext";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 // components
 import Button from "../Button";
@@ -30,6 +31,7 @@ const Project = ({
   const [projectImage, setProjectImage] = useState<string | undefined>();
   const projectRef = useRef<HTMLElement | null>(null);
   const { isScrolling } = useScrollContext();
+  const { theme } = useThemeContext();
 
   useEffect(() => {
     const loadImage = async (): Promise<void> => {
@@ -47,10 +49,16 @@ const Project = ({
 
   return (
     <article className={styles["project"]} ref={projectRef}>
-      <div className={styles["inner-content"]}>
+      <div
+        className={`${styles["inner-content"]} ${
+          styles[`inner-content-${theme}`]
+        } `}
+      >
         <h2 className={styles["title"]}>{name}</h2>
         <a className={styles["github-link"]} href={githubUrl} target="_blank">
-          <GithubLogo className="github-logo-svg" />
+          <GithubLogo
+            className={`${"github-logo-svg"} ${`github-logo-svg-${theme}`}`}
+          />
         </a>
         <div className={styles["button-wrapper"]}>
           <Button

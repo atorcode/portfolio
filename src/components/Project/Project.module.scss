@@ -44,7 +44,6 @@
   align-items: center;
   gap: 1rem;
   background-color: rgba(v.$primary-color-dark-shade, 0);
-  color: v.$secondary-color-two;
 
   transition: background-color 500ms ease;
 
@@ -55,6 +54,14 @@
 
     transition: opacity 500ms ease;
   }
+}
+
+.inner-content-dark {
+  color: v.$secondary-color-two;
+}
+
+.inner-content-light {
+  color: v.$secondary-color-three;
 }
 
 .title {
