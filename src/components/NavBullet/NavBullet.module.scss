@@ -14,13 +14,20 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   transform: translate(-50%, -50%) rotate(-45deg);
   border: none;
   outline: none;
-  background-color: v.$secondary-color-two;
 
   transition: transform 300ms ease, width 300ms ease, height 300ms ease;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.bullet-dark {
+  background-color: v.$secondary-color-two;
+}
+
+.bullet-light {
+  background-color: white;
 }
 
 .bullet-expanded {

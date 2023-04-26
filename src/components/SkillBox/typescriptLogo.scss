@@ -1,11 +1,20 @@
 @use "../../partials/variables" as v;
 
-.typescript-logo-svg {
+.typescript-logo-svg-dark {
   .background {
     fill: v.$primary-color-dark-shade;
   }
   .text {
     fill: v.$secondary-color-two;
+  }
+}
+
+.typescript-logo-svg-light {
+  .background {
+    fill: white;
+  }
+  .text {
+    fill: v.$secondary-color-four;
   }
 }
 

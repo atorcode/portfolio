@@ -84,7 +84,7 @@ const Button = ({
       >
         <span className={styles["button-text"]}>{text}</span>
         <button
-          className={`${styles["button"]} ${
+          className={`${styles["button"]} ${styles[`button-${theme}`]} ${
             hasResizeableParent
               ? styles["button-resizeable"]
               : styles["button-fixed"]
@@ -108,7 +108,7 @@ const Button = ({
     >
       <span className={styles["button-text"]}>{text}</span>
       <button
-        className={`${styles["button"]} ${
+        className={`${styles["button"]} ${styles[`button-${theme}`]} ${
           hasResizeableParent
             ? styles["button-resizeable"]
             : styles["button-fixed"]

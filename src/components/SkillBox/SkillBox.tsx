@@ -17,6 +17,7 @@ import { ReactComponent as TypescriptLogo } from "../../assets/typescript-logo.s
 // hooks
 import { useEffect, useRef } from "react";
 import { useScrollContext } from "../../contexts/ScrollContext";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 // types
 import { SkillsType } from "../../types/SkillsType";
@@ -29,6 +30,7 @@ type SkillBoxProps = {
 const SkillBox = ({ skill, isVisible }: SkillBoxProps): JSX.Element => {
   const skillBoxRef = useRef<HTMLDivElement | null>(null);
   const { isScrolling } = useScrollContext();
+  const { theme } = useThemeContext();
 
   useEffect((): void => {
     if (!isScrolling && isVisible) {
@@ -48,7 +50,11 @@ const SkillBox = ({ skill, isVisible }: SkillBoxProps): JSX.Element => {
       icon = <SiJavascript />;
       break;
     case "TypeScript":
-      icon = <TypescriptLogo className="typescript-logo-svg" />;
+      icon = (
+        <TypescriptLogo
+          className={`${"typescript-logo-svg"} ${`typescript-logo-svg-${theme}`}`}
+        />
+      );
       break;
     case "React":
       icon = <SiReact />;
@@ -73,7 +79,10 @@ const SkillBox = ({ skill, isVisible }: SkillBoxProps): JSX.Element => {
   }
 
   return (
-    <div className={styles["skill-box"]} ref={skillBoxRef}>
+    <div
+      className={`${styles["skill-box"]} ${styles[`skill-box-${theme}`]}`}
+      ref={skillBoxRef}
+    >
       {icon && <div className={styles["icon"]}>{icon}</div>}
       {skill}
     </div>

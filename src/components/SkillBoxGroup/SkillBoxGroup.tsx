@@ -47,7 +47,8 @@ const SkillBoxGroup = ({
             );
           }
         });
-      }
+      },
+      { threshold: 1 }
     );
     if (skillBoxesRef.current) {
       observer.observe(skillBoxesRef.current);

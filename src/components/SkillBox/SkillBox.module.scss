@@ -7,8 +7,6 @@
   height: 52px;
   padding: 0 14px;
   border-radius: 10px;
-  background-color: v.$secondary-color-two;
-  color: v.$primary-color-dark-shade;
   font-family: "Roboto";
   font-size: 1.2rem;
   user-select: none;
@@ -16,6 +14,16 @@
   transform: translateY(5rem);
 
   transition: opacity 800ms ease, transform 800ms ease;
+}
+
+.skill-box-light {
+  background-color: v.$secondary-color-four;
+  color: white;
+}
+
+.skill-box-dark {
+  background-color: v.$secondary-color-two;
+  color: v.$primary-color-dark-shade;
 }
 
 .skill-box-visible {
