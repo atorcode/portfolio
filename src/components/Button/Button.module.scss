@@ -22,8 +22,8 @@
   border: 2px solid v.$accent-color;
 }
 .button-container-light {
-  color: v.$primary-color-dark-shade;
-  border: 2px solid v.$primary-color-dark-shade;
+  color: v.$secondary-color-four;
+  border: 2px solid v.$secondary-color-four;
 }
 
 .button-container-resizeable {
@@ -61,7 +61,8 @@
 
 .button-light {
   background-color: v.$primary-color-dark-shade;
-  color: red;
+  background-color: v.$secondary-color-four;
+  color: white;
 }
 
 .button-text {

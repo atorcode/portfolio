@@ -98,8 +98,8 @@ const Button = ({
   ) : (
     <div
       className={`${styles["button-container"]} ${
-        styles[`button-container-{theme}`]
-      }${
+        styles[`button-container-${theme}`]
+      } ${
         hasResizeableParent
           ? styles["button-container-resizeable"]
           : styles["button-container-fixed"]
