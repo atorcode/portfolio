@@ -27,7 +27,7 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
 }
 
 .bullet-light {
-  background-color: white;
+  background-color: v.$secondary-color-three;
 }
 
 .bullet-expanded {
@@ -35,8 +35,16 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   height: $bullet-size-expanded;
   rotate: 0deg;
   transform: translate(-50%, -50%) rotate(0);
-  border: 2px solid v.$accent-color;
+  // border: 2px solid v.$accent-color;
   background-color: transparent;
+}
+
+.bullet-expanded-dark {
+  border: 2px solid v.$accent-color;
+}
+
+.bullet-expanded-light {
+  border: 2px solid v.$secondary-color-four;
 }
 
 @media (max-width: 1200px) {
@@ -48,6 +56,6 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   .bullet-expanded {
     width: $bullet-size-small-expanded;
     height: $bullet-size-small-expanded;
-    border: 1px solid v.$accent-color;
+    border-width: 1px;
   }
 }

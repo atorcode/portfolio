@@ -19,19 +19,32 @@
   padding: 13px 20px;
   border: none;
   outline: none;
-  background-color: v.$primary-color-dark-tint;
-  color: v.$secondary-color-two;
-  caret-color: v.$primary-color-light;
   font-family: "Roboto";
   font-size: 1rem;
   resize: none;
 
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+.field-dark {
+  background-color: v.$primary-color-dark-tint;
+  color: v.$secondary-color-two;
+  caret-color: v.$primary-color-light;
+
   &::placeholder {
     color: v.$primary-color-light-shade;
   }
+}
 
-  &:focus::placeholder {
-    color: transparent;
+.field-light {
+  background-color: v.$primary-color-light-tint;
+  color: v.$secondary-color-two;
+  caret-color: v.$primary-color-dark-tint;
+
+  &::placeholder {
+    color: v.$primary-color-dark-tint;
   }
 }
 

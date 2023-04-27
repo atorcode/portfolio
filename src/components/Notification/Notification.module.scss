@@ -9,16 +9,19 @@
   height: 50px;
   transform: translateX(150%);
   margin-top: -2rem;
-  background-color: v.$accent-color;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 
   transition: transform 500ms ease, margin-top 300ms ease;
 }
 
-// .notification-enter {
-//   transform: translateX(150%);
-//   margin-top: -2rem;
-// }
+.notification-dark {
+  background-color: v.$accent-color;
+}
+
+.notification-light {
+  background-color: v.$secondary-color-four;
+  color: white;
+}
 
 .notification-enter-active {
   transform: translateX(-4%);

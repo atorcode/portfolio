@@ -3,6 +3,7 @@ import styles from "./FormField.module.scss";
 
 // hooks
 import { useEffect, useState } from "react";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 // components
 import FormFieldUnderline from "../FormFieldUnderline";
@@ -27,6 +28,7 @@ const FormField = ({
 }: FormFieldProps): JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
+  const { theme } = useThemeContext();
 
   useEffect(() => {
     setIsValid((prev) => ({
@@ -61,7 +63,9 @@ const FormField = ({
       </label>
       {fieldType === "message" ? (
         <textarea
-          className={`${styles["field"]} ${styles["field-large"]}`}
+          className={`${styles["field"]} ${styles[`field-${theme}`]} ${
+            styles["field-large"]
+          }`}
           id={fieldType}
           placeholder={placeholderText}
           autoComplete="off"
@@ -78,7 +82,7 @@ const FormField = ({
         ></textarea>
       ) : (
         <input
-          className={styles["field"]}
+          className={`${styles["field"]} ${styles[`field-${theme}`]}`}
           id={fieldType}
           type="text"
           placeholder={placeholderText}

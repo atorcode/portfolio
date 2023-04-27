@@ -18,7 +18,9 @@ const NavBullet = ({ index }: NavBulletProps) => {
       className={`${styles[`bullet-${theme}`]}
         ${
           index === expandedBulletIndex
-            ? `${styles["bullet-expanded"]} ${styles["bullet"]}`
+            ? `${styles["bullet"]} ${styles["bullet-expanded"]} ${
+                styles[`bullet-expanded-${theme}`]
+              }`
             : styles["bullet"]
         }`}
       tabIndex={-1}

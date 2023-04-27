@@ -7,6 +7,7 @@ import { CSSTransition } from "react-transition-group";
 // hooks
 import { useEffect, useRef, useState } from "react";
 import { useNotificationsContext } from "../../contexts/NotificationsContext";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 // utils
 import { NOTIFICATION_DURATION } from "../../utils/constants";
@@ -18,6 +19,7 @@ const Notification = ({ id, text }: NotificationProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const notificationRef = useRef<HTMLDivElement | null>(null);
   const { removeNotificationAfterDelay } = useNotificationsContext();
+  const { theme } = useThemeContext();
 
   useEffect(() => {
     setIsVisible(true);
@@ -51,7 +53,9 @@ const Notification = ({ id, text }: NotificationProps) => {
       }}
     >
       <div
-        className={styles["notification"]}
+        className={`${styles["notification"]} ${
+          styles[`notification-${theme}`]
+        }`}
         role="alert"
         ref={notificationRef}
       >

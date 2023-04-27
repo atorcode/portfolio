@@ -12,11 +12,17 @@
 
 .underline-valid {
   width: 100%;
+}
+
+.underline-valid-dark {
   background-color: v.$secondary-color-two;
+}
+
+.underline-valid-light {
+  background-color: v.$secondary-color-four;
 }
 
 .underline-invalid {
   width: 100%;
-  // pick a color for warnings or errors and turn it into a variable
   background-color: red;
 }
