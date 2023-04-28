@@ -1,0 +1,13 @@
+@use "../../partials/variables" as v;
+
+.loading-screen {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: v.$primary-color-dark;
+  font-size: 5rem;
+}

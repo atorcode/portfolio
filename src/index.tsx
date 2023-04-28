@@ -6,6 +6,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 // contexts
+import { LoadingProvider } from "./contexts/LoadingContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ScrollProvider } from "./contexts/ScrollContext";
 import { NotificationsProvider } from "./contexts/NotificationsContext";
@@ -21,12 +22,14 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <ScrollProvider>
-        <NotificationsProvider>
-          <App />
-        </NotificationsProvider>
-      </ScrollProvider>
-    </ThemeProvider>
+    <LoadingProvider>
+      <ThemeProvider>
+        <ScrollProvider>
+          <NotificationsProvider>
+            <App />
+          </NotificationsProvider>
+        </ScrollProvider>
+      </ThemeProvider>
+    </LoadingProvider>
   </React.StrictMode>
 );

@@ -1,7 +1,7 @@
 // styles
 import styles from "./IntroductionSection.module.scss";
 
-// functions and hooks
+// hooks
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
