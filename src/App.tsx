@@ -23,13 +23,22 @@ const App = (): JSX.Element => {
   const { isLoading, setIsLoading } = useLoadingContext();
   const { scrollContainerRef } = useScrollContext();
 
-  useEffect(() => {
+  useEffect((): void => {
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
+    timeoutId = setTimeout((): void => {
       setIsLoading(false);
     }, 2000);
   }, []);
+
+  useEffect((): (() => void) => {
+    if (!isLoading) {
+      scrollContainerRef.current?.classList.add(styles["app-scrollable"]);
+    }
+    return (): void => {
+      scrollContainerRef.current?.classList.remove(styles["app-scrollable"]);
+    };
+  }, [isLoading]);
 
   return (
     <main className={styles["app"]} ref={scrollContainerRef}>
