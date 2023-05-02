@@ -28,7 +28,7 @@ const App = (): JSX.Element => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout((): void => {
       setIsLoading(false);
-    }, 2000);
+    }, 4200);
   }, []);
 
   useEffect((): (() => void) => {

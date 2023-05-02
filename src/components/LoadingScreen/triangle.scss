@@ -1,0 +1,27 @@
+@use "../../partials/variables" as v;
+
+.loading-triangle-svg {
+  width: 400px;
+  stroke: v.$secondary-color;
+  stroke-width: 3px;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.loading-triangle-svg-animated {
+  .stroke1 {
+    animation: outlineAnimation 2000ms ease forwards;
+    animation-delay: 300ms;
+  }
+  .stroke2 {
+    animation: outlineAnimation 2000ms ease forwards;
+    animation-delay: 2100ms;
+  }
+}
+
+@keyframes outlineAnimation {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

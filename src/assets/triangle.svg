@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
- <path d="m1200 1119.6h-1200l600.03-1039.2zm-1098.8-58.449h997.48l-498.68-863.86z"/>
+<svg width="400" height="400">
+  <polygon points="200,50 50,350 350,350" class="stroke1" fill="none" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
+  <polygon points="200,75 330,338 70,338" class="stroke2" fill="none" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" />
 </svg>
