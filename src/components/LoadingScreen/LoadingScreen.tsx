@@ -10,10 +10,16 @@ import { useEffect, useRef } from "react";
 
 const LoadingScreen = (): JSX.Element => {
   useEffect((): (() => void) => {
-    triangleRef.current?.classList.add("loading-triangle-svg-animated");
+    triangleRef.current?.classList.add(
+      "loading-triangle-svg-colored",
+      "loading-triangle-svg-animated"
+    );
 
     return (): void => {
-      triangleRef.current?.classList.remove("loading-triangle-svg-animated");
+      triangleRef.current?.classList.remove(
+        "loading-triangle-svg-colored",
+        "loading-triangle-svg-animated"
+      );
     };
   }, []);
 
