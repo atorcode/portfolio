@@ -1,6 +1,10 @@
 // styles
 import styles from "./Notification.module.scss";
 
+// icons
+import { MdWarning } from "react-icons/md";
+import { ImCheckboxChecked } from "react-icons/im";
+
 // dependencies
 import { CSSTransition } from "react-transition-group";
 
@@ -15,7 +19,7 @@ import { NOTIFICATION_DURATION } from "../../utils/constants";
 // types
 import { NotificationType as NotificationProps } from "../../types/NotificationType";
 
-const Notification = ({ id, text }: NotificationProps) => {
+const Notification = ({ id, type, text }: NotificationProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const notificationRef = useRef<HTMLDivElement | null>(null);
   const { removeNotificationAfterDelay } = useNotificationsContext();
@@ -39,6 +43,19 @@ const Notification = ({ id, text }: NotificationProps) => {
     };
   }, []);
 
+  let icon: JSX.Element | undefined;
+  switch (type) {
+    case "warning":
+      icon = <MdWarning />;
+      break;
+    case "success":
+      icon = <ImCheckboxChecked />;
+      break;
+    default:
+      const _exhaustiveCheck: never = type;
+      return _exhaustiveCheck;
+  }
+
   return (
     <CSSTransition
       nodeRef={notificationRef}
@@ -59,6 +76,7 @@ const Notification = ({ id, text }: NotificationProps) => {
         role="alert"
         ref={notificationRef}
       >
+        {icon && <div className={styles["icon"]}>{icon}</div>}
         {text}
       </div>
     </CSSTransition>
