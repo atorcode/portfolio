@@ -6,7 +6,7 @@
   gap: 4.2vw;
   width: 80%;
 
-  margin: 4.2rem auto;
+  margin: 3.5rem auto;
 }
 
 @media (max-width: 1200px) {
@@ -18,5 +18,7 @@
 @media (max-width: 768px) {
   .projects {
     grid-template-columns: minmax(auto, 310px);
+
+    margin: 2.5rem auto;
   }
 }

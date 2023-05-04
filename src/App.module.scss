@@ -1,9 +1,19 @@
+@use "./partials/variables" as v;
+
 .app {
   position: relative;
   height: 100vh;
   overflow-y: hidden;
   scrollbar-width: none;
   font-family: "Gochi Hand", "cursive";
+}
+
+.app-dark {
+  background-color: v.$primary-color-dark;
+}
+
+.app-light {
+  background-color: v.$primary-color-light;
 }
 
 .app-scrollable {

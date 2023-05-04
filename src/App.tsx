@@ -5,6 +5,7 @@ import styles from "./App.module.scss";
 import { useEffect } from "react";
 import { useLoadingContext } from "./contexts/LoadingContext";
 import { useScrollContext } from "./contexts/ScrollContext";
+import { useThemeContext } from "./contexts/ThemeContext";
 
 // sections
 import IntroductionSection from "./sections/IntroductionSection";
@@ -22,6 +23,7 @@ import Notifications from "./components/Notifications";
 const App = (): JSX.Element => {
   const { isLoading, setIsLoading } = useLoadingContext();
   const { scrollContainerRef } = useScrollContext();
+  const { theme } = useThemeContext();
 
   useEffect((): void => {
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -38,10 +40,13 @@ const App = (): JSX.Element => {
     return (): void => {
       scrollContainerRef.current?.classList.remove(styles["app-scrollable"]);
     };
-  }, [isLoading]);
+  }, [isLoading, theme]);
 
   return (
-    <main className={styles["app"]} ref={scrollContainerRef}>
+    <main
+      className={`${styles["app"]} ${styles[`app-${theme}`]}`}
+      ref={scrollContainerRef}
+    >
       {isLoading && <LoadingScreen />}
       <HeaderMenu />
       <Notifications />

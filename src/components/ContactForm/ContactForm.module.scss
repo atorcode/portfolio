@@ -32,6 +32,9 @@
 }
 
 @media (max-width: 768px) {
+  .form {
+    width: 85%;
+  }
   .personal-info {
     flex-direction: column;
     gap: 0;
