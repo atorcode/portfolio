@@ -1,7 +1,7 @@
 @use "../../partials/variables" as v;
 
 .loading-triangle-svg {
-  width: 400px;
+  position: absolute;
   stroke: v.$secondary-color;
   stroke-width: 3px;
   stroke: transparent;
@@ -29,5 +29,11 @@
 @keyframes outlineAnimation {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .loading-triangle-svg {
+    transform: scale(0.5);
   }
 }

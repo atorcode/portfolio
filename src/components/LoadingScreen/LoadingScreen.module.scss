@@ -9,6 +9,7 @@
   height: 100vh;
   z-index: 1000;
   background-color: v.$primary-color-dark;
+
   font-size: 5rem;
 }
 
@@ -16,7 +17,9 @@
   position: absolute;
   color: v.$secondary-color;
   font-family: serif;
-  top: 43.5%;
+  // top: 43.5%;
+  top: 50%;
+  transform: translateY(-32%);
   opacity: 0;
 
   animation: fadeIn 800ms ease forwards;
@@ -26,5 +29,11 @@
 @keyframes fadeIn {
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .loading-screen {
+    font-size: 2.4rem;
   }
 }
