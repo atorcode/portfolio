@@ -43,7 +43,7 @@
   height: 150%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-50% + 1px), calc(-50% + 1px));
   mask: url(https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png);
   -webkit-mask: url(https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png);
   mask-size: 2900% 100%;
