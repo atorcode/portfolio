@@ -7,8 +7,6 @@
   align-items: center;
   gap: 4rem;
   @include m.section-dimensions;
-  background-color: red;
-
   @include m.color-transition;
 }
 

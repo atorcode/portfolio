@@ -6,7 +6,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
   @include m.section-dimensions;
+  width: 50%;
+  margin: 0 auto;
   @include m.color-transition;
 }
 
@@ -16,4 +19,18 @@
 
 .introduction-dark {
   @include m.dark-theme-template;
+}
+
+@media (max-width: 1200px) {
+  .introduction {
+    width: 75%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .introduction {
+    width: 85%;
+    margin: 0 auto;
+  }
 }
