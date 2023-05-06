@@ -9,15 +9,23 @@
   margin: 3.5rem auto;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-height: 850px) {
   .projects {
     width: 85%;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-height: 850px) {
   .projects {
     grid-template-columns: minmax(auto, 310px);
+
+    margin: 2.5rem auto;
+  }
+}
+
+@media (max-height: 850px) {
+  .projects {
+    grid-template-columns: minmax(auto, 210px);
 
     margin: 2.5rem auto;
   }

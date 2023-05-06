@@ -116,3 +116,17 @@
     -webkit-mask-position: 100% 0;
   }
 }
+
+@media (max-height: 850px) {
+  .button {
+    transform: translate(-50%, -50%);
+  }
+  .button-container-resizeable {
+    width: 100%;
+    height: 100%;
+    font-size: 0.6rem;
+  }
+  .button-resizeable {
+    font-size: 0.6rem;
+  }
+}

@@ -55,6 +55,7 @@ const Project = ({
         } `}
       >
         <h2 className={styles["title"]}>{name}</h2>
+
         <a className={styles["github-link"]} href={githubUrl} target="_blank">
           <GithubLogo
             className={`${"github-logo-svg"} ${`github-logo-svg-${theme}`}`}

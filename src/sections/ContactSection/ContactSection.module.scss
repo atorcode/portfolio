@@ -17,3 +17,9 @@
 .contact-dark {
   @include m.dark-theme-template;
 }
+
+@media (max-height: 850px) {
+  .contact {
+    gap: 2rem;
+  }
+}
