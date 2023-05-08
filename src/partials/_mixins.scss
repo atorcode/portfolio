@@ -16,5 +16,6 @@
 }
 
 @mixin color-transition {
-  transition: background-color 550ms ease, color 550ms ease;
+  transition: background-color v.$theme-toggle-transition-duration ease,
+    color v.$theme-toggle-transition-duration ease;
 }

@@ -1,4 +1,5 @@
 @use "./partials/variables" as v;
+@use "./partials/mixins" as m;
 
 .app {
   position: relative;
@@ -10,10 +11,14 @@
 
 .app-dark {
   background-color: v.$primary-color-dark;
+
+  @include m.color-transition;
 }
 
 .app-light {
   background-color: v.$primary-color-light;
+
+  @include m.color-transition;
 }
 
 .app-scrollable {

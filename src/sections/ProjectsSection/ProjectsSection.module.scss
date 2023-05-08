@@ -2,6 +2,9 @@
 
 .projects {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   @include m.section-dimensions;
   @include m.color-transition;
 }

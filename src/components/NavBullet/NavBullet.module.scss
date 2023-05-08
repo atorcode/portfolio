@@ -22,6 +22,14 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   }
 }
 
+.bullet-transition {
+  transition: background-color v.$theme-toggle-transition-duration ease;
+}
+
+.bullet-expanded-transition {
+  transition: border v.$theme-toggle-transition-duration ease;
+}
+
 .bullet-dark {
   background-color: v.$secondary-color-two;
 }
@@ -35,7 +43,6 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   height: $bullet-size-expanded;
   rotate: 0deg;
   transform: translate(-50%, -50%) rotate(0);
-  // border: 2px solid v.$accent-color;
   background-color: transparent;
 }
 

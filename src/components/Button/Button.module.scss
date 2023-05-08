@@ -15,12 +15,15 @@
   font-size: 1.2rem;
   overflow: hidden;
   box-sizing: content-box;
+
+  transition: border v.$theme-toggle-transition-duration ease;
 }
 
 .button-container-dark {
   color: v.$accent-color;
   border: 2px solid v.$accent-color;
 }
+
 .button-container-light {
   color: v.$secondary-color-four;
   border: 2px solid v.$secondary-color-four;
@@ -53,6 +56,8 @@
   border: none;
   color: v.$primary-color-dark;
   font-family: inherit;
+
+  transition: background-color v.$theme-toggle-transition-duration ease;
 }
 
 .button-dark {
@@ -72,6 +77,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+
+  transition: color v.$theme-toggle-transition-duration ease;
 }
 
 .button-animated {
