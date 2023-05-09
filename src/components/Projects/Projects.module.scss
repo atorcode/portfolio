@@ -18,14 +18,13 @@
 @media (max-width: 768px) and (min-height: 850px) {
   .projects {
     grid-template-columns: minmax(auto, 310px);
-
     margin: 2.5rem auto;
   }
 }
 
 @media (max-width: 768px) and (max-height: 850px) {
   .projects {
-    grid-template-columns: 30vh;
+    grid-template-columns: minmax(30vh, 200px);
     gap: 1rem;
     margin: 2.5rem auto;
   }

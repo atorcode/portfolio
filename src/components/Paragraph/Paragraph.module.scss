@@ -20,8 +20,14 @@
   color: v.$primary-color-dark-shade;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 850px) {
   .paragraph {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px), (max-height: 580px) {
+  .paragraph {
+    font-size: 1rem;
   }
 }

@@ -124,9 +124,17 @@
   }
 }
 
-@media (max-height: 850px) {
+@media (max-width: 768px), (max-height: 850px) {
   .button {
     transform: translate(-50%, -50%);
+    max-width: 10rem;
+    max-height: 3rem;
+    font-size: 1rem;
+  }
+  .button-container {
+    max-width: 10rem;
+    max-height: 3rem;
+    font-size: 1rem;
   }
   .button-container-resizeable {
     width: 100%;
