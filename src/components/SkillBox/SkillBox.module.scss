@@ -38,12 +38,25 @@
   font-size: v.$skill-box-icon-size;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 850px) {
   .icon {
     font-size: v.$skill-box-icon-size-small;
   }
   .skill-box {
     height: 40px;
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px), (max-height: 600px) {
+  .icon {
+    font-size: v.$skill-box-icon-size-smallest;
+  }
+  .skill-box {
+    height: 30px;
+    padding: 0 9px;
+    gap: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
   }
 }

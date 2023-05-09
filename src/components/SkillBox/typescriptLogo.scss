@@ -1,6 +1,7 @@
 @use "../../partials/variables" as v;
 
 .typescript-logo-svg-dark {
+  width: auto;
   .background {
     fill: v.$primary-color-dark-shade;
   }
@@ -18,8 +19,14 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 850px) {
   .typescript-logo-svg {
     height: v.$skill-box-icon-size-small;
+  }
+}
+
+@media (max-width: 600px) {
+  .typescript-logo-svg {
+    height: v.$skill-box-icon-size-smallest;
   }
 }

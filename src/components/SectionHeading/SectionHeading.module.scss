@@ -9,7 +9,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 850px) {
   .heading {
     width: 85%;
     font-size: 2.5rem;

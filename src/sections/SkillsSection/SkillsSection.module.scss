@@ -17,3 +17,9 @@
 .skills-dark {
   @include m.dark-theme-template;
 }
+
+@media (max-height: 850px) {
+  .skills {
+    gap: 2rem;
+  }
+}
