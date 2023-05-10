@@ -6,6 +6,11 @@ $icon-size: $panel-height - 8px;
 $switch-size: $panel-height - 6px;
 $switch-margin: 4px;
 
+$panel-height-small: 30px;
+$icon-size-small: $panel-height-small - 6px;
+$switch-size-small: $panel-height-small - 4px;
+$switch-margin-small: 3px;
+
 .panel {
   position: relative;
   display: flex;
@@ -45,4 +50,25 @@ $switch-margin: 4px;
   .switch {
     left: calc(100% - $switch-size - $switch-margin);
   }
+}
+
+@media (max-width: 768px), (max-height: 850px) {
+  .panel {
+    height: $panel-height-small;
+    width: 60px;
+  }
+  .switch {
+    height: $switch-size-small;
+    width: $switch-size-small;
+    left: $switch-margin-small;
+  }
+  .panel-dark {
+    .switch {
+      left: calc(100% - $switch-size-small - $switch-margin-small);
+    }
+  }
+}
+
+.no-transition {
+  transition: none;
 }

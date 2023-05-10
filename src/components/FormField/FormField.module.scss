@@ -65,3 +65,17 @@
     height: 200px;
   }
 }
+
+@media (max-height: 700px) {
+  .label {
+    font-size: 1rem;
+  }
+  .field {
+    height: 2rem;
+    padding: 8px 13px;
+    font-size: 0.8rem;
+  }
+  .field-large {
+    height: 100px;
+  }
+}

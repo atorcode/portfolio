@@ -7,3 +7,9 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+@media (max-width: 768px), (max-height: 850px) {
+  .header {
+    height: 90px;
+  }
+}
