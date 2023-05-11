@@ -88,9 +88,9 @@
   height: 100%;
 }
 
-@media (max-width: 420px), (max-height: 850px) {
+@media (max-width: 768px) and (max-height: 850px) {
   .title {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .inner-content {
     gap: 0.5rem;

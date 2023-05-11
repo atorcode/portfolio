@@ -17,10 +17,10 @@
   position: absolute;
   color: v.$secondary-color;
   font-family: serif;
-  // top: 43.5%;
   top: 50%;
   transform: translateY(-32%);
   opacity: 0;
+  user-select: none;
 
   animation: fadeIn 800ms ease forwards;
   animation-delay: 3550ms;
