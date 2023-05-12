@@ -96,3 +96,12 @@
     gap: 0.5rem;
   }
 }
+
+@media (max-width: 420px) and (min-height: 850px) {
+  .title {
+    font-size: 1.1rem;
+  }
+  .inner-content {
+    gap: 0.5rem;
+  }
+}
