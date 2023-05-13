@@ -2,8 +2,9 @@
 import styles from "./Button.module.scss";
 
 // hooks
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 type ButtonProps = {
   text: string;
@@ -16,6 +17,7 @@ const Button = ({
   url,
   hasResizeableParent,
 }: ButtonProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { theme } = useThemeContext();
@@ -63,6 +65,14 @@ const Button = ({
       );
     };
   }, []);
+
+  useIntersectionObserver({
+    ref: buttonContainerRef,
+    isVisible,
+    setIsVisible,
+    transitionDelay: 500,
+    transitionStyle: styles["button-container-visible"],
+  });
 
   return url ? (
     <a

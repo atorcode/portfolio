@@ -15,8 +15,16 @@
   font-size: 1.2rem;
   overflow: hidden;
   box-sizing: content-box;
+  opacity: 0;
+  transform: translateX(10rem);
 
-  transition: border v.$theme-toggle-transition-duration ease;
+  transition: border v.$theme-toggle-transition-duration ease,
+    opacity 800ms linear, transform 800ms ease;
+}
+
+.button-container-visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .button-container-dark {
@@ -33,6 +41,10 @@
   width: 100%;
   height: 100%;
   font-size: max(0.9rem, min(2vw, 1.2rem));
+  opacity: 1;
+  transform: translateX(0);
+
+  transition: border v.$theme-toggle-transition-duration ease;
 }
 
 .button-container-fixed {

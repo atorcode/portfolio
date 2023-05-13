@@ -5,12 +5,14 @@ type useIntersectionObserverProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
   isVisible: boolean;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  transitionDelay?: number;
   transitionStyle: string;
 };
 export const useIntersectionObserver = ({
   ref,
   isVisible,
   setIsVisible,
+  transitionDelay = 100,
   transitionStyle,
 }: useIntersectionObserverProps): void => {
   useEffect((): (() => void) => {
@@ -21,11 +23,12 @@ export const useIntersectionObserver = ({
             if (!isVisible) {
               setTimeout((): void => {
                 setIsVisible(true);
-              }, 100);
+              }, transitionDelay);
             }
           }
         });
-      }
+      },
+      { threshold: 1 }
     );
 
     if (ref.current) {
