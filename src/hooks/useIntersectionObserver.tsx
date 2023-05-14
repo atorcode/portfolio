@@ -7,6 +7,7 @@ type useIntersectionObserverProps = {
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
   transitionDelay?: number;
   transitionStyle: string;
+  threshold?: number;
 };
 export const useIntersectionObserver = ({
   ref,
@@ -14,6 +15,7 @@ export const useIntersectionObserver = ({
   setIsVisible,
   transitionDelay = 100,
   transitionStyle,
+  threshold = 0,
 }: useIntersectionObserverProps): void => {
   useEffect((): (() => void) => {
     const observer = new IntersectionObserver(
@@ -28,7 +30,7 @@ export const useIntersectionObserver = ({
           }
         });
       },
-      { threshold: 1 }
+      { threshold: threshold }
     );
 
     if (ref.current) {

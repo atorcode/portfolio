@@ -1,36 +1,33 @@
 // styles
 import styles from "./Paragraph.module.scss";
 
-// hooks
+// dependencies and hooks
+import React from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
-import { useRef, useState } from "react";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+
+// types
+import { StartingPosition } from "../../types/StartingPosition";
 
 type ParagraphProps = {
   text: string;
+  startingPos?: StartingPosition;
 };
 
-const Paragraph = ({ text }: ParagraphProps): JSX.Element => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const paragraphRef = useRef<HTMLParagraphElement | null>(null);
-  const { theme } = useThemeContext();
+const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
+  ({ text, startingPos }: ParagraphProps, ref): JSX.Element => {
+    const { theme } = useThemeContext();
 
-  useIntersectionObserver({
-    ref: paragraphRef,
-    isVisible,
-    setIsVisible,
-    transitionDelay: 500,
-    transitionStyle: styles["paragraph-visible"],
-  });
-
-  return (
-    <p
-      className={`${styles["paragraph"]} ${styles[`paragraph-${theme}`]}`}
-      ref={paragraphRef}
-    >
-      {text}
-    </p>
-  );
-};
+    return (
+      <p
+        className={`${styles["paragraph"]} ${styles[`paragraph-${theme}`]} ${
+          styles[`paragraph-${startingPos}`]
+        }`}
+        ref={ref}
+      >
+        {text}
+      </p>
+    );
+  }
+);
 
 export default Paragraph;

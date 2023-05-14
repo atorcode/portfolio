@@ -18,6 +18,7 @@ const SectionHeading = ({ text }: SectionHeadingProps): JSX.Element => {
     isVisible,
     setIsVisible,
     transitionStyle: styles["heading-visible"],
+    threshold: 1,
   });
 
   return (

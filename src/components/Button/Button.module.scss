@@ -22,6 +22,14 @@
     opacity 800ms linear, transform 800ms ease;
 }
 
+.button-container-start-right {
+  transform: translateX(10rem);
+}
+
+.button-container-start-bottom {
+  transform: translateY(10rem);
+}
+
 .button-container-visible {
   opacity: 1;
   transform: translateX(0);
@@ -89,6 +97,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  user-select: none;
 
   transition: color v.$theme-toggle-transition-duration ease;
 }

@@ -7,14 +7,29 @@
   font-size: 1.5rem;
   @include m.color-transition;
   opacity: 0;
-  transform: translateX(-10rem);
 
   transition: opacity 800ms linear, transform 800ms ease;
 }
 
+.paragraph-up {
+  transform: translateY(-10rem);
+}
+
+.paragraph-down {
+  transform: translateY(10rem);
+}
+
+.paragraph-left {
+  transform: translateX(-10rem);
+}
+
+.paragraph-right {
+  transform: translateX(10rem);
+}
+
 .paragraph-visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, 0);
 }
 
 .paragraph-dark {
