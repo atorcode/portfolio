@@ -3,8 +3,8 @@ import { useEffect } from "react";
 
 type useIntersectionObserverProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
-  isVisible: boolean;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isVisible: boolean | undefined;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>> | undefined;
   transitionDelay?: number;
   transitionStyle: string;
   threshold?: number;
@@ -17,14 +17,16 @@ export const useIntersectionObserver = ({
   transitionStyle,
   threshold = 0,
 }: useIntersectionObserverProps): void => {
-  useEffect((): (() => void) => {
+  useEffect((): (() => void) | undefined => {
     const observer = new IntersectionObserver(
       (entries: Array<IntersectionObserverEntry>): void => {
         entries.forEach((entry: IntersectionObserverEntry): void => {
           if (entry.isIntersecting) {
             if (!isVisible) {
               setTimeout((): void => {
-                setIsVisible(true);
+                if (setIsVisible) {
+                  setIsVisible(true);
+                }
               }, transitionDelay);
             }
           }

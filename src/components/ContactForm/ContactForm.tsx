@@ -16,14 +16,21 @@ import Button from "../Button";
 // types
 import { ValidityOfFields } from "../../types/ValidityOfFields";
 
-const ContactForm = (): JSX.Element => {
+type ContactFormProps = {
+  isVisible: boolean;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const ContactForm = ({
+  isVisible,
+  setIsVisible,
+}: ContactFormProps): JSX.Element => {
   const [areFieldsValid, setAreFieldsValid] = useState<ValidityOfFields>({
     name: false,
     email: false,
     subject: false,
     message: false,
   });
-  const [isVisible, setIsVisible] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
   const { addNotification } = useNotificationsContext();
 
@@ -75,7 +82,12 @@ const ContactForm = (): JSX.Element => {
         isValid={areFieldsValid.message}
         setIsValid={setAreFieldsValid}
       />
-      <Button text="Submit" />
+      <Button
+        text="Submit"
+        startingPos="right"
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
     </form>
   );
 };

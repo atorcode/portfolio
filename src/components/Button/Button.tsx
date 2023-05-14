@@ -1,23 +1,31 @@
 // styles
 import styles from "./Button.module.scss";
 
-// hooks
-import { useEffect, useRef, useState } from "react";
+// dependencies and hooks
+import { useEffect, useRef } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+
+// types
+import { StartingPosition } from "../../types/StartingPosition";
 
 type ButtonProps = {
   text: string;
   url?: string;
   hasResizeableParent?: boolean;
+  startingPos?: StartingPosition;
+  isVisible?: boolean;
+  setIsVisible?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Button = ({
   text,
   url,
   hasResizeableParent,
+  startingPos,
+  isVisible,
+  setIsVisible,
 }: ButtonProps): JSX.Element => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { theme } = useThemeContext();
@@ -66,6 +74,7 @@ const Button = ({
     };
   }, []);
 
+  // might actually not be what I'm going for where transitionStyle may be applying to all buttons
   useIntersectionObserver({
     ref: buttonContainerRef,
     isVisible,
@@ -85,7 +94,7 @@ const Button = ({
       <div
         className={`${styles["button-container"]} ${
           styles[`button-container-${theme}`]
-        } ${
+        } ${styles[`button-container-${startingPos}`]} ${
           hasResizeableParent
             ? styles["button-container-resizeable"]
             : styles["button-container-fixed"]

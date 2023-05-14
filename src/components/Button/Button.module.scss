@@ -22,7 +22,16 @@
     opacity 800ms linear, transform 800ms ease;
 }
 
-.button-container-start-right {
+.button-container-up {
+  transform: translateY(-10rem);
+}
+.button-container-down {
+  transform: translateY(10rem);
+}
+.button-container-left {
+  transform: translateX(-10rem);
+}
+.button-container-right {
   transform: translateX(10rem);
 }
 

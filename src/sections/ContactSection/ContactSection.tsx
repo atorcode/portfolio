@@ -2,6 +2,7 @@
 import styles from "./ContactSection.module.scss";
 
 // functions and hooks
+import { useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
@@ -10,6 +11,7 @@ import ContactForm from "../../components/ContactForm";
 import SectionHeading from "../../components/SectionHeading";
 
 const ContactSection = (): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const { theme } = useThemeContext();
   const { contactSectionRef } = useScrollContext();
   return (
@@ -20,7 +22,7 @@ const ContactSection = (): JSX.Element => {
       ref={contactSectionRef}
     >
       <SectionHeading text="Contact Me" />
-      <ContactForm />
+      <ContactForm isVisible={isVisible} setIsVisible={setIsVisible} />
     </section>
   );
 };
