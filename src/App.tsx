@@ -26,12 +26,20 @@ const App = (): JSX.Element => {
   const { theme } = useThemeContext();
 
   useEffect((): void => {
+    // Ensure that refreshing page scrolls window to top on Firefox
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+      window.addEventListener("beforeunload", () => {
+        window.scrollTo(0, 0);
+      });
+    }
+
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
     clearTimeout(timeoutId);
     timeoutId = setTimeout((): void => {
       setIsLoading(false);
       // set to 5000 in production
-    }, 500);
+    }, 100);
   }, []);
 
   useEffect((): (() => void) => {
