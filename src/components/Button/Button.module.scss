@@ -16,7 +16,6 @@
   overflow: hidden;
   box-sizing: content-box;
   opacity: 0;
-  transform: translateX(10rem);
 
   transition: border v.$theme-toggle-transition-duration ease,
     opacity 800ms linear, transform 800ms ease;
@@ -25,18 +24,21 @@
 .button-container-up {
   transform: translateY(-10rem);
 }
+
 .button-container-down {
   transform: translateY(10rem);
 }
+
 .button-container-left {
   transform: translateX(-10rem);
 }
+
 .button-container-right {
   transform: translateX(10rem);
 }
 
-.button-container-start-bottom {
-  transform: translateY(10rem);
+.button-container-stationary {
+  transform: translate(0, 0);
 }
 
 .button-container-visible {

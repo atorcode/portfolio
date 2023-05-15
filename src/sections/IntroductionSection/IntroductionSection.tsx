@@ -37,7 +37,6 @@ const IntroductionSection = (): JSX.Element => {
         <Button
           text="Explore My Work"
           url="#projects"
-          startingPos="down"
           isVisible={isVisible}
           setIsVisible={setIsVisible}
           transitionDelay={1000}

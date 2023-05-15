@@ -87,6 +87,7 @@ const ContactForm = ({
         startingPos="right"
         isVisible={isVisible}
         setIsVisible={setIsVisible}
+        transitionDelay={500}
       />
     </form>
   );

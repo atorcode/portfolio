@@ -26,6 +26,7 @@ const Button = ({
   startingPos,
   isVisible,
   setIsVisible,
+  transitionDelay,
 }: ButtonProps): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -79,7 +80,7 @@ const Button = ({
     ref: buttonContainerRef,
     isVisible,
     setIsVisible,
-    transitionDelay: 1000,
+    transitionDelay: transitionDelay || 1000,
     transitionStyle: styles["button-container-visible"],
   });
 
@@ -94,7 +95,11 @@ const Button = ({
       <div
         className={`${styles["button-container"]} ${
           styles[`button-container-${theme}`]
-        } ${styles[`button-container-${startingPos}`]} ${
+        } ${
+          startingPos
+            ? styles[`button-container-${startingPos}`]
+            : styles[`button-container-stationary`]
+        } ${
           hasResizeableParent
             ? styles["button-container-resizeable"]
             : styles["button-container-fixed"]
@@ -118,6 +123,10 @@ const Button = ({
     <div
       className={`${styles["button-container"]} ${
         styles[`button-container-${theme}`]
+      } ${
+        startingPos
+          ? styles[`button-container-${startingPos}`]
+          : styles[`button-container-stationary`]
       } ${
         hasResizeableParent
           ? styles["button-container-resizeable"]
