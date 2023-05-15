@@ -40,6 +40,7 @@ const IntroductionSection = (): JSX.Element => {
           startingPos="down"
           isVisible={isVisible}
           setIsVisible={setIsVisible}
+          transitionDelay={1000}
         />
       </div>
     </section>

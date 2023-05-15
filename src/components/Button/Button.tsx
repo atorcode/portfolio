@@ -16,6 +16,7 @@ type ButtonProps = {
   startingPos?: StartingPosition;
   isVisible?: boolean;
   setIsVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+  transitionDelay?: number | undefined;
 };
 
 const Button = ({
@@ -74,12 +75,11 @@ const Button = ({
     };
   }, []);
 
-  // might actually not be what I'm going for where transitionStyle may be applying to all buttons
   useIntersectionObserver({
     ref: buttonContainerRef,
     isVisible,
     setIsVisible,
-    transitionDelay: 500,
+    transitionDelay: 1000,
     transitionStyle: styles["button-container-visible"],
   });
 

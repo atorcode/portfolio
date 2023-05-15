@@ -1,5 +1,6 @@
 // hooks
 import { useEffect } from "react";
+import { useLoadingContext } from "../contexts/LoadingContext";
 
 type useIntersectionObserverProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
@@ -17,17 +18,19 @@ export const useIntersectionObserver = ({
   transitionStyle,
   threshold = 0,
 }: useIntersectionObserverProps): void => {
+  const { isLoading } = useLoadingContext();
+
   useEffect((): (() => void) | undefined => {
     const observer = new IntersectionObserver(
       (entries: Array<IntersectionObserverEntry>): void => {
         entries.forEach((entry: IntersectionObserverEntry): void => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !isLoading) {
             if (!isVisible) {
               setTimeout((): void => {
                 if (setIsVisible) {
                   setIsVisible(true);
                 }
-              }, transitionDelay);
+              }, 100);
             }
           }
         });
@@ -38,8 +41,13 @@ export const useIntersectionObserver = ({
     if (ref.current) {
       observer.observe(ref.current);
     }
+
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
     if (isVisible) {
-      ref.current?.classList.add(transitionStyle);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        ref.current?.classList.add(transitionStyle);
+      }, transitionDelay);
     } else {
       ref.current?.classList.remove(transitionStyle);
     }
@@ -49,5 +57,5 @@ export const useIntersectionObserver = ({
         observer.unobserve(ref.current);
       }
     };
-  }, [isVisible]);
+  }, [isVisible, isLoading]);
 };
