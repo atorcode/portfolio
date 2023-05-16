@@ -33,7 +33,7 @@ const Project = ({
   const { isScrolling } = useScrollContext();
   const { theme } = useThemeContext();
 
-  useEffect(() => {
+  useEffect((): void => {
     const loadImage = async (): Promise<void> => {
       const importedImage = await import(`../../assets/${imagePath}`);
       setProjectImage(importedImage.default);
@@ -41,7 +41,7 @@ const Project = ({
     loadImage();
   }, [imagePath]);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!isScrolling && isVisible) {
       projectRef.current?.classList.add(styles["project-visible"]);
     }

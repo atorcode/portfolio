@@ -4,8 +4,7 @@
   align-items: flex-end;
   gap: 0.5rem;
   width: 768px;
-  opacity: 0;
-  transform: translateY(5rem);
+  opacity: 1;
 
   transition: opacity 800ms linear, transform 800ms ease;
 
@@ -14,7 +13,12 @@
   }
 }
 
-.form-visible {
+.form-before {
+  opacity: 0;
+  transform: translateY(5rem);
+}
+
+.form-after {
   opacity: 1;
   transform: translateY(0);
 }

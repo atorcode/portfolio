@@ -33,6 +33,16 @@ const Button = ({
   const { theme } = useThemeContext();
 
   useEffect((): (() => void) => {
+    if (startingPos) {
+      buttonContainerRef.current?.classList.add(
+        styles[`button-container-before-${startingPos}`]
+      );
+    } else {
+      buttonContainerRef.current?.classList.add(
+        styles["button-container-before-stationary"]
+      );
+    }
+
     let animationDonePromise: Promise<void>;
     let timeoutId: ReturnType<typeof setTimeout>;
     const handleHover = (e: MouseEvent): void => {
@@ -81,7 +91,10 @@ const Button = ({
     isVisible,
     setIsVisible,
     transitionDelay: transitionDelay || 1000,
-    transitionStyle: styles["button-container-visible"],
+    beforeTransitionClass: startingPos
+      ? styles[`button-container-before-${startingPos}`]
+      : styles["button-container-before-stationary"],
+    afterTransitionClass: styles["button-container-after"],
   });
 
   return url ? (
@@ -95,10 +108,6 @@ const Button = ({
       <div
         className={`${styles["button-container"]} ${
           styles[`button-container-${theme}`]
-        } ${
-          startingPos
-            ? styles[`button-container-${startingPos}`]
-            : styles[`button-container-stationary`]
         } ${
           hasResizeableParent
             ? styles["button-container-resizeable"]
@@ -123,10 +132,6 @@ const Button = ({
     <div
       className={`${styles["button-container"]} ${
         styles[`button-container-${theme}`]
-      } ${
-        startingPos
-          ? styles[`button-container-${startingPos}`]
-          : styles[`button-container-stationary`]
       } ${
         hasResizeableParent
           ? styles["button-container-resizeable"]

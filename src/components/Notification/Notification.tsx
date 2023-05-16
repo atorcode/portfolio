@@ -25,7 +25,7 @@ const Notification = ({ id, type, text }: NotificationProps) => {
   const { removeNotificationAfterDelay } = useNotificationsContext();
   const { theme } = useThemeContext();
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     setIsVisible(true);
 
     let exitTransitionTimeoutId: ReturnType<typeof setTimeout> | undefined;

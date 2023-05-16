@@ -30,7 +30,7 @@ const FormField = ({
   const [inputValue, setInputValue] = useState<string>("");
   const { theme } = useThemeContext();
 
-  useEffect(() => {
+  useEffect((): void => {
     setIsValid((prev) => ({
       ...prev,
       [fieldType]: validateFormField(fieldType, inputValue),

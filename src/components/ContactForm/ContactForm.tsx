@@ -5,7 +5,7 @@ import styles from "./ContactForm.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
 // hooks
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNotificationsContext } from "../../contexts/NotificationsContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
@@ -34,6 +34,18 @@ const ContactForm = ({
   const formRef = useRef<HTMLFormElement | null>(null);
   const { addNotification } = useNotificationsContext();
 
+  useEffect((): void => {
+    formRef.current?.classList.add(styles["form-before"]);
+  }, []);
+
+  useIntersectionObserver({
+    ref: formRef,
+    isVisible,
+    setIsVisible,
+    beforeTransitionClass: styles["form-before"],
+    afterTransitionClass: styles["form-after"],
+  });
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (Object.values(areFieldsValid).every((value) => value === true)) {
@@ -50,13 +62,6 @@ const ContactForm = ({
       });
     }
   };
-
-  useIntersectionObserver({
-    ref: formRef,
-    isVisible,
-    setIsVisible,
-    transitionStyle: styles["form-visible"],
-  });
 
   return (
     <form className={styles["form"]} ref={formRef} onSubmit={handleSubmit}>

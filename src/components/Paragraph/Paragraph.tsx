@@ -42,9 +42,7 @@ const Paragraph = ({
 
   return (
     <p
-      className={`${styles["paragraph"]} ${styles[`paragraph-${theme}`]} ${
-        styles[`paragraph-${startingPos}`]
-      }`}
+      className={`${styles["paragraph"]} ${styles[`paragraph-${theme}`]}`}
       ref={paragraphRef}
     >
       {text}
