@@ -1,12 +1,26 @@
+@use "../../partials/variables" as v;
+
 .heading {
   font-size: 4rem;
   text-align: center;
-  opacity: 0;
+  opacity: 1;
 
   transition: opacity 800ms linear;
 }
 
-.heading-visible {
+.heading-dark {
+  color: v.$secondary-color;
+}
+
+.heading-light {
+  color: v.$secondary-color-three;
+}
+
+.heading-before {
+  opacity: 0;
+}
+
+.heading-after {
   opacity: 1;
 }
 

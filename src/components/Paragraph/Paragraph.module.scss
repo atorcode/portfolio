@@ -6,28 +6,32 @@
   margin-bottom: 1rem;
   font-size: 1.5rem;
   @include m.color-transition;
-  opacity: 0;
+  opacity: 1;
 
   transition: opacity 800ms linear, transform 800ms ease;
 }
 
-.paragraph-up {
+.paragraph-before-up {
+  opacity: 0;
   transform: translateY(-10rem);
 }
 
-.paragraph-down {
+.paragraph-before-down {
+  opacity: 0;
   transform: translateY(10rem);
 }
 
-.paragraph-left {
+.paragraph-before-left {
+  opacity: 0;
   transform: translateX(-10rem);
 }
 
-.paragraph-right {
+.paragraph-before-right {
+  opacity: 0;
   transform: translateX(10rem);
 }
 
-.paragraph-visible {
+.paragraph-after {
   opacity: 1;
   transform: translate(0, 0);
 }

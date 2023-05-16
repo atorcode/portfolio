@@ -1,5 +1,5 @@
 // hooks
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLoadingContext } from "../contexts/LoadingContext";
 
 type useIntersectionObserverProps = {
@@ -7,7 +7,8 @@ type useIntersectionObserverProps = {
   isVisible: boolean | undefined;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>> | undefined;
   transitionDelay?: number;
-  transitionStyle: string;
+  beforeTransitionClass: string;
+  afterTransitionClass: string;
   threshold?: number;
 };
 export const useIntersectionObserver = ({
@@ -15,9 +16,11 @@ export const useIntersectionObserver = ({
   isVisible,
   setIsVisible,
   transitionDelay = 100,
-  transitionStyle,
+  beforeTransitionClass,
+  afterTransitionClass,
   threshold = 0,
 }: useIntersectionObserverProps): void => {
+  const [transitionOccurred, setTransitionOccurred] = useState<boolean>(false);
   const { isLoading } = useLoadingContext();
 
   useEffect((): (() => void) | undefined => {
@@ -43,16 +46,21 @@ export const useIntersectionObserver = ({
     }
 
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    if (isVisible) {
+    if (isVisible && !transitionOccurred) {
+      setTransitionOccurred(true);
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        ref.current?.classList.add(transitionStyle);
+        ref.current?.classList.remove(beforeTransitionClass);
+        ref.current?.classList.add(afterTransitionClass);
       }, transitionDelay);
-    } else {
-      ref.current?.classList.remove(transitionStyle);
     }
 
+    // else {
+    //   ref.current?.classList.remove(transitionStyle);
+    // }
+
     return (): void => {
+      clearTimeout(timeoutId);
       if (ref.current) {
         observer.unobserve(ref.current);
       }

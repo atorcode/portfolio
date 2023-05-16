@@ -23,7 +23,11 @@ const AboutSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={aboutSectionRef}
     >
-      <SectionHeading text="About Me" />
+      <SectionHeading
+        text="About Me"
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
       <div>
         <Paragraph
           text="Front-end web development is the perfect intersection between the analytic and the creative, which suits me well. I care deeply about improving user experience, and I have a methodical approach when coding which forces me to pay meticulous attention to detail. You can find me constantly daydreaming about ways to make code cleaner and more reusable."
@@ -41,7 +45,6 @@ const AboutSection = (): JSX.Element => {
       <Button
         text="View Résumé"
         url="https://drive.google.com/file/d/1wkYO592dsnyJ2kPbKfhvp_Di63QPhHJ_/view?usp=share_link"
-        startingPos="down"
         isVisible={isVisible}
         setIsVisible={setIsVisible}
       />

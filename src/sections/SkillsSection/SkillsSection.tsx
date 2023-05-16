@@ -4,6 +4,7 @@
 import styles from "./SkillsSection.module.scss";
 
 // hooks
+import { useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
@@ -15,8 +16,10 @@ import SectionHeading from "../../components/SectionHeading";
 import { TOOLS, SKILLS } from "../../utils/constants";
 
 const SkillsSection = (): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const { theme } = useThemeContext();
   const { skillsSectionRef } = useScrollContext();
+
   return (
     <section
       className={`${styles["skills"]} ${styles[`skills-${theme}`]}`}
@@ -24,7 +27,11 @@ const SkillsSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={skillsSectionRef}
     >
-      <SectionHeading text="My Skills" />
+      <SectionHeading
+        text="My Skills"
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
       <SkillBoxGroup subheading="My Bag of Tools" skills={TOOLS} />
       <SkillBoxGroup subheading="Other Skills" skills={SKILLS} />
     </section>

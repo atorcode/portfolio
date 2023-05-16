@@ -2,7 +2,7 @@
 import styles from "./Paragraph.module.scss";
 
 // dependencies and hooks
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
@@ -25,12 +25,19 @@ const Paragraph = ({
   const paragraphRef = useRef<HTMLParagraphElement | null>(null);
   const { theme } = useThemeContext();
 
+  useEffect((): void => {
+    paragraphRef.current?.classList.add(
+      styles[`paragraph-before-${startingPos}`]
+    );
+  }, []);
+
   useIntersectionObserver({
     ref: paragraphRef,
     isVisible,
     setIsVisible,
     transitionDelay: 500,
-    transitionStyle: styles["paragraph-visible"],
+    beforeTransitionClass: styles[`paragraph-before-${startingPos}`],
+    afterTransitionClass: styles["paragraph-after"],
   });
 
   return (

@@ -39,7 +39,7 @@ const App = (): JSX.Element => {
     timeoutId = setTimeout((): void => {
       setIsLoading(false);
       // set to 5000 in production
-    }, 100);
+    }, 5000);
   }, []);
 
   useEffect((): (() => void) => {

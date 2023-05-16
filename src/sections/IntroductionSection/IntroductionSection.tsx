@@ -24,7 +24,11 @@ const IntroductionSection = (): JSX.Element => {
       ref={introductionSectionRef}
     >
       <div className={styles["introduction-content"]}>
-        <SectionHeading text="Hey, I'm Albo!" />
+        <SectionHeading
+          text="Hey, I'm Albo!"
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+        />
         <Paragraph
           text="My full name is Alberto Torrigiotti. I'm a software engineer, front-end
         web developer, educator, and lifelong learner who excels at delivering

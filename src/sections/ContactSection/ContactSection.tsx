@@ -21,7 +21,11 @@ const ContactSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={contactSectionRef}
     >
-      <SectionHeading text="Contact Me" />
+      <SectionHeading
+        text="Contact Me"
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
       <ContactForm isVisible={isVisible} setIsVisible={setIsVisible} />
     </section>
   );
