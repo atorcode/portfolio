@@ -1,6 +1,16 @@
 .subheading {
   font-size: 3rem;
   text-align: center;
+
+  transition: opacity 800ms linear;
+}
+
+.subheading-before {
+  opacity: 0;
+}
+
+.subheading-after {
+  opacity: 1;
 }
 
 @media (max-width: 1200px) {

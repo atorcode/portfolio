@@ -16,7 +16,6 @@ import ContactSection from "./sections/ContactSection";
 
 // components
 import LoadingScreen from "./components/LoadingScreen";
-import HeaderMenu from "./components/HeaderMenu";
 import NavBullets from "./components/NavBullets";
 import Notifications from "./components/Notifications";
 
@@ -57,7 +56,6 @@ const App = (): JSX.Element => {
       ref={scrollContainerRef}
     >
       {isLoading && <LoadingScreen />}
-      <HeaderMenu />
       <Notifications />
       <IntroductionSection />
       <AboutSection />

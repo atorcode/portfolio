@@ -24,6 +24,18 @@ $switch-margin-small: 3px;
   border-radius: ceil(math.div($panel-height, 2));
   font-size: $panel-height - 8px;
   outline: none;
+
+  transition: opacity 800ms ease, transform 800ms ease;
+}
+
+.panel-before {
+  opacity: 0;
+  transform: translateX(5rem);
+}
+
+.panel-after {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .switch {

@@ -32,8 +32,18 @@ const SkillsSection = (): JSX.Element => {
         isVisible={isVisible}
         setIsVisible={setIsVisible}
       />
-      <SkillBoxGroup subheading="My Bag of Tools" skills={TOOLS} />
-      <SkillBoxGroup subheading="Other Skills" skills={SKILLS} />
+      <SkillBoxGroup
+        subheading="My Bag of Tools"
+        skills={TOOLS}
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
+      <SkillBoxGroup
+        subheading="Other Skills"
+        skills={SKILLS}
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
     </section>
   );
 };

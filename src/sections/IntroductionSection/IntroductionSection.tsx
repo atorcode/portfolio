@@ -7,6 +7,7 @@ import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
+import HeaderMenu from "../../components/HeaderMenu";
 import SectionHeading from "../../components/SectionHeading";
 import Paragraph from "../../components/Paragraph";
 import Button from "../../components/Button";
@@ -23,6 +24,7 @@ const IntroductionSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={introductionSectionRef}
     >
+      <HeaderMenu isVisible={isVisible} setIsVisible={setIsVisible} />
       <div className={styles["introduction-content"]}>
         <SectionHeading
           text="Hey, I'm Albo!"

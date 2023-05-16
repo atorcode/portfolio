@@ -6,9 +6,18 @@ import { RiSunFill, RiMoonFill } from "react-icons/ri";
 
 // hooks
 import { useEffect, useRef, useState } from "react";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { useThemeContext } from "../../contexts/ThemeContext";
 
-const DarkLightToggleSwitch = (): JSX.Element => {
+type DarkLightToggleSwitchProps = {
+  isVisible: boolean;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const DarkLightToggleSwitch = ({
+  isVisible,
+  setIsVisible,
+}: DarkLightToggleSwitchProps): JSX.Element => {
   const [isResizing, setIsResizing] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const switchRef = useRef<HTMLDivElement | null>(null);
@@ -16,6 +25,8 @@ const DarkLightToggleSwitch = (): JSX.Element => {
   const { theme, toggleTheme } = useThemeContext();
 
   useEffect((): (() => void) => {
+    buttonRef.current?.classList.add(styles["panel-before"]);
+
     const handleResize = (): void => {
       clearTimeout(resizeTimeoutRef.current);
       setIsResizing(true);
@@ -40,6 +51,15 @@ const DarkLightToggleSwitch = (): JSX.Element => {
       switchRef.current?.classList.remove(styles["no-transition"]);
     }
   }, [isResizing]);
+
+  useIntersectionObserver({
+    ref: buttonRef,
+    isVisible,
+    setIsVisible,
+    transitionDelay: 500,
+    beforeTransitionClass: styles["panel-before"],
+    afterTransitionClass: styles["panel-after"],
+  });
 
   const handleClick = (): void => {
     toggleTheme();

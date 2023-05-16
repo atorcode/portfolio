@@ -4,10 +4,20 @@ import styles from "./HeaderMenu.module.scss";
 // components
 import DarkLightToggleSwitch from "../DarkLightToggleSwitch";
 
-const HeaderMenu = (): JSX.Element => {
+type HeaderMenuProps = {
+  isVisible: boolean;
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const HeaderMenu = ({
+  isVisible,
+  setIsVisible,
+}: HeaderMenuProps): JSX.Element => {
   return (
     <header className={styles["header"]}>
-      <DarkLightToggleSwitch />
+      <DarkLightToggleSwitch
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
     </header>
   );
 };
