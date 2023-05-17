@@ -2,7 +2,8 @@
 import styles from "./SkillBoxGroup.module.scss";
 
 // hooks
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useIntersectionObserverOnChildren } from "../../hooks/useIntersectionObserverOnChildren";
 
 // components
 import Subheading from "../Subheading";
@@ -29,41 +30,11 @@ const SkillBoxGroup = ({
   >(Array.from({ length: skills.length }, () => false));
   const skillBoxesRef = useRef<HTMLElement | null>(null);
 
-  useEffect((): (() => void) => {
-    const observer = new IntersectionObserver(
-      (entries: Array<IntersectionObserverEntry>): void => {
-        entries.forEach((entry: IntersectionObserverEntry): void => {
-          if (entry.isIntersecting) {
-            visibilityOfSkillBoxes.forEach(
-              (isVisible: boolean, index: number): void => {
-                if (!isVisible) {
-                  setTimeout((): void => {
-                    setVisibilityOfSkillBoxes(
-                      (prev: Array<boolean>): Array<boolean> => {
-                        const result = [...prev];
-                        result[index] = true;
-                        return result;
-                      }
-                    );
-                  }, 200 * index + 50);
-                }
-              }
-            );
-          }
-        });
-      },
-      { threshold: 1 }
-    );
-    if (skillBoxesRef.current) {
-      observer.observe(skillBoxesRef.current);
-    }
-
-    return (): void => {
-      if (skillBoxesRef.current) {
-        observer.unobserve(skillBoxesRef.current);
-      }
-    };
-  }, []);
+  useIntersectionObserverOnChildren({
+    ref: skillBoxesRef,
+    visibilityOfChildren: visibilityOfSkillBoxes,
+    setVisibilityOfChildren: setVisibilityOfSkillBoxes,
+  });
 
   return (
     <section className={styles["skill-box-grouping"]}>

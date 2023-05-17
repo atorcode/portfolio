@@ -55,10 +55,6 @@ export const useIntersectionObserver = ({
       }, transitionDelay);
     }
 
-    // else {
-    //   ref.current?.classList.remove(transitionStyle);
-    // }
-
     return (): void => {
       clearTimeout(timeoutId);
       if (ref.current) {

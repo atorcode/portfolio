@@ -5,7 +5,8 @@ import styles from "./Projects.module.scss";
 import projectsData from "../../data/projects.json";
 
 // hooks
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useIntersectionObserverOnChildren } from "../../hooks/useIntersectionObserverOnChildren";
 
 // components
 import Project from "../Project/Project";
@@ -19,40 +20,46 @@ const Projects = (): JSX.Element => {
   >([false, false, false, false]);
   const projectsRef = useRef<HTMLElement | null>(null);
 
-  useEffect((): (() => void) => {
-    const observer = new IntersectionObserver(
-      (entries: Array<IntersectionObserverEntry>): void => {
-        entries.forEach((entry: IntersectionObserverEntry): void => {
-          if (entry.isIntersecting) {
-            visibilityOfProjects.forEach(
-              (isVisible: boolean, index: number): void => {
-                if (!isVisible) {
-                  setTimeout((): void => {
-                    setVisibilityOfProjects(
-                      (prev: Array<boolean>): Array<boolean> => {
-                        const result = [...prev];
-                        result[index] = true;
-                        return result;
-                      }
-                    );
-                  }, 300 * index);
-                }
-              }
-            );
-          }
-        });
-      }
-    );
-    if (projectsRef.current) {
-      observer.observe(projectsRef.current);
-    }
+  useIntersectionObserverOnChildren({
+    ref: projectsRef,
+    visibilityOfChildren: visibilityOfProjects,
+    setVisibilityOfChildren: setVisibilityOfProjects,
+  });
 
-    return (): void => {
-      if (projectsRef.current) {
-        observer.unobserve(projectsRef.current);
-      }
-    };
-  }, []);
+  // useEffect((): (() => void) => {
+  //   const observer = new IntersectionObserver(
+  //     (entries: Array<IntersectionObserverEntry>): void => {
+  //       entries.forEach((entry: IntersectionObserverEntry): void => {
+  //         if (entry.isIntersecting) {
+  //           visibilityOfProjects.forEach(
+  //             (isVisible: boolean, index: number): void => {
+  //               if (!isVisible) {
+  //                 setTimeout((): void => {
+  //                   setVisibilityOfProjects(
+  //                     (prev: Array<boolean>): Array<boolean> => {
+  //                       const result = [...prev];
+  //                       result[index] = true;
+  //                       return result;
+  //                     }
+  //                   );
+  //                 }, 300 * index);
+  //               }
+  //             }
+  //           );
+  //         }
+  //       });
+  //     }
+  //   );
+  //   if (projectsRef.current) {
+  //     observer.observe(projectsRef.current);
+  //   }
+
+  //   return (): void => {
+  //     if (projectsRef.current) {
+  //       observer.unobserve(projectsRef.current);
+  //     }
+  //   };
+  // }, []);
 
   return (
     <section className={styles["projects"]} ref={projectsRef}>
