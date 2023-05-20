@@ -136,6 +136,24 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       }
     };
 
+    // Snap the scroll position to the start of the nearest section when resizing window
+    const handleResize = (): void => {
+      if (!scrollContainerRef.current || sectionElements.length === 0) {
+        return;
+      }
+      const scrollPosition = scrollContainerRef.current.scrollTop;
+
+      const distancesToSections = sectionElements.map((element) =>
+        Math.abs(scrollPosition - element.offsetTop)
+      );
+      let shortestDistanceToSection = Math.min(...distancesToSections);
+      let nearestSectionIndex = distancesToSections.indexOf(
+        shortestDistanceToSection
+      );
+      let nearestSection = sectionElements[nearestSectionIndex];
+
+      nearestSection.scrollIntoView({ behavior: "auto" });
+    };
     // attach event listeners
     scrollContainerRef.current?.addEventListener("scroll", updateIsScrolling);
     scrollContainerRef.current?.addEventListener(
@@ -147,6 +165,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       scrollSnapOnFocus,
       true
     );
+    window.addEventListener("resize", handleResize);
 
     // remove event listeners when unmounting
     return (): void => {
@@ -163,6 +182,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
         scrollSnapOnFocus,
         true
       );
+      window.removeEventListener("resize", handleResize);
     };
   }, [sectionElements]);
 
