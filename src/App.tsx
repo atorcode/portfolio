@@ -19,6 +19,9 @@ import LoadingScreen from "./components/LoadingScreen";
 import NavBullets from "./components/NavBullets";
 import Notifications from "./components/Notifications";
 
+// utils
+import { LOADING_SCREEN_DURATION } from "./utils/constants";
+
 const App = (): JSX.Element => {
   const { isLoading, setIsLoading } = useLoadingContext();
   const { scrollContainerRef } = useScrollContext();
@@ -37,8 +40,7 @@ const App = (): JSX.Element => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout((): void => {
       setIsLoading(false);
-      // set to 5000 in production
-    }, 1000);
+    }, LOADING_SCREEN_DURATION);
   }, []);
 
   useEffect((): (() => void) => {

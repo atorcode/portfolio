@@ -11,9 +11,9 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   left: 50%;
   width: $bullet-size;
   height: $bullet-size;
-  transform: translate(-50%, -50%) rotate(-45deg);
   border: none;
   outline: none;
+  transform: translate(-50%, -50%) rotate(-45deg);
 
   transition: transform 300ms ease, width 300ms ease, height 300ms ease;
 
@@ -26,8 +26,8 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   transition: background-color v.$theme-toggle-transition-duration ease;
 }
 
-.bullet-expanded-transition {
-  transition: border v.$theme-toggle-transition-duration ease;
+.bullet-before {
+  transform: translate(calc(-50% + 100px), -50%) rotate(-45deg);
 }
 
 .bullet-dark {
@@ -42,8 +42,18 @@ $bullet-size-small-expanded: calc(#{$bullet-size-small} * 2);
   width: $bullet-size-expanded;
   height: $bullet-size-expanded;
   rotate: 0deg;
-  transform: translate(-50%, -50%) rotate(0);
   background-color: transparent;
+  transform: translate(-50%, -50%) rotate(0deg);
+
+  transition: transform 300ms ease;
+}
+
+.bullet-expanded-transition {
+  transition: border v.$theme-toggle-transition-duration ease;
+}
+
+.bullet-expanded-before {
+  transform: translate(calc(-50% + 100px), -50%) rotate(0);
 }
 
 .bullet-expanded-dark {

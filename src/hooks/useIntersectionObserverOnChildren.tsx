@@ -6,6 +6,8 @@ type useIntersectionObserverOnChildrenProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
   visibilityOfChildren: Array<boolean>;
   setVisibilityOfChildren: React.Dispatch<React.SetStateAction<Array<boolean>>>;
+  toggleDelay?: number;
+  intervalMultiplier?: number;
   threshold?: number;
 };
 
@@ -14,6 +16,8 @@ export const useIntersectionObserverOnChildren = ({
   ref,
   visibilityOfChildren,
   setVisibilityOfChildren,
+  toggleDelay = 0,
+  intervalMultiplier = 300,
   threshold = 0,
 }: useIntersectionObserverOnChildrenProps): void => {
   const { isLoading } = useLoadingContext();
@@ -34,7 +38,7 @@ export const useIntersectionObserverOnChildren = ({
                         return result;
                       }
                     );
-                  }, 300 * index);
+                  }, intervalMultiplier * index + toggleDelay);
                 }
               }
             );

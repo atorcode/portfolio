@@ -11,6 +11,8 @@ type useIntersectionObserverProps = {
   afterTransitionClass: string;
   threshold?: number;
 };
+
+// Unlike with useIntersectionObserverOnChildren, the transitionClasses are passed in and handled inside the hook. This is fairly simple since we are only transitioning one component at a time.
 export const useIntersectionObserver = ({
   ref,
   isVisible,
