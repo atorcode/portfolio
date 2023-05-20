@@ -22,6 +22,8 @@ type NavBulletProps = {
 };
 
 const NavBullet = ({ index, isVisible }: NavBulletProps) => {
+  const [isFirstColorTransitionAfterLoad, setIsFirstColorTransitionAfterLoad] =
+    useState<boolean>(true);
   const [beforeClassesAdded, setBeforeClassesAdded] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { isLoading } = useLoadingContext();
@@ -29,7 +31,19 @@ const NavBullet = ({ index, isVisible }: NavBulletProps) => {
   const { theme } = useThemeContext();
 
   useEffect((): (() => void) => {
-    setTimeout(() => {
+    if (isFirstColorTransitionAfterLoad) {
+      setTimeout(() => {
+        if (index === expandedBulletIndex) {
+          buttonRef.current?.classList.add(
+            `${styles["bullet-expanded-transition"]}`
+          );
+        } else {
+          buttonRef.current?.classList.add(`${styles["bullet-transition"]}`);
+        }
+        setIsFirstColorTransitionAfterLoad(false);
+        // The hard-coded value ought to match the transition duration specified in NavBullet.module.scss
+      }, LOADING_SCREEN_DURATION + BULLET_ENTRANCE_TRANSITION_DELAY + (NUM_SECTIONS - 1) * BULLET_ENTRANCE_TRANSITION_INTERVAL + 300 + TRANSITION_ASSIGNMENT_BUFFER);
+    } else {
       if (index === expandedBulletIndex) {
         buttonRef.current?.classList.add(
           `${styles["bullet-expanded-transition"]}`
@@ -37,15 +51,14 @@ const NavBullet = ({ index, isVisible }: NavBulletProps) => {
       } else {
         buttonRef.current?.classList.add(`${styles["bullet-transition"]}`);
       }
-      // The hard-coded value ought to match the transition duration specified in NavBullet.module.scss
-    }, LOADING_SCREEN_DURATION + BULLET_ENTRANCE_TRANSITION_DELAY + (NUM_SECTIONS - 1) * BULLET_ENTRANCE_TRANSITION_INTERVAL + 300 + TRANSITION_ASSIGNMENT_BUFFER);
+    }
     return (): void => {
       buttonRef.current?.classList.remove(
         `${styles["bullet-expanded-transition"]}`
       );
       buttonRef.current?.classList.remove(`${styles["bullet-transition"]}`);
     };
-  }, [theme]);
+  }, [theme, isLoading]);
 
   useEffect((): void => {
     if (!beforeClassesAdded) {
