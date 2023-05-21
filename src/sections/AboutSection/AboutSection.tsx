@@ -1,7 +1,7 @@
 // styles
 import styles from "./AboutSection.module.scss";
 
-// functions and hooks
+// hooks
 import { useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
@@ -10,6 +10,7 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 import SectionHeading from "../../components/SectionHeading";
 import Paragraph from "../../components/Paragraph";
 import Button from "../../components/Button";
+import Mask from "../../components/Mask";
 
 const AboutSection = (): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -23,6 +24,11 @@ const AboutSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={aboutSectionRef}
     >
+      <Mask
+        unveilDirection="down"
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
       <div className={styles["about-content"]}>
         <SectionHeading
           text="About Me"

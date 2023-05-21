@@ -12,22 +12,6 @@
   @include m.color-transition;
 }
 
-.mask {
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: v.$primary-color-dark;
-  z-index: 0;
-
-  transition: height 2000ms linear;
-  transition-delay: 500ms;
-}
-
-.mask-hidden {
-  height: 0;
-}
-
 .introduction-content {
   display: flex;
   flex-direction: column;

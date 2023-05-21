@@ -7,7 +7,7 @@ type useIntersectionObserverProps = {
   isVisible: boolean | undefined;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>> | undefined;
   transitionDelay?: number;
-  beforeTransitionClass: string;
+  beforeTransitionClass?: string;
   afterTransitionClass: string;
   threshold?: number;
 };
@@ -52,7 +52,9 @@ export const useIntersectionObserver = ({
       setTransitionOccurred(true);
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        ref.current?.classList.remove(beforeTransitionClass);
+        if (beforeTransitionClass) {
+          ref.current?.classList.remove(beforeTransitionClass);
+        }
         ref.current?.classList.add(afterTransitionClass);
       }, transitionDelay);
     }

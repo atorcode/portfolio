@@ -1,0 +1,25 @@
+@use "../../partials/variables" as v;
+
+.mask {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: v.$primary-color-dark;
+  z-index: 0;
+  transition: height 2000ms linear;
+}
+
+.mask-unveil-up {
+  top: 0;
+  transition-delay: 500ms;
+}
+
+.mask-unveil-down {
+  bottom: 0;
+  // 100ms less than .mask-unveil-up due to the 100ms timeout in useIntersectionObserver
+  transition-delay: 400ms;
+}
+
+.mask-hidden {
+  height: 0;
+}
