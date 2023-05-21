@@ -12,11 +12,19 @@
 .app-dark {
   background-color: v.$primary-color-dark;
 
+  ::selection {
+    background-color: v.$primary-color-dark-shade;
+  }
+
   @include m.color-transition;
 }
 
 .app-light {
   background-color: v.$primary-color-light;
+
+  ::selection {
+    background-color: v.$primary-color-light-tint-two;
+  }
 
   @include m.color-transition;
 }

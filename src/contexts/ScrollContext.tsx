@@ -154,6 +154,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
 
       nearestSection.scrollIntoView({ behavior: "auto" });
     };
+
     // attach event listeners
     scrollContainerRef.current?.addEventListener("scroll", updateIsScrolling);
     scrollContainerRef.current?.addEventListener(

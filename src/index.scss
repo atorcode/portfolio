@@ -24,10 +24,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-::selection {
-  background-color: v.$primary-color-dark-shade;
-}
-
 a {
   text-decoration: none;
   color: inherit;

@@ -36,6 +36,10 @@
   &::placeholder {
     color: v.$primary-color-light-shade;
   }
+
+  &::selection {
+    color: v.$secondary-color-two;
+  }
 }
 
 .field-light {
@@ -44,6 +48,10 @@
   caret-color: v.$primary-color-dark-tint;
 
   &::placeholder {
+    color: v.$primary-color-dark-tint;
+  }
+
+  &::selection {
     color: v.$primary-color-dark-tint;
   }
 }
