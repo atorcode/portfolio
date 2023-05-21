@@ -3,6 +3,7 @@ import styles from "./IntroductionSection.module.scss";
 
 // hooks
 import { useState } from "react";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useScrollContext } from "../../contexts/ScrollContext";
 
@@ -16,6 +17,7 @@ const IntroductionSection = (): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const { theme } = useThemeContext();
   const { introductionSectionRef } = useScrollContext();
+  const { isLoading } = useLoadingContext();
 
   return (
     <section
@@ -25,6 +27,13 @@ const IntroductionSection = (): JSX.Element => {
       ref={introductionSectionRef}
     >
       <HeaderMenu isVisible={isVisible} setIsVisible={setIsVisible} />
+      <div
+        className={
+          !isLoading
+            ? `${styles["mask"]} ${styles["mask-hidden"]}`
+            : `${styles["mask"]}`
+        }
+      ></div>
       <div className={styles["introduction-content"]}>
         <SectionHeading
           text="Hey, I'm Albo!"
