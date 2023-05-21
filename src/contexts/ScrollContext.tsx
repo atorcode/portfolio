@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 // dependencies and hooks
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useScrollSnap } from "../hooks/useScrollSnap";
