@@ -33,7 +33,6 @@ const NavBullets = (): JSX.Element => {
         uuids.current.push(uuidv4());
       }
     }
-    console.log(visibilityOfBullets);
   }, []);
 
   useIntersectionObserverOnChildren({

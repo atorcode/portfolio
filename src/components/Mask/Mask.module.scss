@@ -4,9 +4,16 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background: v.$primary-color-dark;
   z-index: 0;
   transition: height 2000ms linear;
+}
+
+.mask-dark {
+  background-color: v.$primary-color-dark;
+}
+
+.mask-light {
+  background-color: v.$primary-color-light;
 }
 
 .mask-unveil-up {

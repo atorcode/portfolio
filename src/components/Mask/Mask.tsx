@@ -4,6 +4,7 @@ import styles from "./Mask.module.scss";
 // hooks
 import { useRef } from "react";
 import { useLoadingContext } from "../../contexts/LoadingContext";
+import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 type MaskProps = {
@@ -18,6 +19,7 @@ const Mask = ({
   setIsVisible,
 }: MaskProps): JSX.Element => {
   const maskRef = useRef<HTMLDivElement | null>(null);
+  const { theme } = useThemeContext();
   const { isLoading } = useLoadingContext();
 
   useIntersectionObserver({
@@ -31,7 +33,9 @@ const Mask = ({
 
   return (
     <div
-      className={`${styles["mask"]} ${styles[`mask-unveil-${unveilDirection}`]}
+      className={`${styles["mask"]} ${styles[`mask-${theme}`]} ${
+        styles[`mask-unveil-${unveilDirection}`]
+      }
         ${!isLoading && unveilDirection === "up" ? styles["mask-hidden"] : ""}`}
       ref={maskRef}
     ></div>
