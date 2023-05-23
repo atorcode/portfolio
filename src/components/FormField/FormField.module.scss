@@ -44,7 +44,7 @@
 
 .field-light {
   background-color: v.$primary-color-light-tint;
-  color: v.$secondary-color-two;
+  color: v.$primary-color-dark-shade;
   caret-color: v.$primary-color-dark-tint;
 
   &::placeholder {
