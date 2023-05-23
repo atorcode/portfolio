@@ -8,7 +8,8 @@
   @include m.color-transition;
   opacity: 1;
 
-  transition: opacity 800ms linear, transform 800ms ease;
+  transition: opacity 800ms linear, transform 800ms ease,
+    color v.$theme-toggle-transition-duration ease;
 }
 
 .paragraph-before-up {

@@ -5,28 +5,27 @@
   width: 100vw;
   height: 100vh;
   z-index: 0;
-  transition: height 2000ms linear;
+  transition: height 2000ms linear,
+    background-color v.$theme-toggle-transition-duration ease;
 }
 
 .mask-dark {
   background-color: v.$primary-color-dark;
-  // background-color: red;
 }
 
 .mask-light {
   background-color: v.$primary-color-light;
-  // background-color: red;
 }
 
 .mask-unveil-up {
   top: 0;
-  transition-delay: 500ms;
+  transition-delay: 500ms, 0s;
 }
 
 .mask-unveil-down {
   bottom: 0;
   // 100ms less than .mask-unveil-up due to the 100ms timeout in useIntersectionObserver
-  transition-delay: 400ms;
+  transition-delay: 400ms, 0s;
 }
 
 .mask-hidden {

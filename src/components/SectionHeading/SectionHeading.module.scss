@@ -7,7 +7,8 @@
 
   z-index: 100;
 
-  transition: opacity 800ms linear;
+  transition: opacity 800ms linear,
+    color v.$theme-toggle-transition-duration ease;
 }
 
 .heading-dark {
