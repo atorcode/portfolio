@@ -33,16 +33,6 @@ const Button = ({
   const { theme } = useThemeContext();
 
   useEffect((): (() => void) => {
-    if (startingPos) {
-      buttonContainerRef.current?.classList.add(
-        styles[`button-container-before-${startingPos}`]
-      );
-    } else {
-      buttonContainerRef.current?.classList.add(
-        styles["button-container-before-stationary"]
-      );
-    }
-
     let animationDonePromise: Promise<void>;
     let timeoutId: ReturnType<typeof setTimeout>;
     const handleHover = (e: MouseEvent): void => {
@@ -85,6 +75,20 @@ const Button = ({
       );
     };
   }, []);
+
+  useEffect(() => {
+    if (!isVisible) {
+      if (startingPos) {
+        buttonContainerRef.current?.classList.add(
+          styles[`button-container-before-${startingPos}`]
+        );
+      } else {
+        buttonContainerRef.current?.classList.add(
+          styles["button-container-before-stationary"]
+        );
+      }
+    }
+  }, [theme, isVisible]);
 
   useIntersectionObserver({
     ref: buttonContainerRef,
