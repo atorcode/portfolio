@@ -36,7 +36,12 @@ const Mask = ({
       className={`${styles["mask"]} ${styles[`mask-${theme}`]} ${
         styles[`mask-unveil-${unveilDirection}`]
       }
-        ${!isLoading && unveilDirection === "up" ? styles["mask-hidden"] : ""}`}
+        ${
+          (!isLoading && unveilDirection === "up") ||
+          (!isLoading && isVisible && unveilDirection === "down")
+            ? styles["mask-hidden"]
+            : ""
+        }`}
       ref={maskRef}
     ></div>
   );

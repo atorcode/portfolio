@@ -26,10 +26,13 @@ const Paragraph = ({
   const { theme } = useThemeContext();
 
   useEffect((): void => {
+    if (isVisible) {
+      return;
+    }
     paragraphRef.current?.classList.add(
       styles[`paragraph-before-${startingPos}`]
     );
-  }, []);
+  }, [theme]);
 
   useIntersectionObserver({
     ref: paragraphRef,
