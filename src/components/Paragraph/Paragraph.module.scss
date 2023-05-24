@@ -51,8 +51,14 @@
   }
 }
 
-@media (max-width: 480px), (max-height: 580px) {
+@media (max-width: 768px), (max-height: 700px) {
   .paragraph {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px), (max-height: 580px) {
+  .paragraph {
+    font-size: 0.9rem;
   }
 }
