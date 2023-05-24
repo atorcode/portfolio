@@ -1,15 +1,42 @@
+@use "../../partials/variables" as v;
+
 .header {
   position: absolute;
   width: 100%;
   height: 100px;
   z-index: 100;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 
-@media (max-width: 768px), (max-height: 850px) {
+.github-link {
+  font-size: 3rem;
+  margin: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: opacity v.$theme-toggle-transition-duration ease,
+    transform v.$theme-toggle-transition-duration ease;
+}
+
+.github-link-before {
+  opacity: 0;
+  transform: translateX(-5rem);
+}
+
+.github-link-after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 420px), (max-height: 850px) {
   .header {
     height: 90px;
+  }
+
+  .github-link {
+    font-size: 2.25rem;
   }
 }

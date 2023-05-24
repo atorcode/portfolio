@@ -70,6 +70,7 @@
   font-size: max(0.9rem, min(2vw, 1.2rem));
   opacity: 1;
   transform: translateX(0);
+  background-color: transparent;
 
   transition: border v.$theme-toggle-transition-duration ease;
 }
