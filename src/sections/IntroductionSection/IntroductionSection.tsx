@@ -25,6 +25,11 @@ const IntroductionSection = (): JSX.Element => {
       data-scroll-snap-on-focus="true"
       ref={introductionSectionRef}
     >
+      <div
+        className={`${styles["content-mask"]} ${
+          styles[`content-mask-${theme}`]
+        }`}
+      ></div>
       <HeaderMenu isVisible={isVisible} setIsVisible={setIsVisible} />
       <Mask unveilDirection="up" />
       <div className={styles["introduction-content"]}>

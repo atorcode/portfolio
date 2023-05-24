@@ -7,6 +7,7 @@
   justify-content: center;
   @include m.section-dimensions;
   @include m.color-transition;
+  overflow: hidden;
 }
 
 .header {

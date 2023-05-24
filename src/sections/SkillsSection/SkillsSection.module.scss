@@ -8,6 +8,7 @@
   gap: 4rem;
   @include m.section-dimensions;
   @include m.color-transition;
+  overflow: hidden;
 }
 
 .skills-light {

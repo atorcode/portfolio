@@ -6,6 +6,8 @@
   background-position: center;
   background-size: cover;
   @include m.color-transition;
+
+  overflow: hidden;
 }
 
 .about-content {
