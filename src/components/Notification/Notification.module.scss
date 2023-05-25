@@ -51,3 +51,44 @@
   font-size: 2rem;
   margin-left: 0.8rem;
 }
+
+@media (max-width: 1600px) {
+  .notification {
+    transform: translateX(-150%);
+  }
+  .notification-enter-active {
+    transform: translateX(4%);
+    margin-top: 0.5rem;
+  }
+  .notification-enter-done {
+    transform: translateX(0);
+  }
+  .notification-exit {
+    transform: translateX(0%);
+  }
+  .notification-exit-active {
+    transform: translateX(-150%);
+  }
+}
+
+@media (max-width: 550px) {
+  .notification {
+    margin-top: 0;
+    transform: translateX(-150%);
+  }
+  .notification-enter-active {
+    transform: translateX(4%);
+    margin-top: 0.5rem;
+  }
+  .notification-enter-done {
+    transform: translateX(0);
+    margin-top: 0.5rem;
+  }
+  .notification-exit {
+    margin-top: -50px;
+    transform: translateX(0%);
+  }
+  .notification-exit-active {
+    transform: translateX(-150%);
+  }
+}

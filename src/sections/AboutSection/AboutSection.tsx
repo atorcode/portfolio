@@ -37,7 +37,7 @@ const AboutSection = (): JSX.Element => {
         />
         <div>
           <Paragraph
-            text="Front-end web development is the perfect intersection between the analytic and the creative, which suits me well. I care deeply about improving user experience, and I have a methodical approach when coding which forces me to pay meticulous attention to detail. You can find me constantly daydreaming about ways to make code cleaner and more reusable."
+            text="Front-end web development is the perfect intersection between the analytic and the creative, which suits me well. I care deeply about improving user experience, and I have a methodical approach which forces me to scrutinize every line of code and pay meticulous attention to detail. You can find me constantly daydreaming about ways to make code cleaner and more reusable."
             startingPos="left"
             isVisible={isVisible}
             setIsVisible={setIsVisible}

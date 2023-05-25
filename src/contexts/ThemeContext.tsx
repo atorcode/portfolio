@@ -15,7 +15,7 @@ const ThemeContext = React.createContext<ThemeContextType | undefined>(
 );
 
 const ThemeProvider = ({ children }: ChildrenType) => {
-  const [theme, setTheme] = useState<ThemeType>("dark");
+  const [theme, setTheme] = useState<ThemeType>("light");
 
   const toggleTheme = (): void => {
     setTheme((prev: ThemeType): ThemeType => {
