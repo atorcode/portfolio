@@ -40,7 +40,7 @@ const IntroductionSection = (): JSX.Element => {
         />
         <Paragraph
           text="My full name is Alberto Torrigiotti. I'm a software engineer, front-end
-        web developer, educator, and lifelong learner who excels at delivering
+        web developer, designer, educator, and lifelong learner who excels at delivering
         game-related services. I am extremely eager to collaborate with people
         and build projects together, so don't hesitate to reach out!"
           startingPos="down"
