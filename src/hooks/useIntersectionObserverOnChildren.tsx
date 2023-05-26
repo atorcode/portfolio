@@ -50,14 +50,17 @@ export const useIntersectionObserverOnChildren = ({
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const refCurrent = ref.current;
+
+    if (refCurrent) {
+      observer.observe(refCurrent);
     }
 
     return (): void => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (refCurrent) {
+        observer.unobserve(refCurrent);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visibilityOfChildren, isLoading]);
 };

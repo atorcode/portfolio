@@ -41,15 +41,18 @@ const App = (): JSX.Element => {
     timeoutId = setTimeout((): void => {
       setIsLoading(false);
     }, LOADING_SCREEN_DURATION);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect((): (() => void) => {
+    const scrollContainerRefCurrent = scrollContainerRef.current;
     if (!isLoading) {
-      scrollContainerRef.current?.classList.add(styles["app-scrollable"]);
+      scrollContainerRefCurrent?.classList.add(styles["app-scrollable"]);
     }
     return (): void => {
-      scrollContainerRef.current?.classList.remove(styles["app-scrollable"]);
+      scrollContainerRefCurrent?.classList.remove(styles["app-scrollable"]);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, theme]);
 
   return (

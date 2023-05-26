@@ -47,7 +47,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
 
   const easeOutQuart = (t: number) => 1 - --t * t * t * t;
 
-  //@ts-ignore
+  // eslint-disable-next-line
   const [_scrollBind, _scrollUnbind] = useScrollSnap(scrollContainerRef, {
     // snapDestinationY should match the height of each section as specified by @mixin section-dimensions in _mixins.scss
     snapDestinationY: "100vh",
@@ -86,6 +86,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
   }, []);
 
   useEffect((): (() => void) => {
+    const scrollContainerRefCurrent = scrollContainerRef.current;
     // Set currentSection to the first section (introduction) if it hasn't been set yet
     if (!currentSection) {
       setCurrentSection(sectionElements[0]);
@@ -107,10 +108,10 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     };
 
     const updateCurrentSection = (): void => {
-      if (!scrollContainerRef.current) {
+      if (!scrollContainerRefCurrent) {
         return;
       }
-      const scrollPosition = scrollContainerRef.current.scrollTop;
+      const scrollPosition = scrollContainerRefCurrent.scrollTop;
       const distancesToSections = sectionElements.map(
         (element: HTMLElement): number =>
           Math.abs(scrollPosition - element.offsetTop)
@@ -124,7 +125,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     };
     // If focusing an element causes scrolling, as in the case of tab navigation, ensure that one of the fixed scroll positions remains snapped to the scroll container. Without this function, it is possible for the container to display a position between two fixed positions.
     const scrollSnapOnFocus = (e: FocusEvent): void => {
-      if (!(e.target instanceof HTMLElement) || !scrollContainerRef.current) {
+      if (!(e.target instanceof HTMLElement) || !scrollContainerRefCurrent) {
         return;
       }
       // Valid snapTargets are the main section components: IntroductionSection, AboutSection, SkillsSection, ProjectsSection, and ContactSection
@@ -134,17 +135,17 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       if (!snapTarget) {
         return;
       }
-      if (scrollContainerRef.current.scrollTop !== snapTarget.offsetTop) {
-        scrollContainerRef.current.scrollTo(0, snapTarget.offsetTop);
+      if (scrollContainerRefCurrent.scrollTop !== snapTarget.offsetTop) {
+        scrollContainerRefCurrent.scrollTo(0, snapTarget.offsetTop);
       }
     };
 
     // Snap the scroll position to the start of the nearest section when resizing window
     const handleResize = (): void => {
-      if (!scrollContainerRef.current || sectionElements.length === 0) {
+      if (!scrollContainerRefCurrent || sectionElements.length === 0) {
         return;
       }
-      const scrollPosition = scrollContainerRef.current.scrollTop;
+      const scrollPosition = scrollContainerRefCurrent.scrollTop;
 
       const distancesToSections = sectionElements.map((element) =>
         Math.abs(scrollPosition - element.offsetTop)
@@ -159,12 +160,9 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     };
 
     // attach event listeners
-    scrollContainerRef.current?.addEventListener("scroll", updateIsScrolling);
-    scrollContainerRef.current?.addEventListener(
-      "scroll",
-      updateCurrentSection
-    );
-    scrollContainerRef.current?.addEventListener(
+    scrollContainerRefCurrent?.addEventListener("scroll", updateIsScrolling);
+    scrollContainerRefCurrent?.addEventListener("scroll", updateCurrentSection);
+    scrollContainerRefCurrent?.addEventListener(
       "focus",
       scrollSnapOnFocus,
       true
@@ -173,15 +171,15 @@ const ScrollProvider = ({ children }: ChildrenType) => {
 
     // remove event listeners when unmounting
     return (): void => {
-      scrollContainerRef.current?.removeEventListener(
+      scrollContainerRefCurrent?.removeEventListener(
         "scroll",
         updateIsScrolling
       );
-      scrollContainerRef.current?.removeEventListener(
+      scrollContainerRefCurrent?.removeEventListener(
         "scroll",
         updateCurrentSection
       );
-      scrollContainerRef.current?.removeEventListener(
+      scrollContainerRefCurrent?.removeEventListener(
         "focus",
         scrollSnapOnFocus,
         true

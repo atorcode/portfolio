@@ -41,6 +41,7 @@ const Notification = ({ id, type, text }: NotificationProps) => {
     return (): void => {
       clearTimeout(exitTransitionTimeoutId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let icon: JSX.Element | undefined;

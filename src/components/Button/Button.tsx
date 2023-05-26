@@ -33,21 +33,22 @@ const Button = ({
   const { theme } = useThemeContext();
 
   useEffect((): (() => void) => {
+    const buttonContainerRefCurrent = buttonContainerRef.current;
     let animationDonePromise: Promise<void>;
     let timeoutId: ReturnType<typeof setTimeout>;
     const handleHover = (e: MouseEvent): void => {
       if (
-        !buttonContainerRef.current ||
+        !buttonContainerRefCurrent ||
         !buttonRef.current ||
         // the following is to prevent extra triggers of the function when the cursor moves between the buttonContainer and its children. e.relatedTarget refers to the element that the cursor was hovering over before entering e.target.
-        buttonContainerRef.current.contains(e.relatedTarget as Node)
+        buttonContainerRefCurrent.contains(e.relatedTarget as Node)
       ) {
         return;
       }
       clearTimeout(timeoutId);
 
       buttonRef.current.classList.add(styles["button-animated"]);
-      buttonContainerRef.current.classList.add(
+      buttonContainerRefCurrent.classList.add(
         styles["button-container-hovered"]
       );
       animationDonePromise = new Promise((resolve) => {
@@ -56,20 +57,20 @@ const Button = ({
       });
     };
     const handleUnhover = async (): Promise<void> => {
-      if (!buttonContainerRef.current) {
+      if (!buttonContainerRefCurrent) {
         return;
       }
       await animationDonePromise;
-      buttonContainerRef.current.classList.remove(
+      buttonContainerRefCurrent.classList.remove(
         styles["button-container-hovered"]
       );
     };
-    buttonContainerRef.current?.addEventListener("mouseover", handleHover);
-    buttonContainerRef.current?.addEventListener("mouseleave", handleUnhover);
+    buttonContainerRefCurrent?.addEventListener("mouseover", handleHover);
+    buttonContainerRefCurrent?.addEventListener("mouseleave", handleUnhover);
 
     return (): void => {
-      buttonContainerRef.current?.removeEventListener("mouseover", handleHover);
-      buttonContainerRef.current?.removeEventListener(
+      buttonContainerRefCurrent?.removeEventListener("mouseover", handleHover);
+      buttonContainerRefCurrent?.removeEventListener(
         "mouseleave",
         handleUnhover
       );
@@ -110,6 +111,7 @@ const Button = ({
       }
       href={url}
       target={url[0] === "#" ? undefined : "_blank"}
+      rel="noreferrer"
     >
       <div
         className={`${styles["button-container"]} ${

@@ -43,8 +43,10 @@ export const useIntersectionObserver = ({
       { threshold: threshold }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const refCurrent = ref.current;
+
+    if (refCurrent) {
+      observer.observe(refCurrent);
     }
 
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -53,16 +55,16 @@ export const useIntersectionObserver = ({
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         if (beforeTransitionClass) {
-          ref.current?.classList.remove(beforeTransitionClass);
+          refCurrent?.classList.remove(beforeTransitionClass);
         }
-        ref.current?.classList.add(afterTransitionClass);
+        refCurrent?.classList.add(afterTransitionClass);
       }, transitionDelay);
     }
 
     return (): void => {
       clearTimeout(timeoutId);
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (refCurrent) {
+        observer.unobserve(refCurrent);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
