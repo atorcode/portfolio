@@ -26,41 +26,6 @@ const Projects = (): JSX.Element => {
     setVisibilityOfChildren: setVisibilityOfProjects,
   });
 
-  // useEffect((): (() => void) => {
-  //   const observer = new IntersectionObserver(
-  //     (entries: Array<IntersectionObserverEntry>): void => {
-  //       entries.forEach((entry: IntersectionObserverEntry): void => {
-  //         if (entry.isIntersecting) {
-  //           visibilityOfProjects.forEach(
-  //             (isVisible: boolean, index: number): void => {
-  //               if (!isVisible) {
-  //                 setTimeout((): void => {
-  //                   setVisibilityOfProjects(
-  //                     (prev: Array<boolean>): Array<boolean> => {
-  //                       const result = [...prev];
-  //                       result[index] = true;
-  //                       return result;
-  //                     }
-  //                   );
-  //                 }, 300 * index);
-  //               }
-  //             }
-  //           );
-  //         }
-  //       });
-  //     }
-  //   );
-  //   if (projectsRef.current) {
-  //     observer.observe(projectsRef.current);
-  //   }
-
-  //   return (): void => {
-  //     if (projectsRef.current) {
-  //       observer.unobserve(projectsRef.current);
-  //     }
-  //   };
-  // }, []);
-
   return (
     <section className={styles["projects"]} ref={projectsRef}>
       {projectsData.map((project: ProjectType, index: number): JSX.Element => {

@@ -41,6 +41,7 @@ const HeaderMenu = ({
         href={"https://github.com/atorcode"}
         ref={githubRef}
         target="_blank"
+        rel="noreferrer"
       >
         <FaGithub />
       </a>

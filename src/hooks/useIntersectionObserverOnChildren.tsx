@@ -49,6 +49,7 @@ export const useIntersectionObserverOnChildren = ({
         threshold: threshold,
       }
     );
+
     if (ref.current) {
       observer.observe(ref.current);
     }

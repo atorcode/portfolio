@@ -58,6 +58,7 @@ const NavBullet = ({ index, isVisible }: NavBulletProps) => {
       );
       buttonRef.current?.classList.remove(`${styles["bullet-transition"]}`);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme, isLoading]);
 
   useEffect((): void => {
@@ -71,6 +72,7 @@ const NavBullet = ({ index, isVisible }: NavBulletProps) => {
         setBeforeClassesAdded(true);
       }, 1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [beforeClassesAdded, expandedBulletIndex]);
 
   useEffect((): void => {
@@ -80,6 +82,7 @@ const NavBullet = ({ index, isVisible }: NavBulletProps) => {
       }
       buttonRef.current?.classList.remove(styles["bullet-before"]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, isVisible]);
 
   return (

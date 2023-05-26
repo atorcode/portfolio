@@ -32,6 +32,7 @@ const Paragraph = ({
     paragraphRef.current?.classList.add(
       styles[`paragraph-before-${startingPos}`]
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   useIntersectionObserver({

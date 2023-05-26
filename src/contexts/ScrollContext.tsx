@@ -47,6 +47,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
 
   const easeOutQuart = (t: number) => 1 - --t * t * t * t;
 
+  //@ts-ignore
   const [_scrollBind, _scrollUnbind] = useScrollSnap(scrollContainerRef, {
     // snapDestinationY should match the height of each section as specified by @mixin section-dimensions in _mixins.scss
     snapDestinationY: "100vh",
@@ -187,6 +188,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       );
       window.removeEventListener("resize", handleResize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionElements]);
 
   useEffect((): void => {

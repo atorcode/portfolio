@@ -35,6 +35,7 @@ const FormField = ({
       ...prev,
       [fieldType]: validateFormField(fieldType, inputValue),
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let placeholderText: string;

@@ -21,6 +21,7 @@ export const useScrollSnap: UseScrollSnapType = (ref, settings, callback) => {
       setScrollBind((): (() => void) => bind);
       setScrollUnbind((): (() => void) => unbind);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [scrollBind, scrollUnbind];

@@ -74,6 +74,7 @@ const Button = ({
         handleUnhover
       );
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -88,6 +89,7 @@ const Button = ({
         );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme, isVisible]);
 
   useIntersectionObserver({
