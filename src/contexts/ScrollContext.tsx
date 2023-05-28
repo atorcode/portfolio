@@ -204,6 +204,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     } else if (scrollContainerRef.current.offsetWidth > 768) {
       _scrollBind();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollContainerRef.current?.offsetWidth]);
 
   return (
