@@ -47,7 +47,6 @@ const ScrollProvider = ({ children }: ChildrenType) => {
 
   const easeOutQuart = (t: number) => 1 - --t * t * t * t;
 
-  // eslint-disable-next-line
   const [_scrollBind, _scrollUnbind] = useScrollSnap(scrollContainerRef, {
     // snapDestinationY should match the height of each section as specified by @mixin section-dimensions in _mixins.scss
     snapDestinationY: "100vh",
@@ -197,6 +196,15 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       )
     );
   }, [currentSection, sectionElements]);
+
+  // Disable scroll snap on smaller screen sizes
+  useEffect((): void => {
+    if (scrollContainerRef.current.offsetWidth <= 768) {
+      _scrollUnbind();
+    } else if (scrollContainerRef.current.offsetWidth > 768) {
+      _scrollBind();
+    }
+  }, [scrollContainerRef.current?.offsetWidth]);
 
   return (
     <ScrollContext.Provider
