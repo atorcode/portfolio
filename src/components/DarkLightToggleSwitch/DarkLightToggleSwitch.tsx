@@ -10,13 +10,13 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { useThemeContext } from "../../contexts/ThemeContext";
 
 type DarkLightToggleSwitchProps = {
-  isVisible: boolean;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  sectionIsVisible: boolean;
+  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const DarkLightToggleSwitch = ({
-  isVisible,
-  setIsVisible,
+  sectionIsVisible,
+  setSectionIsVisible,
 }: DarkLightToggleSwitchProps): JSX.Element => {
   const [isResizing, setIsResizing] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -54,8 +54,8 @@ const DarkLightToggleSwitch = ({
 
   useIntersectionObserver({
     ref: buttonRef,
-    isVisible,
-    setIsVisible,
+    isVisible: sectionIsVisible,
+    setIsVisible: setSectionIsVisible,
     transitionDelay: 500,
     beforeTransitionClass: styles["panel-before"],
     afterTransitionClass: styles["panel-after"],

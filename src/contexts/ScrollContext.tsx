@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 // dependencies and hooks
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useScrollSnap } from "../hooks/useScrollSnap";
@@ -197,8 +195,14 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     );
   }, [currentSection, sectionElements]);
 
-  // Disable scroll snap on smaller screen sizes
+  // Disable scroll snap on smaller screen sizes (The offsetWidth of the container itself is not stateful, but any time the user attempts to scroll, the sections will be rerendered causing the setIsWindowSmall state value to be updated accordingly.)
   useEffect((): void => {
+    console.log("Asd");
+    if (!scrollContainerRef.current?.offsetWidth) {
+      return;
+    }
+    if (scrollContainerRef.current?.offsetWidth <= 768) {
+    }
     if (scrollContainerRef.current.offsetWidth <= 768) {
       _scrollUnbind();
     } else if (scrollContainerRef.current.offsetWidth > 768) {

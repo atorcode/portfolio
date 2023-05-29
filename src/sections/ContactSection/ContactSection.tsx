@@ -23,10 +23,13 @@ const ContactSection = (): JSX.Element => {
     >
       <SectionHeading
         text="Contact Me"
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        sectionIsVisible={isVisible}
+        setSectionIsVisible={setIsVisible}
       />
-      <ContactForm isVisible={isVisible} setIsVisible={setIsVisible} />
+      <ContactForm
+        sectionIsVisible={isVisible}
+        setSectionIsVisible={setIsVisible}
+      />
     </section>
   );
 };

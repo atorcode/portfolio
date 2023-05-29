@@ -24,8 +24,8 @@ const ProjectsSection = (): JSX.Element => {
       <header className={styles["header"]}>
         <SectionHeading
           text="My Recent Projects"
-          isVisible={isVisible}
-          setIsVisible={setIsVisible}
+          sectionIsVisible={isVisible}
+          setSectionIsVisible={setIsVisible}
         />
       </header>
       <Projects />

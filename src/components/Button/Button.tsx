@@ -14,8 +14,8 @@ type ButtonProps = {
   url?: string;
   hasResizeableParent?: boolean;
   startingPos?: StartingPosition;
-  isVisible?: boolean;
-  setIsVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+  sectionIsVisible?: boolean;
+  setSectionIsVisible?: React.Dispatch<React.SetStateAction<boolean>>;
   transitionDelay?: number | undefined;
 };
 
@@ -24,8 +24,8 @@ const Button = ({
   url,
   hasResizeableParent,
   startingPos,
-  isVisible,
-  setIsVisible,
+  sectionIsVisible,
+  setSectionIsVisible,
   transitionDelay,
 }: ButtonProps): JSX.Element => {
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
@@ -79,7 +79,7 @@ const Button = ({
   }, []);
 
   useEffect(() => {
-    if (!isVisible) {
+    if (!sectionIsVisible) {
       if (startingPos) {
         buttonContainerRef.current?.classList.add(
           styles[`button-container-before-${startingPos}`]
@@ -91,12 +91,12 @@ const Button = ({
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, isVisible]);
+  }, [theme, sectionIsVisible]);
 
   useIntersectionObserver({
     ref: buttonContainerRef,
-    isVisible,
-    setIsVisible,
+    isVisible: sectionIsVisible,
+    setIsVisible: setSectionIsVisible,
     transitionDelay: transitionDelay || 1000,
     beforeTransitionClass: startingPos
       ? styles[`button-container-before-${startingPos}`]

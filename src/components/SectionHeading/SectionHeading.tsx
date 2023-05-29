@@ -8,14 +8,14 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 type SectionHeadingProps = {
   text: string;
-  isVisible: boolean;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  sectionIsVisible: boolean;
+  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SectionHeading = ({
   text,
-  isVisible,
-  setIsVisible,
+  sectionIsVisible,
+  setSectionIsVisible,
 }: SectionHeadingProps): JSX.Element => {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const { theme } = useThemeContext();
@@ -26,8 +26,8 @@ const SectionHeading = ({
 
   useIntersectionObserver({
     ref: headingRef,
-    isVisible,
-    setIsVisible,
+    isVisible: sectionIsVisible,
+    setIsVisible: setSectionIsVisible,
     beforeTransitionClass: styles["heading-before"],
     afterTransitionClass: styles["heading-after"],
     threshold: 1,

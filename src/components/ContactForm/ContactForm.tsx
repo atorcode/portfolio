@@ -17,13 +17,13 @@ import Button from "../Button";
 import { ValidityOfFields } from "../../types/ValidityOfFields";
 
 type ContactFormProps = {
-  isVisible: boolean;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  sectionIsVisible: boolean;
+  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ContactForm = ({
-  isVisible,
-  setIsVisible,
+  sectionIsVisible,
+  setSectionIsVisible,
 }: ContactFormProps): JSX.Element => {
   const [areFieldsValid, setAreFieldsValid] = useState<ValidityOfFields>({
     name: false,
@@ -40,8 +40,8 @@ const ContactForm = ({
 
   useIntersectionObserver({
     ref: formRef,
-    isVisible,
-    setIsVisible,
+    isVisible: sectionIsVisible,
+    setIsVisible: setSectionIsVisible,
     beforeTransitionClass: styles["form-before"],
     afterTransitionClass: styles["form-after"],
   });
@@ -90,8 +90,8 @@ const ContactForm = ({
       <Button
         text="Submit"
         startingPos="right"
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        sectionIsVisible={sectionIsVisible}
+        setSectionIsVisible={setSectionIsVisible}
         transitionDelay={500}
       />
     </form>

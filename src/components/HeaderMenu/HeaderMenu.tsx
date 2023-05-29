@@ -12,12 +12,12 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import DarkLightToggleSwitch from "../DarkLightToggleSwitch";
 
 type HeaderMenuProps = {
-  isVisible: boolean;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  sectionIsVisible: boolean;
+  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const HeaderMenu = ({
-  isVisible,
-  setIsVisible,
+  sectionIsVisible,
+  setSectionIsVisible,
 }: HeaderMenuProps): JSX.Element => {
   const githubRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -27,8 +27,8 @@ const HeaderMenu = ({
 
   useIntersectionObserver({
     ref: githubRef,
-    isVisible,
-    setIsVisible,
+    isVisible: sectionIsVisible,
+    setIsVisible: setSectionIsVisible,
     transitionDelay: 500,
     beforeTransitionClass: styles["github-link-before"],
     afterTransitionClass: styles["github-link-after"],
@@ -47,8 +47,8 @@ const HeaderMenu = ({
       </a>
 
       <DarkLightToggleSwitch
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        sectionIsVisible={sectionIsVisible}
+        setSectionIsVisible={setSectionIsVisible}
       />
     </header>
   );

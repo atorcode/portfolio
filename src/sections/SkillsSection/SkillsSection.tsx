@@ -29,20 +29,20 @@ const SkillsSection = (): JSX.Element => {
     >
       <SectionHeading
         text="My Skills"
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        sectionIsVisible={isVisible}
+        setSectionIsVisible={setIsVisible}
       />
       <SkillBoxGroup
         subheading="My Bag of Tools"
         skills={TOOLS}
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        sectionIsVisible={isVisible}
+        setSectionIsVisible={setIsVisible}
       />
       <SkillBoxGroup
         subheading="Other Skills"
         skills={SKILLS}
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        sectionIsVisible={isVisible}
+        setSectionIsVisible={setIsVisible}
       />
     </section>
   );

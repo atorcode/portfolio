@@ -12,21 +12,21 @@ import { StartingPosition } from "../../types/StartingPosition";
 type ParagraphProps = {
   text: string;
   startingPos?: StartingPosition;
-  isVisible: boolean;
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  sectionIsVisible: boolean;
+  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Paragraph = ({
   text,
   startingPos,
-  isVisible,
-  setIsVisible,
+  sectionIsVisible,
+  setSectionIsVisible,
 }: ParagraphProps): JSX.Element => {
   const paragraphRef = useRef<HTMLParagraphElement | null>(null);
   const { theme } = useThemeContext();
 
   useEffect((): void => {
-    if (isVisible) {
+    if (sectionIsVisible) {
       return;
     }
     paragraphRef.current?.classList.add(
@@ -37,8 +37,8 @@ const Paragraph = ({
 
   useIntersectionObserver({
     ref: paragraphRef,
-    isVisible,
-    setIsVisible,
+    isVisible: sectionIsVisible,
+    setIsVisible: setSectionIsVisible,
     transitionDelay: 500,
     beforeTransitionClass: styles[`paragraph-before-${startingPos}`],
     afterTransitionClass: styles["paragraph-after"],

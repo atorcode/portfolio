@@ -30,13 +30,16 @@ const IntroductionSection = (): JSX.Element => {
           styles[`content-mask-${theme}`]
         }`}
       ></div>
-      <HeaderMenu isVisible={isVisible} setIsVisible={setIsVisible} />
+      <HeaderMenu
+        sectionIsVisible={isVisible}
+        setSectionIsVisible={setIsVisible}
+      />
       <Mask unveilDirection="up" />
       <div className={styles["introduction-content"]}>
         <SectionHeading
           text="Hey, I'm Albo!"
-          isVisible={isVisible}
-          setIsVisible={setIsVisible}
+          sectionIsVisible={isVisible}
+          setSectionIsVisible={setIsVisible}
         />
         <Paragraph
           text="My full name is Alberto Torrigiotti. I'm a software engineer, front-end
@@ -44,14 +47,14 @@ const IntroductionSection = (): JSX.Element => {
         game-related services. I am extremely eager to collaborate with people
         and build projects together, so don't hesitate to reach out!"
           startingPos="down"
-          isVisible={isVisible}
-          setIsVisible={setIsVisible}
+          sectionIsVisible={isVisible}
+          setSectionIsVisible={setIsVisible}
         />
         <Button
           text="Explore My Work"
           url="#projects"
-          isVisible={isVisible}
-          setIsVisible={setIsVisible}
+          sectionIsVisible={isVisible}
+          setSectionIsVisible={setIsVisible}
           transitionDelay={1000}
         />
       </div>
