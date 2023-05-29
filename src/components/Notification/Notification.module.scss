@@ -12,6 +12,7 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   font-family: "Roboto";
   font-size: 0.9rem;
+  user-select: none;
 
   transition: transform 500ms ease, margin-top 300ms ease;
 }

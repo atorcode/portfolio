@@ -2,7 +2,7 @@
 import styles from "./Paragraph.module.scss";
 
 // dependencies and hooks
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
@@ -22,6 +22,7 @@ const Paragraph = ({
   sectionIsVisible,
   setSectionIsVisible,
 }: ParagraphProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const paragraphRef = useRef<HTMLParagraphElement | null>(null);
   const { theme } = useThemeContext();
 
@@ -37,8 +38,10 @@ const Paragraph = ({
 
   useIntersectionObserver({
     ref: paragraphRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
     transitionDelay: 500,
     beforeTransitionClass: styles[`paragraph-before-${startingPos}`],
     afterTransitionClass: styles["paragraph-after"],

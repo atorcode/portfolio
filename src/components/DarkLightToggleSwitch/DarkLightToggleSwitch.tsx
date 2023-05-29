@@ -18,6 +18,7 @@ const DarkLightToggleSwitch = ({
   sectionIsVisible,
   setSectionIsVisible,
 }: DarkLightToggleSwitchProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isResizing, setIsResizing] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const switchRef = useRef<HTMLDivElement | null>(null);
@@ -54,8 +55,10 @@ const DarkLightToggleSwitch = ({
 
   useIntersectionObserver({
     ref: buttonRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
     transitionDelay: 500,
     beforeTransitionClass: styles["panel-before"],
     afterTransitionClass: styles["panel-after"],

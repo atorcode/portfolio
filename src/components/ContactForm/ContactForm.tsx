@@ -25,6 +25,7 @@ const ContactForm = ({
   sectionIsVisible,
   setSectionIsVisible,
 }: ContactFormProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [areFieldsValid, setAreFieldsValid] = useState<ValidityOfFields>({
     name: false,
     email: false,
@@ -40,8 +41,10 @@ const ContactForm = ({
 
   useIntersectionObserver({
     ref: formRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
     beforeTransitionClass: styles["form-before"],
     afterTransitionClass: styles["form-after"],
   });

@@ -5,7 +5,7 @@ import styles from "./HeaderMenu.module.scss";
 import { FaGithub } from "react-icons/fa";
 
 // hooks
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 // components
@@ -19,6 +19,7 @@ const HeaderMenu = ({
   sectionIsVisible,
   setSectionIsVisible,
 }: HeaderMenuProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const githubRef = useRef<HTMLAnchorElement | null>(null);
 
   useEffect(() => {
@@ -27,8 +28,10 @@ const HeaderMenu = ({
 
   useIntersectionObserver({
     ref: githubRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
     transitionDelay: 500,
     beforeTransitionClass: styles["github-link-before"],
     afterTransitionClass: styles["github-link-after"],

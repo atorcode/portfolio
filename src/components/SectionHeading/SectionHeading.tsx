@@ -2,7 +2,7 @@
 import styles from "./SectionHeading.module.scss";
 
 // hooks
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
@@ -17,6 +17,7 @@ const SectionHeading = ({
   sectionIsVisible,
   setSectionIsVisible,
 }: SectionHeadingProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const { theme } = useThemeContext();
 
@@ -26,8 +27,10 @@ const SectionHeading = ({
 
   useIntersectionObserver({
     ref: headingRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
     beforeTransitionClass: styles["heading-before"],
     afterTransitionClass: styles["heading-after"],
     threshold: 1,

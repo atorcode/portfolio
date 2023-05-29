@@ -9,6 +9,10 @@ type ScrollContextType = {
   isScrolling: boolean;
   scrollContainerRef: React.MutableRefObject<HTMLElement | null>;
   expandedBulletIndex: number;
+  observeSectionsForTransitions: boolean;
+  setObserveSectionsForTransitions: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
   introductionSectionRef: React.MutableRefObject<HTMLElement | null>;
   aboutSectionRef: React.MutableRefObject<HTMLElement | null>;
   skillsSectionRef: React.MutableRefObject<HTMLElement | null>;
@@ -34,6 +38,8 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     []
   );
   const [expandedBulletIndex, setExpandedBulletIndex] = useState<number>(0);
+  const [observeSectionsForTransitions, setObserveSectionsForTransitions] =
+    useState<boolean>(true);
   const scrollContainerRef = useRef<HTMLElement | null>(null);
 
   // sections
@@ -63,6 +69,27 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     scrollContainerRef.current.scrollTo(0, sectionElements[index].offsetTop);
   };
 
+  const setIntersectionObserverType = (): void => {
+    if (!scrollContainerRef.current?.offsetWidth) {
+      return;
+    }
+    if (scrollContainerRef.current?.offsetWidth <= 768) {
+      console.log("small");
+      setObserveSectionsForTransitions(false);
+    } else if (scrollContainerRef.current?.offsetWidth > 768) {
+      console.log("large");
+      setObserveSectionsForTransitions(true);
+    }
+  };
+
+  useEffect((): void => {
+    if (observeSectionsForTransitions) {
+      _scrollBind();
+    } else {
+      _scrollUnbind();
+    }
+  }, [observeSectionsForTransitions]);
+
   useEffect((): void => {
     const createNonNullRefArray = (
       ...args: Array<HTMLElement | null>
@@ -80,6 +107,8 @@ const ScrollProvider = ({ children }: ChildrenType) => {
         contactSectionRef.current
       )
     );
+
+    setIntersectionObserverType();
   }, []);
 
   useEffect((): (() => void) => {
@@ -154,6 +183,8 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       let nearestSection = sectionElements[nearestSectionIndex];
 
       nearestSection.scrollIntoView({ behavior: "auto" });
+
+      setIntersectionObserverType();
     };
 
     // attach event listeners
@@ -195,28 +226,14 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     );
   }, [currentSection, sectionElements]);
 
-  // Disable scroll snap on smaller screen sizes (The offsetWidth of the container itself is not stateful, but any time the user attempts to scroll, the sections will be rerendered causing the setIsWindowSmall state value to be updated accordingly.)
-  useEffect((): void => {
-    console.log("Asd");
-    if (!scrollContainerRef.current?.offsetWidth) {
-      return;
-    }
-    if (scrollContainerRef.current?.offsetWidth <= 768) {
-    }
-    if (scrollContainerRef.current.offsetWidth <= 768) {
-      _scrollUnbind();
-    } else if (scrollContainerRef.current.offsetWidth > 768) {
-      _scrollBind();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scrollContainerRef.current?.offsetWidth]);
-
   return (
     <ScrollContext.Provider
       value={{
         isScrolling,
         scrollContainerRef,
         expandedBulletIndex,
+        observeSectionsForTransitions,
+        setObserveSectionsForTransitions,
         introductionSectionRef,
         aboutSectionRef,
         skillsSectionRef,

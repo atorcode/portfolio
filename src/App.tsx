@@ -40,7 +40,7 @@ const App = (): JSX.Element => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout((): void => {
       setIsLoading(false);
-    }, LOADING_SCREEN_DURATION);
+    }, LOADING_SCREEN_DURATION - 5000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -2,7 +2,7 @@
 import styles from "./Mask.module.scss";
 
 // hooks
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useLoadingContext } from "../../contexts/LoadingContext";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
@@ -18,17 +18,20 @@ const Mask = ({
   sectionIsVisible,
   setSectionIsVisible,
 }: MaskProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const maskRef = useRef<HTMLDivElement | null>(null);
   const { theme } = useThemeContext();
   const { isLoading } = useLoadingContext();
 
   useIntersectionObserver({
     ref: maskRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
     transitionDelay: 0,
     afterTransitionClass: styles["mask-hidden"],
-    threshold: 1,
+    threshold: 0.3,
   });
 
   return (

@@ -7,6 +7,7 @@ import projectsData from "../../data/projects.json";
 // hooks
 import { useRef, useState } from "react";
 import { useIntersectionObserverOnChildren } from "../../hooks/useIntersectionObserverOnChildren";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 // components
 import Project from "../Project/Project";
@@ -15,6 +16,7 @@ import Project from "../Project/Project";
 import { ProjectType } from "../../types/ProjectType";
 
 const Projects = (): JSX.Element => {
+  const { observeSectionsForTransitions } = useScrollContext();
   const [visibilityOfProjects, setVisibilityOfProjects] = useState<
     Array<boolean>
   >([false, false, false, false]);
@@ -24,6 +26,7 @@ const Projects = (): JSX.Element => {
     ref: projectsRef,
     visibilityOfChildren: visibilityOfProjects,
     setVisibilityOfChildren: setVisibilityOfProjects,
+    disabled: !observeSectionsForTransitions,
   });
 
   return (
@@ -32,7 +35,7 @@ const Projects = (): JSX.Element => {
         return (
           <Project
             key={project.id}
-            isVisible={visibilityOfProjects[index]}
+            groupIsVisible={visibilityOfProjects[index]}
             {...project}
           />
         );

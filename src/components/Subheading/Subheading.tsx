@@ -2,7 +2,7 @@
 import styles from "./Subheading.module.scss";
 
 // hooks
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 type SubheadingProps = {
@@ -16,6 +16,7 @@ const Subheading = ({
   sectionIsVisible,
   setSectionIsVisible,
 }: SubheadingProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
@@ -24,8 +25,10 @@ const Subheading = ({
 
   useIntersectionObserver({
     ref: headingRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
     beforeTransitionClass: styles["subheading-before"],
     afterTransitionClass: styles["subheading-after"],
   });

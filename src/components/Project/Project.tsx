@@ -9,6 +9,7 @@ import { ReactComponent as GithubLogo } from "../../assets/github-logo.svg";
 import { useEffect, useRef, useState } from "react";
 import { useScrollContext } from "../../contexts/ScrollContext";
 import { useThemeContext } from "../../contexts/ThemeContext";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 // components
 import Button from "../Button";
@@ -17,20 +18,21 @@ import Button from "../Button";
 import { ProjectType } from "../../types/ProjectType";
 
 type ProjectProps = ProjectType & {
-  isVisible: boolean;
+  groupIsVisible: boolean;
 };
 
 const Project = ({
-  isVisible,
+  groupIsVisible,
   name,
   imagePath,
   imageAltText,
   projectUrl,
   githubUrl,
 }: ProjectProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [projectImage, setProjectImage] = useState<string | undefined>();
   const projectRef = useRef<HTMLElement | null>(null);
-  const { isScrolling } = useScrollContext();
+  const { isScrolling, observeSectionsForTransitions } = useScrollContext();
   const { theme } = useThemeContext();
 
   useEffect((): void => {
@@ -42,10 +44,19 @@ const Project = ({
   }, [imagePath]);
 
   useEffect((): void => {
-    if (!isScrolling && isVisible) {
+    if (!isScrolling && groupIsVisible) {
       projectRef.current?.classList.add(styles["project-visible"]);
     }
-  }, [isScrolling, isVisible]);
+  }, [isScrolling, groupIsVisible]);
+
+  useIntersectionObserver({
+    ref: projectRef,
+    isVisible,
+    setIsVisible,
+    afterTransitionClass: styles["project-visible"],
+    threshold: 0.2,
+    disabled: observeSectionsForTransitions,
+  });
 
   return (
     <article className={styles["project"]} ref={projectRef}>

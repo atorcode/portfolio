@@ -2,9 +2,10 @@
 import styles from "./Button.module.scss";
 
 // dependencies and hooks
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 // types
 import { StartingPosition } from "../../types/StartingPosition";
@@ -28,9 +29,11 @@ const Button = ({
   setSectionIsVisible,
   transitionDelay,
 }: ButtonProps): JSX.Element => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { theme } = useThemeContext();
+  const { observeSectionsForTransitions } = useScrollContext();
 
   useEffect((): (() => void) => {
     const buttonContainerRefCurrent = buttonContainerRef.current;
@@ -95,13 +98,21 @@ const Button = ({
 
   useIntersectionObserver({
     ref: buttonContainerRef,
-    isVisible: sectionIsVisible,
-    setIsVisible: setSectionIsVisible,
-    transitionDelay: transitionDelay || 1000,
+    isVisible,
+    setIsVisible,
+    sectionIsVisible,
+    setSectionIsVisible,
+    transitionDelay:
+      text === "Explore My Work"
+        ? transitionDelay || 1000
+        : !observeSectionsForTransitions
+        ? 200
+        : transitionDelay || 1000,
     beforeTransitionClass: startingPos
       ? styles[`button-container-before-${startingPos}`]
       : styles["button-container-before-stationary"],
     afterTransitionClass: styles["button-container-after"],
+    threshold: 0,
   });
 
   return url ? (
