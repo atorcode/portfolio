@@ -24,19 +24,24 @@ import { SkillsType } from "../../types/SkillsType";
 
 type SkillBoxProps = {
   skill: SkillsType;
-  isVisible: boolean;
+  groupIsVisible: boolean;
 };
 
-const SkillBox = ({ skill, isVisible }: SkillBoxProps): JSX.Element => {
+const SkillBox = ({ skill, groupIsVisible }: SkillBoxProps): JSX.Element => {
   const skillBoxRef = useRef<HTMLDivElement | null>(null);
   const { isScrolling } = useScrollContext();
   const { theme } = useThemeContext();
 
+  useEffect(() => {
+    if (!groupIsVisible)
+      skillBoxRef.current?.classList.add(styles["skill-box-before"]);
+  }, [theme]);
+
   useEffect((): void => {
-    if (!isScrolling && isVisible) {
-      skillBoxRef.current?.classList.add(styles["skill-box-visible"]);
+    if (!isScrolling && groupIsVisible) {
+      skillBoxRef.current?.classList.add(styles["skill-box-after"]);
     }
-  }, [isScrolling, isVisible]);
+  }, [isScrolling, groupIsVisible]);
 
   let icon: JSX.Element | undefined;
   switch (skill) {

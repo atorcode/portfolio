@@ -49,7 +49,7 @@ const SkillBoxGroup = ({
             <SkillBox
               key={index}
               skill={skill}
-              isVisible={visibilityOfSkillBoxes[index]}
+              groupIsVisible={visibilityOfSkillBoxes[index]}
             />
           );
         })}

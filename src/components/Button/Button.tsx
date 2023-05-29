@@ -82,7 +82,10 @@ const Button = ({
   }, []);
 
   useEffect(() => {
-    if (!sectionIsVisible) {
+    if (
+      (observeSectionsForTransitions && !sectionIsVisible) ||
+      (!observeSectionsForTransitions && !isVisible)
+    ) {
       if (startingPos) {
         buttonContainerRef.current?.classList.add(
           styles[`button-container-before-${startingPos}`]
@@ -93,8 +96,9 @@ const Button = ({
         );
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, sectionIsVisible]);
+  }, [theme, isVisible, sectionIsVisible]);
 
   useIntersectionObserver({
     ref: buttonContainerRef,

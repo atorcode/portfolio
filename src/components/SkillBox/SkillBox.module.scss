@@ -10,8 +10,6 @@
   font-family: "Roboto";
   font-size: 1.2rem;
   user-select: none;
-  opacity: 0;
-  transform: translateY(5rem);
 
   transition: opacity 800ms linear, transform 800ms ease;
 }
@@ -26,7 +24,12 @@
   color: v.$primary-color-dark-shade;
 }
 
-.skill-box-visible {
+.skill-box-before {
+  opacity: 0;
+  transform: translateY(5rem);
+}
+
+.skill-box-after {
   opacity: 1;
   transform: translateY(0);
 }

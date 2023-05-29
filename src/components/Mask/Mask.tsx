@@ -41,7 +41,9 @@ const Mask = ({
       }
         ${
           (!isLoading && unveilDirection === "up") ||
-          (!isLoading && sectionIsVisible && unveilDirection === "down")
+          (!isLoading &&
+            (sectionIsVisible || isVisible) &&
+            unveilDirection === "down")
             ? styles["mask-hidden"]
             : ""
         }`}

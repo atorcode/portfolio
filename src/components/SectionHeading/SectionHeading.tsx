@@ -5,6 +5,7 @@ import styles from "./SectionHeading.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 type SectionHeadingProps = {
   text: string;
@@ -20,10 +21,16 @@ const SectionHeading = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const { theme } = useThemeContext();
+  const { observeSectionsForTransitions } = useScrollContext();
 
   useEffect((): void => {
-    headingRef.current?.classList.add(styles["heading-before"]);
-  }, []);
+    if (
+      (observeSectionsForTransitions && !sectionIsVisible) ||
+      (!observeSectionsForTransitions && !isVisible)
+    ) {
+      headingRef.current?.classList.add(styles["heading-before"]);
+    }
+  }, [theme]);
 
   useIntersectionObserver({
     ref: headingRef,

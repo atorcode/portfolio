@@ -5,6 +5,7 @@ import styles from "./Paragraph.module.scss";
 import React, { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 // types
 import { StartingPosition } from "../../types/StartingPosition";
@@ -25,14 +26,17 @@ const Paragraph = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const paragraphRef = useRef<HTMLParagraphElement | null>(null);
   const { theme } = useThemeContext();
+  const { observeSectionsForTransitions } = useScrollContext();
 
   useEffect((): void => {
-    if (sectionIsVisible) {
-      return;
+    if (
+      (observeSectionsForTransitions && !sectionIsVisible) ||
+      (!observeSectionsForTransitions && !isVisible)
+    ) {
+      paragraphRef.current?.classList.add(
+        styles[`paragraph-before-${startingPos}`]
+      );
     }
-    paragraphRef.current?.classList.add(
-      styles[`paragraph-before-${startingPos}`]
-    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
