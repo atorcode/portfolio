@@ -88,6 +88,7 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     } else {
       _scrollUnbind();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observeSectionsForTransitions]);
 
   useEffect((): void => {

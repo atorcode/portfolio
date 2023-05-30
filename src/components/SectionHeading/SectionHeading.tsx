@@ -30,6 +30,7 @@ const SectionHeading = ({
     ) {
       headingRef.current?.classList.add(styles["heading-before"]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   useIntersectionObserver({

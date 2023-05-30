@@ -35,6 +35,7 @@ const SkillBox = ({ skill, groupIsVisible }: SkillBoxProps): JSX.Element => {
   useEffect(() => {
     if (!groupIsVisible)
       skillBoxRef.current?.classList.add(styles["skill-box-before"]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   useEffect((): void => {
