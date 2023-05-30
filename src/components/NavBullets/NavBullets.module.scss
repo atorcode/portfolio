@@ -1,5 +1,5 @@
 .nav {
-  display: block;
+  visibility: visible;
   position: fixed;
   top: 50%;
   transform: translateY(-52.5%);
@@ -34,6 +34,6 @@
 
 @media (max-width: 768px) {
   .nav {
-    display: none;
+    visibility: hidden;
   }
 }
