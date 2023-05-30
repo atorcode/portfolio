@@ -16,15 +16,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transform: translateX(-5rem);
 
   transition: opacity v.$theme-toggle-transition-duration ease,
     transform v.$theme-toggle-transition-duration ease;
 }
 
-.github-link-before {
-  opacity: 0;
-  transform: translateX(-5rem);
-}
+// .github-link-before {
+//   opacity: 0;
+//   transform: translateX(-5rem);
+// }
 
 .github-link-after {
   opacity: 1;

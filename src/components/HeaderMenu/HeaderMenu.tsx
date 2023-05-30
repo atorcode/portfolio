@@ -5,54 +5,41 @@ import styles from "./HeaderMenu.module.scss";
 import { FaGithub } from "react-icons/fa";
 
 // hooks
-import { useEffect, useRef, useState } from "react";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useEffect, useRef } from "react";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 
 // components
 import DarkLightToggleSwitch from "../DarkLightToggleSwitch";
 
-type HeaderMenuProps = {
-  sectionIsVisible: boolean;
-  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
-};
-const HeaderMenu = ({
-  sectionIsVisible,
-  setSectionIsVisible,
-}: HeaderMenuProps): JSX.Element => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+const HeaderMenu = (): JSX.Element => {
   const githubRef = useRef<HTMLAnchorElement | null>(null);
+  const { isLoading } = useLoadingContext();
 
-  useEffect(() => {
+  useEffect((): void => {
     githubRef.current?.classList.add(styles["github-link-before"]);
   }, []);
 
-  useIntersectionObserver({
-    ref: githubRef,
-    isVisible,
-    setIsVisible,
-    sectionIsVisible,
-    setSectionIsVisible,
-    transitionDelay: 500,
-    beforeTransitionClass: styles["github-link-before"],
-    afterTransitionClass: styles["github-link-after"],
-  });
+  useEffect((): void => {
+    if (!isLoading) {
+      setTimeout(() => {
+        githubRef.current?.classList.add(styles["github-link-after"]);
+      }, 500);
+    }
+  }, [isLoading]);
 
   return (
-    <header className={styles["header"]}>
+    <header className={`${styles["header"]}`}>
       <a
-        className={styles["github-link"]}
+        className={`${styles["github-link"]}`}
         href={"https://github.com/atorcode"}
-        ref={githubRef}
         target="_blank"
         rel="noreferrer"
+        ref={githubRef}
       >
         <FaGithub />
       </a>
 
-      <DarkLightToggleSwitch
-        sectionIsVisible={sectionIsVisible}
-        setSectionIsVisible={setSectionIsVisible}
-      />
+      <DarkLightToggleSwitch />
     </header>
   );
 };

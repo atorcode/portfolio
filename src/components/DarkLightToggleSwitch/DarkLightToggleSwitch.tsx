@@ -6,24 +6,16 @@ import { RiSunFill, RiMoonFill } from "react-icons/ri";
 
 // hooks
 import { useEffect, useRef, useState } from "react";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { useThemeContext } from "../../contexts/ThemeContext";
+import { useLoadingContext } from "../../contexts/LoadingContext";
 
-type DarkLightToggleSwitchProps = {
-  sectionIsVisible: boolean;
-  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const DarkLightToggleSwitch = ({
-  sectionIsVisible,
-  setSectionIsVisible,
-}: DarkLightToggleSwitchProps): JSX.Element => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+const DarkLightToggleSwitch = (): JSX.Element => {
   const [isResizing, setIsResizing] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const switchRef = useRef<HTMLDivElement | null>(null);
   const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
   const { theme, toggleTheme } = useThemeContext();
+  const { isLoading } = useLoadingContext();
 
   useEffect((): (() => void) => {
     buttonRef.current?.classList.add(styles["panel-before"]);
@@ -38,10 +30,20 @@ const DarkLightToggleSwitch = ({
 
     window.addEventListener("resize", handleResize);
 
-    return () => {
+    buttonRef.current?.classList.add(styles["panel-before"]);
+
+    return (): void => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect((): void => {
+    if (!isLoading) {
+      setTimeout((): void => {
+        buttonRef.current?.classList.add(styles["panel-after"]);
+      }, 500);
+    }
+  }, [isLoading]);
 
   useEffect((): void => {
     if (isResizing) {
@@ -52,17 +54,6 @@ const DarkLightToggleSwitch = ({
       switchRef.current?.classList.remove(styles["no-transition"]);
     }
   }, [isResizing]);
-
-  useIntersectionObserver({
-    ref: buttonRef,
-    isVisible,
-    setIsVisible,
-    sectionIsVisible,
-    setSectionIsVisible,
-    transitionDelay: 500,
-    beforeTransitionClass: styles["panel-before"],
-    afterTransitionClass: styles["panel-after"],
-  });
 
   const handleClick = (): void => {
     toggleTheme();

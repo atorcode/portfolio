@@ -30,10 +30,7 @@ const IntroductionSection = (): JSX.Element => {
           styles[`content-mask-${theme}`]
         }`}
       ></div>
-      <HeaderMenu
-        sectionIsVisible={isVisible}
-        setSectionIsVisible={setIsVisible}
-      />
+      <HeaderMenu />
       <Mask unveilDirection="up" />
       <div className={styles["introduction-content"]}>
         <SectionHeading
