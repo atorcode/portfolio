@@ -3,7 +3,7 @@
 .about {
   position: relative;
   width: 100%;
-  background-position: center;
+  background-position: center top;
   background-size: cover;
   @include m.color-transition;
   overflow: hidden;

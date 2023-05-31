@@ -35,8 +35,8 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  background-position: center;
   background-size: cover;
+  background-position: center bottom;
   @include m.color-transition;
   z-index: 0;
 }
