@@ -74,10 +74,8 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       return;
     }
     if (scrollContainerRef.current?.offsetWidth <= 768) {
-      console.log("small");
       setObserveSectionsForTransitions(false);
     } else if (scrollContainerRef.current?.offsetWidth > 768) {
-      console.log("large");
       setObserveSectionsForTransitions(true);
     }
   };
@@ -183,9 +181,11 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       );
       let nearestSection = sectionElements[nearestSectionIndex];
 
-      nearestSection.scrollIntoView({ behavior: "auto" });
-
       setIntersectionObserverType();
+
+      if (scrollContainerRefCurrent.offsetWidth > 768) {
+        nearestSection.scrollIntoView({ behavior: "auto" });
+      }
     };
 
     // attach event listeners

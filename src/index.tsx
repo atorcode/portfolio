@@ -21,15 +21,15 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 
 root.render(
-  <React.StrictMode>
-    <LoadingProvider>
-      <ThemeProvider>
-        <ScrollProvider>
-          <NotificationsProvider>
-            <App />
-          </NotificationsProvider>
-        </ScrollProvider>
-      </ThemeProvider>
-    </LoadingProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <LoadingProvider>
+    <ThemeProvider>
+      <ScrollProvider>
+        <NotificationsProvider>
+          <App />
+        </NotificationsProvider>
+      </ScrollProvider>
+    </ThemeProvider>
+  </LoadingProvider>
+  // </React.StrictMode>
 );

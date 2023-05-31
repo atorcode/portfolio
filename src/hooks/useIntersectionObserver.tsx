@@ -84,9 +84,6 @@ export const useIntersectionObserver = ({
         { threshold: threshold }
       );
       if (isVisible) {
-        console.log("hi");
-        console.log("VIS");
-        // setTransitionOccurred(true);
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           if (beforeTransitionClass) {
