@@ -15,14 +15,14 @@
   .stroke1 {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: outlineAnimation 2000ms ease forwards;
+    animation: outlineAnimation 1200ms ease forwards;
     animation-delay: 300ms;
   }
   .stroke2 {
     stroke-dasharray: 900;
     stroke-dashoffset: 900;
-    animation: outlineAnimation 2000ms ease forwards;
-    animation-delay: 2100ms;
+    animation: outlineAnimation 1200ms ease forwards;
+    animation-delay: 1400ms;
   }
 }
 
