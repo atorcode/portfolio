@@ -16,9 +16,12 @@
 
   transition: opacity 800ms ease, transform 800ms ease;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     .inner-content {
       background-color: rgba(v.$primary-color-dark-shade, 0.95);
+      pointer-events: all;
 
       > * {
         opacity: 1;
@@ -44,6 +47,7 @@
   align-items: center;
   gap: 1rem;
   background-color: rgba(v.$primary-color-dark-shade, 0);
+  pointer-events: none;
 
   transition: background-color 500ms ease;
 
