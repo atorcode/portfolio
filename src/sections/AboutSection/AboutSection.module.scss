@@ -40,6 +40,14 @@
   }
 }
 
+@media (max-width: 910px) {
+  .about-content {
+    width: 75%;
+    margin: 0 auto;
+    padding-top: 12.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .about-content {
     width: 85%;
