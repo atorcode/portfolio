@@ -51,7 +51,7 @@ const AboutSection = (): JSX.Element => {
         </div>
         <Button
           text="View Résumé"
-          url="https://drive.google.com/file/d/1G_1W5t1OZoq2m9ac6UoB1RscIJ-_CzCJ/view?usp=drive_link"
+          url="https://drive.google.com/file/d/17TpguD5Ts8P8ygYAJyG-RYMKJn3rOyr6/view?usp=sharing"
           sectionIsVisible={isVisible}
           setSectionIsVisible={setIsVisible}
         />
