@@ -15,15 +15,11 @@ import { SkillsType } from "../../types/SkillsType";
 type SkillBoxGroupProps = {
   subheading: string;
   readonly skills: ReadonlyArray<SkillsType>;
-  sectionIsVisible: boolean;
-  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SkillBoxGroup = ({
   subheading,
   skills,
-  sectionIsVisible,
-  setSectionIsVisible,
 }: SkillBoxGroupProps): JSX.Element => {
   const [visibilityOfSkillBoxes, setVisibilityOfSkillBoxes] = useState<
     Array<boolean>
@@ -38,11 +34,7 @@ const SkillBoxGroup = ({
 
   return (
     <section className={styles["skill-box-grouping"]}>
-      <Subheading
-        text={subheading}
-        sectionIsVisible={sectionIsVisible}
-        setSectionIsVisible={setSectionIsVisible}
-      />
+      <Subheading text={subheading} />
       <section className={styles["skill-boxes"]} ref={skillBoxesRef}>
         {skills.map((skill: SkillsType, index: number): JSX.Element => {
           return (

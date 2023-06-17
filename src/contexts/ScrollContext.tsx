@@ -1,18 +1,10 @@
 // dependencies and hooks
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useScrollSnap } from "../hooks/useScrollSnap";
-
-// utils
-import { SCROLL_DURATION } from "../utils/constants";
 
 type ScrollContextType = {
   isScrolling: boolean;
   scrollContainerRef: React.MutableRefObject<HTMLElement | null>;
   expandedBulletIndex: number;
-  observeSectionsForTransitions: boolean;
-  setObserveSectionsForTransitions: React.Dispatch<
-    React.SetStateAction<boolean>
-  >;
   introductionSectionRef: React.MutableRefObject<HTMLElement | null>;
   aboutSectionRef: React.MutableRefObject<HTMLElement | null>;
   skillsSectionRef: React.MutableRefObject<HTMLElement | null>;
@@ -38,8 +30,6 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     []
   );
   const [expandedBulletIndex, setExpandedBulletIndex] = useState<number>(0);
-  const [observeSectionsForTransitions, setObserveSectionsForTransitions] =
-    useState<boolean>(true);
   const scrollContainerRef = useRef<HTMLElement | null>(null);
 
   // sections
@@ -49,17 +39,6 @@ const ScrollProvider = ({ children }: ChildrenType) => {
   const projectsSectionRef = useRef<HTMLElement | null>(null);
   const contactSectionRef = useRef<HTMLElement | null>(null);
 
-  const easeOutQuart = (t: number) => 1 - --t * t * t * t;
-
-  const [_scrollBind, _scrollUnbind] = useScrollSnap(scrollContainerRef, {
-    // snapDestinationY should match the height of each section as specified by @mixin section-dimensions in _mixins.scss
-    snapDestinationY: "100vh",
-    timeout: 1,
-    duration: SCROLL_DURATION,
-    threshold: 0.01,
-    easing: easeOutQuart,
-  });
-
   const scrollToIndex = (index: number): void => {
     if (!currentSection || !scrollContainerRef.current) {
       return;
@@ -68,26 +47,6 @@ const ScrollProvider = ({ children }: ChildrenType) => {
     setExpandedBulletIndex(index);
     scrollContainerRef.current.scrollTo(0, sectionElements[index].offsetTop);
   };
-
-  const setIntersectionObserverType = (): void => {
-    if (!scrollContainerRef.current?.offsetWidth) {
-      return;
-    }
-    if (scrollContainerRef.current?.offsetWidth <= 768) {
-      setObserveSectionsForTransitions(false);
-    } else if (scrollContainerRef.current?.offsetWidth > 768) {
-      setObserveSectionsForTransitions(true);
-    }
-  };
-
-  useEffect((): void => {
-    if (observeSectionsForTransitions) {
-      _scrollBind();
-    } else {
-      _scrollUnbind();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observeSectionsForTransitions]);
 
   useEffect((): void => {
     const createNonNullRefArray = (
@@ -106,8 +65,6 @@ const ScrollProvider = ({ children }: ChildrenType) => {
         contactSectionRef.current
       )
     );
-
-    setIntersectionObserverType();
   }, []);
 
   useEffect((): (() => void) => {
@@ -181,8 +138,6 @@ const ScrollProvider = ({ children }: ChildrenType) => {
       );
       let nearestSection = sectionElements[nearestSectionIndex];
 
-      setIntersectionObserverType();
-
       if (scrollContainerRefCurrent.offsetWidth > 768) {
         nearestSection.scrollIntoView({ behavior: "auto" });
       }
@@ -233,8 +188,6 @@ const ScrollProvider = ({ children }: ChildrenType) => {
         isScrolling,
         scrollContainerRef,
         expandedBulletIndex,
-        observeSectionsForTransitions,
-        setObserveSectionsForTransitions,
         introductionSectionRef,
         aboutSectionRef,
         skillsSectionRef,

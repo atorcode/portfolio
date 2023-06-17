@@ -16,15 +16,7 @@ import Button from "../Button";
 // types
 import { ValidityOfFields } from "../../types/ValidityOfFields";
 
-type ContactFormProps = {
-  sectionIsVisible: boolean;
-  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const ContactForm = ({
-  sectionIsVisible,
-  setSectionIsVisible,
-}: ContactFormProps): JSX.Element => {
+const ContactForm = (): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [areFieldsValid, setAreFieldsValid] = useState<ValidityOfFields>({
     name: false,
@@ -43,8 +35,7 @@ const ContactForm = ({
     ref: formRef,
     isVisible,
     setIsVisible,
-    sectionIsVisible,
-    setSectionIsVisible,
+
     beforeTransitionClass: styles["form-before"],
     afterTransitionClass: styles["form-after"],
   });
@@ -90,13 +81,7 @@ const ContactForm = ({
         isValid={areFieldsValid.message}
         setIsValid={setAreFieldsValid}
       />
-      <Button
-        text="Submit"
-        startingPos="right"
-        sectionIsVisible={sectionIsVisible}
-        setSectionIsVisible={setSectionIsVisible}
-        transitionDelay={500}
-      />
+      <Button text="Submit" startingPos="right" transitionDelay={500} />
     </form>
   );
 };

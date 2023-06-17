@@ -9,15 +9,9 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 type MaskProps = {
   unveilDirection: "up" | "down";
-  sectionIsVisible?: boolean;
-  setSectionIsVisible?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Mask = ({
-  unveilDirection,
-  sectionIsVisible,
-  setSectionIsVisible,
-}: MaskProps): JSX.Element => {
+const Mask = ({ unveilDirection }: MaskProps): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const maskRef = useRef<HTMLDivElement | null>(null);
   const { theme } = useThemeContext();
@@ -27,8 +21,7 @@ const Mask = ({
     ref: maskRef,
     isVisible,
     setIsVisible,
-    sectionIsVisible,
-    setSectionIsVisible,
+
     transitionDelay: 0,
     afterTransitionClass: styles["mask-hidden"],
     threshold: 0.3,
@@ -41,9 +34,7 @@ const Mask = ({
       }
         ${
           (!isLoading && unveilDirection === "up") ||
-          (!isLoading &&
-            (sectionIsVisible || isVisible) &&
-            unveilDirection === "down")
+          (!isLoading && isVisible && unveilDirection === "down")
             ? styles["mask-hidden"]
             : ""
         }`}

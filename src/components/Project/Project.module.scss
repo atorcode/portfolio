@@ -11,7 +11,6 @@
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.8);
   font-family: "Roboto";
   user-select: none;
-  opacity: 0;
   transform: translateY(5rem);
 
   transition: opacity 800ms ease, transform 800ms ease;
@@ -30,7 +29,11 @@
   }
 }
 
-.project-visible {
+.project-before {
+  opacity: 0;
+}
+
+.project-after {
   opacity: 1;
   transform: translateY(0);
 }

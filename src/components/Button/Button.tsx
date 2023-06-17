@@ -5,7 +5,6 @@ import styles from "./Button.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import { useScrollContext } from "../../contexts/ScrollContext";
 
 // types
 import { StartingPosition } from "../../types/StartingPosition";
@@ -15,8 +14,6 @@ type ButtonProps = {
   url?: string;
   hasResizeableParent?: boolean;
   startingPos?: StartingPosition;
-  sectionIsVisible?: boolean;
-  setSectionIsVisible?: React.Dispatch<React.SetStateAction<boolean>>;
   transitionDelay?: number | undefined;
 };
 
@@ -25,15 +22,12 @@ const Button = ({
   url,
   hasResizeableParent,
   startingPos,
-  sectionIsVisible,
-  setSectionIsVisible,
   transitionDelay,
 }: ButtonProps): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const buttonContainerRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const { theme } = useThemeContext();
-  const { observeSectionsForTransitions } = useScrollContext();
 
   useEffect((): (() => void) => {
     const buttonContainerRefCurrent = buttonContainerRef.current;
@@ -82,10 +76,7 @@ const Button = ({
   }, []);
 
   useEffect(() => {
-    if (
-      (observeSectionsForTransitions && !sectionIsVisible) ||
-      (!observeSectionsForTransitions && !isVisible)
-    ) {
+    if (!isVisible) {
       if (startingPos) {
         buttonContainerRef.current?.classList.add(
           styles[`button-container-before-${startingPos}`]
@@ -96,22 +87,15 @@ const Button = ({
         );
       }
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, isVisible, sectionIsVisible]);
+  }, [theme, isVisible]);
 
   useIntersectionObserver({
     ref: buttonContainerRef,
     isVisible,
     setIsVisible,
-    sectionIsVisible,
-    setSectionIsVisible,
-    transitionDelay:
-      text === "Explore My Work"
-        ? transitionDelay || 1000
-        : !observeSectionsForTransitions
-        ? 200
-        : transitionDelay || 1000,
+
+    transitionDelay: text === "Explore My Work" ? transitionDelay || 1000 : 200,
     beforeTransitionClass: startingPos
       ? styles[`button-container-before-${startingPos}`]
       : styles["button-container-before-stationary"],

@@ -7,15 +7,9 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 
 type SubheadingProps = {
   text: string;
-  sectionIsVisible: boolean;
-  setSectionIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Subheading = ({
-  text,
-  sectionIsVisible,
-  setSectionIsVisible,
-}: SubheadingProps): JSX.Element => {
+const Subheading = ({ text }: SubheadingProps): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -27,8 +21,6 @@ const Subheading = ({
     ref: headingRef,
     isVisible,
     setIsVisible,
-    sectionIsVisible,
-    setSectionIsVisible,
     beforeTransitionClass: styles["subheading-before"],
     afterTransitionClass: styles["subheading-after"],
   });

@@ -15,14 +15,9 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import Button from "../Button";
 
 // types
-import { ProjectType } from "../../types/ProjectType";
-
-type ProjectProps = ProjectType & {
-  groupIsVisible: boolean;
-};
+import { ProjectType as ProjectProps } from "../../types/ProjectType";
 
 const Project = ({
-  groupIsVisible,
   name,
   imagePath,
   imageAltText,
@@ -32,7 +27,7 @@ const Project = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [projectImage, setProjectImage] = useState<string | undefined>();
   const projectRef = useRef<HTMLElement | null>(null);
-  const { isScrolling, observeSectionsForTransitions } = useScrollContext();
+  const { isScrolling } = useScrollContext();
   const { theme } = useThemeContext();
 
   useEffect((): void => {
@@ -44,18 +39,19 @@ const Project = ({
   }, [imagePath]);
 
   useEffect((): void => {
-    if (!isScrolling && groupIsVisible) {
-      projectRef.current?.classList.add(styles["project-visible"]);
+    // This condition is potentially no longer needed without scroll-snap. However, transition delays may need to be adjusted to account for change.
+    if (!isScrolling) {
+      projectRef.current?.classList.add(styles["project-before"]);
     }
-  }, [isScrolling, groupIsVisible]);
+  }, [isScrolling]);
 
   useIntersectionObserver({
     ref: projectRef,
     isVisible,
     setIsVisible,
-    afterTransitionClass: styles["project-visible"],
+    beforeTransitionClass: styles["project-before"],
+    afterTransitionClass: styles["project-after"],
     threshold: 0.2,
-    disabled: observeSectionsForTransitions,
   });
 
   return (
