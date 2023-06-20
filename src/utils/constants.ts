@@ -12,6 +12,8 @@ export const TOOLS = [
   "TypeScript",
   "React",
   "SASS",
+  "Next.js",
+  "Tailwind CSS",
   "Git",
 ] as const;
 export const SKILLS = [

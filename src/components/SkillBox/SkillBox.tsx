@@ -9,6 +9,8 @@ import {
   SiJavascript,
   SiReact,
   SiSass,
+  SiNextdotjs,
+  SiTailwindcss,
   SiGit,
 } from "react-icons/si";
 
@@ -67,6 +69,12 @@ const SkillBox = ({ skill, groupIsVisible }: SkillBoxProps): JSX.Element => {
       break;
     case "SASS":
       icon = <SiSass />;
+      break;
+    case "Next.js":
+      icon = <SiNextdotjs />;
+      break;
+    case "Tailwind CSS":
+      icon = <SiTailwindcss />;
       break;
     case "Git":
       icon = <SiGit />;
