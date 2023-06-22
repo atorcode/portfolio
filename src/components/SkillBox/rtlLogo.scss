@@ -1,0 +1,37 @@
+@use "../../partials/variables" as v;
+
+.rtl-logo-svg-dark {
+  height: 32px;
+  width: auto;
+  :not(.background) {
+    fill: v.$primary-color-dark-shade;
+  }
+  .background,
+  .details {
+    fill: v.$secondary-color-two;
+  }
+}
+
+.rtl-logo-svg-light {
+  height: 32px;
+  width: auto;
+  :not(.background) {
+    fill: white;
+  }
+  .background,
+  .details {
+    fill: v.$secondary-color-four;
+  }
+}
+
+@media (max-width: 768px), (max-height: 850px) {
+  .rtl-logo-svg {
+    height: v.$skill-box-icon-size-small;
+  }
+}
+
+@media (max-width: 600px) {
+  .rtl-logo-svg {
+    height: v.$skill-box-icon-size-smallest;
+  }
+}

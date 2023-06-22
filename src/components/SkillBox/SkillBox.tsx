@@ -1,6 +1,7 @@
 // styles
 import styles from "./SkillBox.module.scss";
 import "./typescriptLogo.scss";
+import "./rtlLogo.scss";
 
 // icons
 import {
@@ -8,13 +9,15 @@ import {
   SiCss3,
   SiJavascript,
   SiReact,
-  SiSass,
   SiNextdotjs,
+  SiSass,
   SiTailwindcss,
+  SiJest,
   SiGit,
 } from "react-icons/si";
 
 import { ReactComponent as TypescriptLogo } from "../../assets/typescript-logo.svg";
+import { ReactComponent as RtlLogo } from "../../assets/rtl-logo.svg";
 
 // hooks
 import { useEffect, useRef } from "react";
@@ -67,15 +70,24 @@ const SkillBox = ({ skill, groupIsVisible }: SkillBoxProps): JSX.Element => {
     case "React":
       icon = <SiReact />;
       break;
-    case "SASS":
-      icon = <SiSass />;
-      break;
     case "Next.js":
       icon = <SiNextdotjs />;
+      break;
+    case "SASS":
+      icon = <SiSass />;
       break;
     case "Tailwind CSS":
       icon = <SiTailwindcss />;
       break;
+    case "Jest":
+      icon = <SiJest />;
+      break;
+    case "React Testing Library":
+      icon = (
+        <RtlLogo className={`${"rtl-logo-svg"} ${`rtl-logo-svg-${theme}`}`} />
+      );
+      break;
+
     case "Git":
       icon = <SiGit />;
       break;
@@ -83,7 +95,9 @@ const SkillBox = ({ skill, groupIsVisible }: SkillBoxProps): JSX.Element => {
     case "Accessibility":
     case "UI/UX Design":
     case "Algorithms":
-    case "Single Page Applications":
+    case "Server-side Rendering":
+    case "Single-page Applications":
+    case "Test-driven Development":
     case "Game Development":
       icon = undefined;
       break;

@@ -11,9 +11,11 @@ export const TOOLS = [
   "JavaScript",
   "TypeScript",
   "React",
-  "SASS",
   "Next.js",
+  "SASS",
   "Tailwind CSS",
+  "Jest",
+  "React Testing Library",
   "Git",
 ] as const;
 export const SKILLS = [
@@ -21,6 +23,8 @@ export const SKILLS = [
   "Accessibility",
   "UI/UX Design",
   "Algorithms",
-  "Single Page Applications",
+  "Server-side Rendering",
+  "Single-page Applications",
+  "Test-driven Development",
   "Game Development",
 ] as const;
