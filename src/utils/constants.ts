@@ -14,6 +14,7 @@ export const TOOLS = [
   "Next.js",
   "SASS",
   "Tailwind CSS",
+  "Material UI",
   "Jest",
   "React Testing Library",
   "Git",

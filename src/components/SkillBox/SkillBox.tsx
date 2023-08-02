@@ -12,6 +12,7 @@ import {
   SiNextdotjs,
   SiSass,
   SiTailwindcss,
+  SiMui,
   SiJest,
   SiGit,
 } from "react-icons/si";
@@ -78,6 +79,9 @@ const SkillBox = ({ skill, groupIsVisible }: SkillBoxProps): JSX.Element => {
       break;
     case "Tailwind CSS":
       icon = <SiTailwindcss />;
+      break;
+    case "Material UI":
+      icon = <SiMui />;
       break;
     case "Jest":
       icon = <SiJest />;
