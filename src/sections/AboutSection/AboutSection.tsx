@@ -37,7 +37,7 @@ const AboutSection = (): JSX.Element => {
         </div>
         <Button
           text="View Résumé"
-          url="https://drive.google.com/file/d/1eiZg_wG9HioqGPmmp1US3znSWIUtWV7w/view?usp=sharing"
+          url="https://drive.google.com/file/d/1ZUCYq9eOPNlWIcj4H0Ep66J_Qx_By5Ul/view?usp=sharing"
         />
       </div>
     </section>
