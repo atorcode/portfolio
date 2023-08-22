@@ -1,11 +1,11 @@
 [
   {
     "id": 0,
-    "name": "Portfolio",
-    "imagePath": "coming-soon.jpg",
-    "imageAltText": "Alberto Torrigiotti's Front-end Web Developer Portfolio",
-    "projectUrl": "#introduction",
-    "githubUrl": "https://github.com/atorcode/portfolio"
+    "name": "Soojin Music Academy",
+    "imagePath": "SJM.png",
+    "imageAltText": "Soojin Music Academy: A transformative voice lesson business located in Federal Way, WA",
+    "projectUrl": "https://soojinmusicacademy.com",
+    "githubUrl": "https://github.com/atorcode/soojin-music-academy"
   },
   {
     "id": 1,
