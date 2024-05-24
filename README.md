@@ -16,7 +16,7 @@ I'm actively seeking a front-end web development position. I have a deep underst
 
 LinkedIn: https://www.linkedin.com/in/alberto-torrigiotti/ <br>
 Email: [atorcode@gmail.com](mailto:atorcode@gmail.com) <br>
-Resume: [View my Resume](https://drive.google.com/file/d/1ZUCYq9eOPNlWIcj4H0Ep66J_Qx_By5Ul/view?usp=sharing)
+Resume: [View my Resume](https://drive.google.com/file/d/1n4LM6O4bZrOhNfnFmSS04RV5RlbJlilm/view)
 
 ## Technologies Used
 
