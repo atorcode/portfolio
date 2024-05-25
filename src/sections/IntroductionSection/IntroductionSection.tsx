@@ -33,7 +33,7 @@ const IntroductionSection = (): JSX.Element => {
       <div className={styles["introduction-content"]}>
         <SectionHeading text="Hey, I'm Albo!" />
         <Paragraph
-          text="My full name is Alberto Torrigiotti. I'm a full-stack software engineer, educator, and lifelong learner who excels at delivering projects end to end. I'm currently the lead developer of an emergency alerting application leveraging a branch new signaling protocol to enable over the air delivery of rich media. I am also extremely eager to collaborate with people and build projects together, so don't hesitate to reach out!"
+          text="My full name is Alberto Torrigiotti. I'm a full-stack software engineer, educator, and lifelong learner who excels at delivering projects end to end. I'm currently the lead developer of an emergency alerting application leveraging a brand new signaling protocol to enable over the air delivery of rich media. I am also extremely eager to collaborate with people and build projects together, so don't hesitate to reach out!"
           startingPos="down"
         />
         <Button text="Explore My Work" url="#projects" transitionDelay={1000} />
